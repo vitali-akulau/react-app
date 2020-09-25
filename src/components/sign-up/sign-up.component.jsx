@@ -35,7 +35,7 @@ class SignUp extends React.Component {
     }
 
     try {
-      const { user } = auth.createUserWithEmailAndPassword(email, password)
+      const { user } = await auth.createUserWithEmailAndPassword(email, password)
 
       await createUserProfileDocument(user, { displayName })
       this.setState({
@@ -45,7 +45,7 @@ class SignUp extends React.Component {
         confirmPassword: ""
       })
     } catch(error) {
-
+      console.log(error)
     }
   }
 
@@ -66,7 +66,7 @@ class SignUp extends React.Component {
             />
             <FormInput
               type="email"
-              name="name"
+              name="email"
               value={this.state.email}
               handleChange={this.handleChange}
               label="email"
@@ -88,8 +88,8 @@ class SignUp extends React.Component {
               label="confirm password"
               required
             />
+            <CustomButton type="submit">Sign Up</CustomButton>
           </form>
-          <CustomButton type="submit">Sign Up</CustomButton>
         </div>
   )
   }
