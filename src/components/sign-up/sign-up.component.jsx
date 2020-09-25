@@ -11,7 +11,7 @@ class SignUp extends React.Component {
     super(props);
 
     this.state = {
-      name: "",
+      displayName: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -24,8 +24,29 @@ class SignUp extends React.Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault()
+
+    const { displayName, email, password, confirmPassword } = this.state
+
+    if (password !== confirmPassword) {
+      alert("Password doesn't match")
+      return
+    }
+
+    try {
+      const { user } = auth.createUserWithEmailAndPassword(email, password)
+
+      await createUserProfileDocument(user, { displayName })
+      this.setState({
+        displayName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+      })
+    } catch(error) {
+
+    }
   }
 
   render() {
@@ -37,8 +58,8 @@ class SignUp extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <FormInput
               type="text"
-              name="name"
-              value={this.state.name}
+              name="displayName"
+              value={this.state.displayName}
               handleChange={this.handleChange}
               label="name"
               required
