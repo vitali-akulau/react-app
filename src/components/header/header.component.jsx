@@ -7,7 +7,7 @@ import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo" />
@@ -20,18 +20,23 @@ const Header = ({ currentUser }) => (
         CONTACT
       </Link>
       {
-          currentUser
-            ? <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
-            : <Link className="option" to="/signing">SIGN IN</Link>
-        }
+        currentUser
+          ? <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
+          : <Link className="option" to="/signing">SIGN IN</Link>
+      }
       <CartIcon />
     </div>
-    <Cart />
+    {
+      hidden
+        ? null
+        : <Cart />
+    }
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);
