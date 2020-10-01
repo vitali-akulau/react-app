@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
-import Cart from '../cart-dropdown/cart-dropdown.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
 import { connect } from 'react-redux';
@@ -29,7 +29,7 @@ const Header = ({ currentUser, hidden }) => (
     {
       hidden
         ? null
-        : <Cart />
+        : <CartDropdown />
     }
   </div>
 );
