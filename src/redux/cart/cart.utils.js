@@ -1,15 +1,11 @@
-import * as _ from 'lodash';
-
 export const addItemToCart = (cartItems, itemToAdd) => {
-  const existingItem = _.find(cartItems, { id: itemToAdd.id });
+  const existingCartItems = cartItems;
 
-  if (existingItem) {
-    return _.map(cartItems, item => {
-      return (item.id === itemToAdd.id)
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    });
+  if (existingCartItems[itemToAdd.id]) {
+    existingCartItems[itemToAdd.id].quantity += 1;
+  } else {
+    existingCartItems[itemToAdd.id] = { ...itemToAdd, quantity: 1 }
   }
 
-  return [ ...cartItems, { ...itemToAdd, quantity: 1 } ]
+  return existingCartItems
 };
