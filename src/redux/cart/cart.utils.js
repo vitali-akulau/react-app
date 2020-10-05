@@ -13,3 +13,5 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 
   return [ ...cartItems, { ...itemToAdd, quantity: 1 } ]
 };
+
+export const clearItemFromCart = (cartItems, itemToRemove) => _.reject(cartItems, {id: itemToRemove.id});
