@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
-import './menu-item.styles.scss';
 import { withRouter } from 'react-router-dom';
+import {
+  MenuItemContainer, MenuItemBackgroundImage, ContentContainer, ContentTitle, ContentSubtitle,
+} from './menu-item.styles';
 
 const MenuItem = ({
   title, id, imageUrl, size, history, match, linkUrl,
@@ -9,20 +11,17 @@ const MenuItem = ({
   const subtitleAction = 'shop now';
 
   return (
-    <div
-      className={`${size} menu-item`}
+    <MenuItemContainer
+      size={size}
       key={id}
       onClick={() => history.push(`${match.url}${linkUrl}`)}
     >
-      <div
-        className="background-image"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      />
-      <div className="content">
-        <h1 className="title">{_.toUpper(title)}</h1>
-        <span className="subtitle">{_.toUpper(subtitleAction)}</span>
-      </div>
-    </div>
+      <MenuItemBackgroundImage imageUrl={imageUrl} />
+      <ContentContainer>
+        <ContentTitle>{_.toUpper(title)}</ContentTitle>
+        <ContentSubtitle>{_.toUpper(subtitleAction)}</ContentSubtitle>
+      </ContentContainer>
+    </MenuItemContainer>
   );
 };
 
