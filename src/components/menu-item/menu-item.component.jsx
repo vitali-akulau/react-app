@@ -1,28 +1,28 @@
-import _ from 'lodash';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+
 import {
-  MenuItemContainer, MenuItemBackgroundImage, ContentContainer, ContentTitle, ContentSubtitle,
+  MenuItemContainer,
+  BackgroundImageContainer,
+  ContentContainer,
+  ContentTitle,
+  ContentSubtitle
 } from './menu-item.styles';
 
-const MenuItem = ({
-  title, id, imageUrl, size, history, match, linkUrl,
-}) => {
-  const subtitleAction = 'shop now';
-
-  return (
+const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
     <MenuItemContainer
-      size={size}
-      key={id}
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
+        size={size}
+        onClick={() => history.push(`${match.url}${linkUrl}`)}
     >
-      <MenuItemBackgroundImage imageUrl={imageUrl} />
-      <ContentContainer>
-        <ContentTitle>{_.toUpper(title)}</ContentTitle>
-        <ContentSubtitle>{_.toUpper(subtitleAction)}</ContentSubtitle>
+      <BackgroundImageContainer
+          className='background-image'
+          imageUrl={imageUrl}
+      />
+      <ContentContainer className='content'>
+        <ContentTitle>{title.toUpperCase()}</ContentTitle>
+        <ContentSubtitle>SHOP NOW</ContentSubtitle>
       </ContentContainer>
     </MenuItemContainer>
-  );
-};
+);
 
 export default withRouter(MenuItem);
