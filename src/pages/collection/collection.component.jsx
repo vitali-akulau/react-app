@@ -1,7 +1,7 @@
 import React from 'react';
 import * as _ from 'lodash';
+import { CollectionPageContainer, CollectionPageTitle, CollectionPageItemsContainer } from './collection.styles';
 
-import './collection.styles.scss';
 import { connect } from 'react-redux';
 import CollectionItem from '../../components/collection-item/collection-item.component';
 import { selectCollection } from '../../redux/shop/shop.selectors';
@@ -9,14 +9,14 @@ import { selectCollection } from '../../redux/shop/shop.selectors';
 const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
   return (
-    <div className="collection-page">
-      <h2>{_.capitalize(title)}</h2>
-      <div className="items">
+    <CollectionPageContainer>
+      <CollectionPageTitle>{_.capitalize(title)}</CollectionPageTitle>
+      <CollectionPageItemsContainer>
         {
           items.map((item) => <CollectionItem key={item.id} item={item} />)
         }
-      </div>
-    </div>
+      </CollectionPageItemsContainer>
+    </CollectionPageContainer>
   );
 };
 
