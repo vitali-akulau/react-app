@@ -19,7 +19,7 @@ class ShopPage extends React.Component {
   }
 
   render() {
-    const { match, isCollectionsLoaded } = this.props;
+    const { match, isFetching, isCollectionsLoaded } = this.props;
 
     return (
       <div className="shop-page">
@@ -27,7 +27,7 @@ class ShopPage extends React.Component {
           exact
           path={`${match.path}`}
           render={(props) => (
-            <CollectionsOverviewWithSpinner isLoading={!isCollectionsLoaded} {...props} />
+            <CollectionsOverviewWithSpinner isLoading={isFetching} {...props} />
           )}
         />
         <Route
