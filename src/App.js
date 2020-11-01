@@ -1,5 +1,5 @@
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils"
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import React from 'react';
 
@@ -21,20 +21,20 @@ class App extends React.Component {
   componentDidMount() {
     const { setCurrentUser } = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth)
-
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-              id: snapshot.id,
-              ...snapshot.data()
-          })
-        })
-      } else {
-        setCurrentUser(userAuth);
-      }
-    });
+    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth)
+    //
+    //     userRef.onSnapshot(snapshot => {
+    //       setCurrentUser({
+    //           id: snapshot.id,
+    //           ...snapshot.data()
+    //       })
+    //     })
+    //   } else {
+    //     setCurrentUser(userAuth);
+    //   }
+    // });
   };
 
   componentWillUnmount() {
