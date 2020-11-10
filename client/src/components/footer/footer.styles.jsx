@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
   height: 200px;
-  padding: 20px 87.5px;
+  padding: 0px 87.5px 20px;
   border-top: 0.5px solid grey;
   display: flex;
   justify-content: center;
