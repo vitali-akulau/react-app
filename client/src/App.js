@@ -10,6 +10,8 @@ import Header from './components/header/header.component';
 import Spinner from './components/spinner/spinner.component';
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
 
+import * as serviceWorker from './serviceWorker';
+
 const HomePage = lazy(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazy(() => import('./pages/shop/shop.component'));
 const CheckoutPage = lazy(() => import('./pages/checkout/checkout.component'));
@@ -49,5 +51,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
 });
+
+serviceWorker.register();
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
