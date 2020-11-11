@@ -1,41 +1,48 @@
 import React from 'react';
-import { FooterContainer, FooterLinksContainer, LinksColumnContainer } from './footer.styles';
+import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { ReactComponent as InLogo } from '../../assets/linkedin.svg';
+import { ReactComponent as InstagramLogo } from '../../assets/instagram.svg';
+import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
+import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
+import { FooterContainer, FooterColumnsContainer, LinksColumnContainer, FooterImageContainer, FooterLink } from './footer.styles';
 
 const Footer = () => (
   <FooterContainer>
-    <FooterLinksContainer>
+    <FooterColumnsContainer>
       <LinksColumnContainer>
-        <h4>Image</h4>
+        <FooterImageContainer to="/">
+          <Logo />
+        </FooterImageContainer>
       </LinksColumnContainer>
       <LinksColumnContainer>
-        <h4>Department</h4>
+        <h4>COMPANY</h4>
         <ul>
-          <li>Our goals</li>
-          <li>Careers</li>
-          <li>Internship</li>
-          <li>Educational courses</li>
+          <li><FooterLink to="/">Careers</FooterLink></li>
+          <li><FooterLink to="/contact">Contact Us</FooterLink></li>
+          <li><FooterLink to="/">Terms</FooterLink></li>
+          <li><FooterLink to="/">Privacy</FooterLink></li>
+          <li><FooterLink to="/">Accessibility Policy</FooterLink></li>
         </ul>
       </LinksColumnContainer>
       <LinksColumnContainer>
-        <h4>Technologies</h4>
+        <h4>LEARN MORE</h4>
         <ul>
-          <li>React</li>
-          <li>Redux</li>
-          <li>Express</li>
-          <li>Firebase</li>
-          <li>Stripe</li>
-          <li>Jest</li>
+          <li><FooterLink to="/">React</FooterLink></li>
+          <li><FooterLink to="/">Redux</FooterLink></li>
+          <li><FooterLink to="/">Express</FooterLink></li>
+          <li><FooterLink to="/">Firebase</FooterLink></li>
+          <li><FooterLink to="/">Stripe</FooterLink></li>
+          <li><FooterLink to="/">Jest</FooterLink></li>
         </ul>
       </LinksColumnContainer>
       <LinksColumnContainer>
-        <h4>Other</h4>
-        <ul>
-          <li>ALMA MATER</li>
-          <li>Deploy this locally</li>
-          <li>How to test?</li>
-        </ul>
+        <h4>JOIN US</h4>
+        <FooterLink to="/"><InstagramLogo /></FooterLink>
+        <FooterLink to="/"><InLogo /></FooterLink>
+        <FooterLink to="/"><TwitterLogo /></FooterLink>
+        <FooterLink to="/"><FacebookLogo /></FooterLink>
       </LinksColumnContainer>
-    </FooterLinksContainer>
+    </FooterColumnsContainer>
   </FooterContainer>
 );
 
