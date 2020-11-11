@@ -4,7 +4,13 @@ import { ReactComponent as InLogo } from '../../assets/linkedin.svg';
 import { ReactComponent as InstagramLogo } from '../../assets/instagram.svg';
 import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
 import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
-import { FooterContainer, FooterColumnsContainer, LinksColumnContainer, FooterImageContainer, FooterLink } from './footer.styles';
+import {
+  FooterContainer,
+  FooterColumnsContainer,
+  LinksColumnContainer,
+  FooterImageContainer,
+  FooterLink
+} from './footer.styles';
 
 const Footer = () => (
   <FooterContainer>
