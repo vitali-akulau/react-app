@@ -1,15 +1,21 @@
 module.exports = {
   env: {
-    node: true,
-    commonjs: true
+    browser: true,
   },
   extends: [
-    'airbnb-base'
+    'plugin:react/recommended',
+    'airbnb',
   ],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 9,
     sourceType: 'module',
   },
+  plugins: [
+    'react',
+  ],
   rules: {
   },
 };

@@ -5,7 +5,7 @@ import CollectionItem from '../collection-item/collection-item.component';
 
 const CollectionPreview = ({ title, items, previewItemsNumber }) => (
   <CollectionPreviewContainer>
-    <CollectionPreviewTitle>{_.toUpper(title)}</CollectionPreviewTitle>
+    <CollectionPreviewTitle to={`/shop/${_.toLower(title)}`}>{_.toUpper(title)}</CollectionPreviewTitle>
     <PreviewContainer>
       {
         _.take(items, previewItemsNumber).map((item) => (
