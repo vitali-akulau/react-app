@@ -1,9 +1,9 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { ReactComponent as InLogo } from '../../assets/linkedin.svg';
-import { ReactComponent as InstagramLogo } from '../../assets/instagram.svg';
-import { ReactComponent as TwitterLogo } from '../../assets/twitter.svg';
-import { ReactComponent as FacebookLogo } from '../../assets/facebook.svg';
+import { ReactComponent as Logo } from '../../static/crown.svg';
+import { ReactComponent as InLogo } from '../../static/linkedin.svg';
+import { ReactComponent as InstagramLogo } from '../../static/instagram.svg';
+import { ReactComponent as TwitterLogo } from '../../static/twitter.svg';
+import { ReactComponent as FacebookLogo } from '../../static/facebook.svg';
 import {
   FooterContainer,
   FooterColumnsContainer,
