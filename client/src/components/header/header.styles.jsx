@@ -6,7 +6,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  padding: 0px 87.5px;
   
   @media screen and (max-width: 800px) {
     height: 60px;
@@ -18,7 +18,6 @@ export const HeaderContainer = styled.div`
 export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
-  padding: 25px;
   
   @media screen and (max-width: 800px) {
     width: 50px;

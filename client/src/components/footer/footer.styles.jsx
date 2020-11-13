@@ -10,6 +10,11 @@ export const FooterContainer = styled.div`
   height: 200px;
   padding: 0px 87.5px 20px;
   border-top: 0.5px solid #e3e1df;
+  
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const FooterColumnsContainer = styled.div`
@@ -31,6 +36,11 @@ export const LinksColumnContainer = styled.div`
   & li {
     list-style: none;
     margin: 2px 0px;
+  }
+  
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    margin-bottom: 10px;
   }
 `;
 
