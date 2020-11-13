@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as Logo } from '../../static/crown.svg';
-import { ReactComponent as InLogo } from '../../static/linkedin.svg';
+import { ReactComponent as TiktokLogo } from '../../static/tiktok.svg';
 import { ReactComponent as InstagramLogo } from '../../static/instagram.svg';
 import { ReactComponent as TwitterLogo } from '../../static/twitter.svg';
 import { ReactComponent as FacebookLogo } from '../../static/facebook.svg';
@@ -15,11 +15,6 @@ import {
 const Footer = () => (
   <FooterContainer>
     <FooterColumnsContainer>
-      <LinksColumnContainer>
-        <FooterImageContainer to="/">
-          <Logo />
-        </FooterImageContainer>
-      </LinksColumnContainer>
       <LinksColumnContainer>
         <h4>COMPANY</h4>
         <ul>
@@ -42,9 +37,14 @@ const Footer = () => (
         </ul>
       </LinksColumnContainer>
       <LinksColumnContainer>
+        <FooterImageContainer to="/">
+          <Logo width={"125px"} height={"125px"} />
+        </FooterImageContainer>
+      </LinksColumnContainer>
+      <LinksColumnContainer textAlign={"right"}>
         <h4>JOIN US</h4>
         <FooterLink to="/"><InstagramLogo /></FooterLink>
-        <FooterLink to="/"><InLogo /></FooterLink>
+        <FooterLink to="/"><TiktokLogo /></FooterLink>
         <FooterLink to="/"><TwitterLogo /></FooterLink>
         <FooterLink to="/"><FacebookLogo /></FooterLink>
       </LinksColumnContainer>

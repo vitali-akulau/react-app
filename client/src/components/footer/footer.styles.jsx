@@ -10,13 +10,15 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterColumnsContainer = styled.div`
-  width: 60%;
+  width: 100%;
   display: grid;
   grid-column-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 `;
 
 export const LinksColumnContainer = styled.div`
+  text-align: ${({textAlign}) => textAlign};
+
   & ul {
     padding: unset;
   }
