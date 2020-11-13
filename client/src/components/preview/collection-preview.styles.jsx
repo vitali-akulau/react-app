@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link} from "react-router-dom";
 
 export const CollectionPreviewContainer = styled.div`
   display: flex;
@@ -30,6 +30,7 @@ export const CollectionPreviewContainer = styled.div`
   
   @media screen and (max-width: 800px) {
     align-items: center;
+    
   }
 `;
 

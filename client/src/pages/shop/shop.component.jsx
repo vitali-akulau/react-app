@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import ContentsContainer from './shop.styles';
+import './shop.styles';
 import Spinner from '../../components/spinner/spinner.component';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   }, [fetchCollectionsStart]);
 
   return (
-    <ContentsContainer>
+    <div className="shop-page">
       <Suspense fallback={<Spinner />}>
         <Route
           exact
@@ -26,7 +26,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
           component={CollectionPageContainer}
         />
       </Suspense>
-    </ContentsContainer>
+    </div>
   );
 };
 

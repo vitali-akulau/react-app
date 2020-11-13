@@ -18,9 +18,4 @@ export const CollectionPageItemsContainer = styled.div`
   & > div {
     margin-bottom: 30px;
   }
-  
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 15px;
-  }
 `;
