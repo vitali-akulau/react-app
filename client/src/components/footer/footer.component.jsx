@@ -1,8 +1,8 @@
 import React from 'react';
-import { ReactComponent as TiktokLogo } from '../../static/tiktok.svg';
-import { ReactComponent as InstagramLogo } from '../../static/instagram.svg';
-import { ReactComponent as TwitterLogo } from '../../static/twitter.svg';
-import { ReactComponent as FacebookLogo } from '../../static/facebook.svg';
+import { ReactComponent as TiktokLogo } from '../../static/icons/tiktok.svg';
+import { ReactComponent as InstagramLogo } from '../../static/icons/instagram.svg';
+import { ReactComponent as TwitterLogo } from '../../static/icons/twitter.svg';
+import { ReactComponent as FacebookLogo } from '../../static/icons/facebook.svg';
 import {
   FooterContainer,
   FooterColumnsContainer,

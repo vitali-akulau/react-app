@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { signOutStart } from '../../redux/user/user.actions';
-import { ReactComponent as Logo } from '../../static/crown.svg';
+import { ReactComponent as Logo } from '../../static/icons/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import {
