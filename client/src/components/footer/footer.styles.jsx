@@ -1,5 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import ExternalLink from '../external-link/external-link.component';
+
+const linksSharedStyles = css`
+  cursor: pointer;
+`;
 
 export const FooterContainer = styled.div`
   height: 200px;
@@ -19,11 +24,11 @@ export const FooterColumnsContainer = styled.div`
 export const HalfSizeContainer = styled.div`
   width: 50%;
   float: left;
-`
+`;
 
 export const LinksColumnContainer = styled.div`
   display: inline-block;
-  text-align: ${({textAlign}) => textAlign};
+  text-align: ${({ textAlign }) => textAlign};
 
   & ul {
     padding: unset;
@@ -33,7 +38,7 @@ export const LinksColumnContainer = styled.div`
     list-style: none;
     margin: 2px 0px;
   }
-`
+`;
 
 export const FooterImageContainer = styled(Link)`
   width: 100%;
@@ -45,5 +50,9 @@ export const FooterImageContainer = styled(Link)`
 `;
 
 export const FooterLink = styled(Link)`
-  cursor: pointer;
-`
+  ${linksSharedStyles}
+`;
+
+export const FooterExternalLink = styled(ExternalLink)`
+  ${linksSharedStyles}
+`;

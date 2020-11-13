@@ -10,7 +10,8 @@ import {
   LinksColumnContainer,
   FooterImageContainer,
   FooterLink,
-  HalfSizeContainer
+  FooterExternalLink,
+  HalfSizeContainer,
 } from './footer.styles';
 
 const Footer = () => (
@@ -30,12 +31,12 @@ const Footer = () => (
         <HalfSizeContainer>
           <h4>LEARN MORE</h4>
           <ul>
-            <li><FooterLink to="/">React</FooterLink></li>
-            <li><FooterLink to="/">Redux</FooterLink></li>
-            <li><FooterLink to="/">Express</FooterLink></li>
-            <li><FooterLink to="/">Firebase</FooterLink></li>
-            <li><FooterLink to="/">Stripe</FooterLink></li>
-            <li><FooterLink to="/">Jest</FooterLink></li>
+            <li><FooterExternalLink href="https://reactjs.org/">React</FooterExternalLink></li>
+            <li><FooterExternalLink href="https://redux.js.org/">Redux</FooterExternalLink></li>
+            <li><FooterExternalLink href="https://expressjs.com/">Express</FooterExternalLink></li>
+            <li><FooterExternalLink href="https://firebase.google.com/">Firebase</FooterExternalLink></li>
+            <li><FooterExternalLink href="https://stripe.com/">Stripe</FooterExternalLink></li>
+            <li><FooterExternalLink href="https://jestjs.io/">Jest</FooterExternalLink></li>
           </ul>
         </HalfSizeContainer>
       </LinksColumnContainer>
@@ -49,15 +50,15 @@ const Footer = () => (
       </LinksColumnContainer>
       <LinksColumnContainer>
         <FooterImageContainer to="/">
-          <Logo width={"125px"} height={"125px"} />
+          <Logo width="125px" height="125px" />
         </FooterImageContainer>
       </LinksColumnContainer>
-      <LinksColumnContainer textAlign={"right"}>
+      <LinksColumnContainer textAlign="right">
         <h4>JOIN US</h4>
-        <FooterLink to="/"><InstagramLogo /></FooterLink>
-        <FooterLink to="/"><TiktokLogo /></FooterLink>
-        <FooterLink to="/"><TwitterLogo /></FooterLink>
-        <FooterLink to="/"><FacebookLogo /></FooterLink>
+        <FooterExternalLink href="https://www.instagram.com/"><InstagramLogo /></FooterExternalLink>
+        <FooterExternalLink href="https://www.tiktok.com/en/"><TiktokLogo /></FooterExternalLink>
+        <FooterExternalLink href="https://twitter.com/"><TwitterLogo /></FooterExternalLink>
+        <FooterExternalLink href="https://facebook.com/"><FacebookLogo /></FooterExternalLink>
       </LinksColumnContainer>
     </FooterColumnsContainer>
   </FooterContainer>
