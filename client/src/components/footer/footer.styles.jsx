@@ -16,7 +16,13 @@ export const FooterColumnsContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
 `;
 
+export const HalfSizeContainer = styled.div`
+  width: 50%;
+  float: left;
+`
+
 export const LinksColumnContainer = styled.div`
+  display: inline-block;
   text-align: ${({textAlign}) => textAlign};
 
   & ul {

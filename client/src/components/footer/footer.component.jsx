@@ -9,31 +9,42 @@ import {
   FooterColumnsContainer,
   LinksColumnContainer,
   FooterImageContainer,
-  FooterLink
+  FooterLink,
+  HalfSizeContainer
 } from './footer.styles';
 
 const Footer = () => (
   <FooterContainer>
     <FooterColumnsContainer>
       <LinksColumnContainer>
-        <h4>COMPANY</h4>
-        <ul>
-          <li><FooterLink to="/">Careers</FooterLink></li>
-          <li><FooterLink to="/contact">Contact Us</FooterLink></li>
-          <li><FooterLink to="/">Terms</FooterLink></li>
-          <li><FooterLink to="/">Privacy</FooterLink></li>
-          <li><FooterLink to="/">Accessibility Policy</FooterLink></li>
-        </ul>
+        <HalfSizeContainer>
+          <h4>COMPANY</h4>
+          <ul>
+            <li><FooterLink to="/">Careers</FooterLink></li>
+            <li><FooterLink to="/contact">Contact Us</FooterLink></li>
+            <li><FooterLink to="/">Terms</FooterLink></li>
+            <li><FooterLink to="/">Privacy</FooterLink></li>
+            <li><FooterLink to="/">Accessibility Policy</FooterLink></li>
+          </ul>
+        </HalfSizeContainer>
+        <HalfSizeContainer>
+          <h4>LEARN MORE</h4>
+          <ul>
+            <li><FooterLink to="/">React</FooterLink></li>
+            <li><FooterLink to="/">Redux</FooterLink></li>
+            <li><FooterLink to="/">Express</FooterLink></li>
+            <li><FooterLink to="/">Firebase</FooterLink></li>
+            <li><FooterLink to="/">Stripe</FooterLink></li>
+            <li><FooterLink to="/">Jest</FooterLink></li>
+          </ul>
+        </HalfSizeContainer>
       </LinksColumnContainer>
       <LinksColumnContainer>
-        <h4>LEARN MORE</h4>
         <ul>
-          <li><FooterLink to="/">React</FooterLink></li>
-          <li><FooterLink to="/">Redux</FooterLink></li>
-          <li><FooterLink to="/">Express</FooterLink></li>
-          <li><FooterLink to="/">Firebase</FooterLink></li>
-          <li><FooterLink to="/">Stripe</FooterLink></li>
-          <li><FooterLink to="/">Jest</FooterLink></li>
+          <li><FooterLink to="/"><h4>FIND A STORE</h4></FooterLink></li>
+          <li><FooterLink to="/signing"><h4>SIGN UP</h4></FooterLink></li>
+          <li><FooterLink to="/"><h4>BECOME A MEMBER</h4></FooterLink></li>
+          <li><FooterLink to="/"><h4>SEND US FEEDBACK</h4></FooterLink></li>
         </ul>
       </LinksColumnContainer>
       <LinksColumnContainer>
