@@ -16,13 +16,14 @@ const SearchBar = ({ searchProductsStart }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       searchProductsStart(query);
+      setSearchQuery({ query: '' });
     }
   };
 
   return (
     <FormInput
       name="search"
-      type="search"
+      type="text"
       value={query}
       handleChange={handleChange}
       onKeyDown={handleKeyDown}
