@@ -1,7 +1,8 @@
 import SearchTypes from './search.types';
 
-export const searchProductsStart = () => ({
+export const searchProductsStart = (searchQuery) => ({
   type: SearchTypes.SEARCH_PRODUCTS_START,
+  payload: searchQuery,
 });
 
 export const searchProductsSuccess = (products) => ({
