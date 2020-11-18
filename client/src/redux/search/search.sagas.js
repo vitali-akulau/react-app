@@ -4,10 +4,10 @@ import {
 import * as _ from 'lodash';
 import SearchTypes from './search.types';
 import { searchProductsSuccess, searchProductsFailure } from './search.actions';
-import { fetchCollectionsAsync } from '../shop/shop.sagas';
+import { convertCollectionsSnapshotToMap, firestore } from '../../firebase/firebase.utils';
 
 const getProductsBySearchQuery = (collections, searchQuery) => {
-  const allProducts = _.flatten(_.map(collections, ({ items }) => items));
+  const allProducts = _.flatten(_.map(collections, 'items'));
 
   _.filter(allProducts, ({ name }) => (
     _.toLower(name).includes(_.toLower(searchQuery))
@@ -16,8 +16,10 @@ const getProductsBySearchQuery = (collections, searchQuery) => {
 
 export function* searchProductsStartAsync({ payload: searchQuery }) {
   try {
-    const collections = yield call(fetchCollectionsAsync);
-    const products = yield call(getProductsBySearchQuery, collections, searchQuery);
+    const collectionRef = firestore.collection('collections');
+    const snapshot = yield collectionRef.get();
+    const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot);
+    const products = yield call(getProductsBySearchQuery, collectionsMap, searchQuery);
 
     yield put(searchProductsSuccess(products));
   } catch (error) {
