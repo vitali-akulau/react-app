@@ -5,6 +5,7 @@ import { signOutStart } from '../../redux/user/user.actions';
 import { ReactComponent as Logo } from '../../static/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import SearchBar from '../search/search.component';
 import {
   HeaderContainer, LogoContainer, OptionsContainer, OptionLink,
 } from './header.styles';
@@ -17,6 +18,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       <Logo />
     </LogoContainer>
     <OptionsContainer>
+      <SearchBar />
       <OptionLink to="/shop">SHOP</OptionLink>
       <OptionLink to="/contact">CONTACT</OptionLink>
       {
