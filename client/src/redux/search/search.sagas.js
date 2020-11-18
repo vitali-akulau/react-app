@@ -9,7 +9,7 @@ import { convertCollectionsSnapshotToMap, firestore } from '../../firebase/fireb
 const getProductsBySearchQuery = (collections, searchQuery) => {
   const allProducts = _.flatten(_.map(collections, 'items'));
 
-  _.filter(allProducts, ({ name }) => (
+  return _.filter(allProducts, ({ name }) => (
     _.toLower(name).includes(_.toLower(searchQuery))
   ));
 };
@@ -19,7 +19,7 @@ export function* searchProductsStartAsync({ payload: searchQuery }) {
     const collectionRef = firestore.collection('collections');
     const snapshot = yield collectionRef.get();
     const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot);
-    const products = yield call(getProductsBySearchQuery, collectionsMap, searchQuery);
+    const products = getProductsBySearchQuery(collectionsMap, searchQuery);
 
     yield put(searchProductsSuccess(products));
   } catch (error) {
