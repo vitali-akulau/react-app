@@ -1,16 +1,10 @@
 import { createSelector } from 'reselect';
-import memoize from 'lodash.memoize';
-import * as _ from 'lodash';
-import { selectCollections } from '../shop/shop.selectors';
 
-export const selectAllProducts = createSelector(
-  [selectCollections],
-  (collections) => _.flatten(_.map(collections, ({ items }) => items)),
+const selectSearch = (state) => state.search;
+
+const selectQueriedProducts = createSelector(
+  [selectSearch],
+  (search) => search.products,
 );
 
-export const selectQueriedProducts = memoize((query) => createSelector(
-  [selectAllProducts],
-  (allProducts) => _.filter(allProducts, ({ name }) => (
-    _.toLower(name).includes(_.toLower(query))
-  )),
-));
+export default selectQueriedProducts;
