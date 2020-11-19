@@ -9,6 +9,7 @@ export const CollectionItemContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  margin: 10px 0px;
 
   &:hover {
     .image {
