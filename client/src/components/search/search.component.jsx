@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import FormInput from '../form-input/form-input.component';
 import { searchProductsStart } from '../../redux/search/search.actions';
 
-const SearchBar = ({ searchProductsStart }) => {
+const SearchBar = ({ searchProductsStart, history }) => {
   const [searchQuery, setSearchQuery] = useState({ query: '' });
   const { query } = searchQuery;
 
@@ -16,7 +17,7 @@ const SearchBar = ({ searchProductsStart }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       searchProductsStart(query);
-      setSearchQuery({ query: '' });
+      history.push(`/search?q=${event.target.value}`);
     }
   };
 
@@ -35,4 +36,4 @@ const mapDispatchToProps = (dispatch) => ({
   searchProductsStart: (searchQuery) => dispatch(searchProductsStart(searchQuery)),
 });
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default withRouter(connect(null, mapDispatchToProps)(SearchBar));
