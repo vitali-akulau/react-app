@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import FormInput from '../form-input/form-input.component';
+import { SearchInputContainer, FormInputContainer, SearchIconContainer } from './search.styles';
 import { searchProductsStart } from '../../redux/search/search.actions';
 
 const SearchBar = ({ searchProductsStart, history }) => {
@@ -22,13 +22,16 @@ const SearchBar = ({ searchProductsStart, history }) => {
   };
 
   return (
-    <FormInput
-      name="search"
-      type="search"
-      value={query}
-      handleChange={handleChange}
-      onKeyDown={handleKeyDown}
-    />
+    <SearchInputContainer>
+      <FormInputContainer
+        name="search"
+        type="search"
+        value={query}
+        handleChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
+      <SearchIconContainer />
+    </SearchInputContainer>
   );
 };
 
