@@ -8,7 +8,7 @@ const linksSharedStyles = css`
 
 export const FooterContainer = styled.div`
   height: 200px;
-  padding: 0px 87.5px 20px;
+  padding: 0px 0px 20px;
   border-top: 0.5px solid #e3e1df;
   
   @media screen and (max-width: 800px) {

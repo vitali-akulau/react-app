@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const getBackgroundImage = ({ imageUrl }) => `background-image: url(${imageUrl});`;
 
 export const CollectionItemContainer = styled.div`
-  width: 22vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 350px;

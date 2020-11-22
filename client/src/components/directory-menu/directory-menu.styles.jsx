@@ -4,7 +4,8 @@ const DirectoryMenuContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
+  grid-gap: 10px;
 `;
 
 export default DirectoryMenuContainer;

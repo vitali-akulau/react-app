@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const CollectionPageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%
 `;
 
 export const CollectionPageTitle = styled.h2`
