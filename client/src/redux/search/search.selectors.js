@@ -2,9 +2,12 @@ import { createSelector } from 'reselect';
 
 const selectSearch = (state) => state.search;
 
-const selectQueriedProducts = createSelector(
+export const selectQueriedProducts = createSelector(
   [selectSearch],
   (search) => search.products,
 );
 
-export default selectQueriedProducts;
+export const selectIsFetching = createSelector(
+  [selectSearch],
+  (search) => search.isFetching,
+);
