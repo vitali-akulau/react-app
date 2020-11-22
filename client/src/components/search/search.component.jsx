@@ -24,7 +24,7 @@ const SearchBar = ({ searchProductsStart, history }) => {
   return (
     <FormInput
       name="search"
-      type="text"
+      type="search"
       value={query}
       handleChange={handleChange}
       onKeyDown={handleKeyDown}
