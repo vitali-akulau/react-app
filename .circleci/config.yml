@@ -2,7 +2,7 @@ version: 2
 jobs:
   setup_client:
     docker:
-      - image: circleci/node
+      - image: circleci/node:10.18.1
     steps:
       - checkout
       - run:
