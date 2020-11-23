@@ -1,14 +1,21 @@
-version: 2.1
-orbs:
-  node: circleci/node@1.1
+version: 2
 jobs:
-  build:
-    executor:
-      name: node/default
-      tag: '10.4'
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: yarn install
-      - run: yarn run test
+  setup_client:
+    docker:
+      - image: circleci/node
+      steps:
+        - checkout
+        - run: "cd client && yarn install"
+  setup_server:
+    docker:
+      - image: circleci/node
+      steps:
+        - checkout
+        - run: "yarn install"
+
+workflows:
+  version: 2
+  setup_server:
+    jobs:
+      - setup_client
+      - setup_end
