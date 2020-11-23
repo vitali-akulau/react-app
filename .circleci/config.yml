@@ -2,20 +2,20 @@ version: 2
 jobs:
   setup_client:
     docker:
-      - image: circleci/node
+      image: circleci/node
       steps:
-        - checkout
-        - run: "cd client && yarn install"
+        checkout
+        run: "cd client && yarn install"
   setup_server:
     docker:
-      - image: circleci/node
+      image: circleci/node
       steps:
-        - checkout
-        - run: "yarn install"
+        checkout
+        run: "yarn install"
 
 workflows:
   version: 2
   setup_server:
     jobs:
-      - setup_client
-      - setup_end
+      setup_client
+      setup_end
