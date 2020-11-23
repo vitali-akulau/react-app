@@ -6,6 +6,7 @@ jobs:
       steps:
         - checkout
         - run:
+            name: Install client side dependencies
             command: cd client && yarn install
   setup_server:
     docker:
@@ -13,6 +14,7 @@ jobs:
       steps:
         - checkout
         - run:
+            name: Install server side dependencies
             command: yarn install
 
 workflows:
