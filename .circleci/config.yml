@@ -19,7 +19,7 @@ jobs:
 
 workflows:
   version: 2
-  setup_server:
+  setup_app:
     jobs:
       - setup_client
-      - setup_end
+      - setup_server
