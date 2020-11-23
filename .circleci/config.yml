@@ -17,5 +17,5 @@ workflows:
   version: 2
   setup_server:
     jobs:
-      setup_client
-      setup_end
+      - setup_client
+      - setup_end
