@@ -1,25 +1,16 @@
 version: 2
 jobs:
-  setup_client:
-    docker:
-      - image: circleci/node
-    steps:
-      - checkout
-      - run:
-          name: Install client side dependencies
-          command: cd client && yarn install --frozen-lockfile
-  setup_server:
+  setup_app:
     docker:
       - image: circleci/node:10.18.1
     steps:
       - checkout
       - run:
-          name: Install server side dependencies
-          command: yarn install --frozen-lockfile
+          name: Start app
+          command: yarn dev
 
 workflows:
   version: 2
-  setup_app:
+  build_and_test:
     jobs:
-      - setup_client
-      - setup_server
+      - setup_app
