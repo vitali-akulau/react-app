@@ -32,4 +32,7 @@ workflows:
     jobs:
       - setup_client
       - setup_server
-      - start_app
+      - start_app:
+          requires:
+            - setup_client
+            - setup_server
