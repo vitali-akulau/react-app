@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    mocha: true,
   },
   extends: [
     'plugin:react/recommended',
