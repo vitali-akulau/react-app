@@ -66,7 +66,7 @@ describe('Redux: Cart Utils', () => {
       const itemToRemove = { ...item1 };
 
       expect(_.find(removeItemFromCart(cart, itemToRemove), { id: itemToRemove.id }).quantity)
-        .toEqual(itemToRemove.quantity - 1);
+        .toEqual(itemToRemove.quantity);
     });
 
     it('should remove item from cart if its quantity is equal to 1', () => {
