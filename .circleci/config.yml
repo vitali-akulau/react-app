@@ -12,8 +12,8 @@ jobs:
           name: Install server side dependencies
           command: yarn install --frozen-lockfile
       - run:
-          name: Run unit tests
-          command: yarn test
+          name: Run client unit tests
+          command: cd client && yarn test
 workflows:
   version: 2
   build_and_test:
