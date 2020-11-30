@@ -1,7 +1,5 @@
 import shopReducer from './shop.reducer';
 import ShopTypes from './shop.types';
-import searchReducer from "../search/search.reducer"
-import SearchTypes from "../search/search.types"
 
 describe('Redux: Shop Reducer', () => {
   const initialState = {
@@ -11,13 +9,13 @@ describe('Redux: Shop Reducer', () => {
   };
 
   it('should return initial state', () => {
-    expect(shopReducer(undefined, {})).toEqual(initialState)
+    expect(shopReducer(undefined, {})).toEqual(initialState);
   });
 
   it('should return initial state if unrecognized action provided', () => {
     const unrecognizedAction = { type: 'DO_SOMETHING', payload: 'payload' };
 
-    expect(shopReducer(undefined, unrecognizedAction)).toEqual(initialState)
+    expect(shopReducer(undefined, unrecognizedAction)).toEqual(initialState);
   });
 
   describe('FETCH_COLLECTIONS_START', () => {
@@ -25,12 +23,12 @@ describe('Redux: Shop Reducer', () => {
 
     it('should reflect start of fetching procedure', () => {
       expect(shopReducer(state, { type: ShopTypes.FETCH_COLLECTIONS_START }))
-          .toEqual({ ...initialState, isFetching: true });
+        .toEqual({ ...initialState, isFetching: true });
     });
   });
 
   describe('FETCH_COLLECTIONS_SUCCESS', () => {
-    const collections = [{ id: 1, items: [{ name: "name1" }] }, { id: 2, items: [{ name: "name2" }] }];
+    const collections = [{ id: 1, items: [{ name: 'name1' }] }, { id: 2, items: [{ name: 'name2' }] }];
 
     it('should reflect end of fetching procedure', () => {
       const state = { ...initialState, isFetching: true };
@@ -38,7 +36,7 @@ describe('Redux: Shop Reducer', () => {
       expect(shopReducer(state, {
         type: ShopTypes.FETCH_COLLECTIONS_SUCCESS,
         payload: collections,
-      })).toEqual({ ...initialState, collections: collections, isFetching: false });
+      })).toEqual({ ...initialState, collections, isFetching: false });
     });
 
     it('should add collections to state', () => {
@@ -47,7 +45,7 @@ describe('Redux: Shop Reducer', () => {
       expect(shopReducer(state, {
         type: ShopTypes.FETCH_COLLECTIONS_SUCCESS,
         payload: collections,
-      })).toEqual({ ...initialState, collections: collections });
+      })).toEqual({ ...initialState, collections });
     });
   });
 
