@@ -16,7 +16,7 @@ describe('Redux: Search Actions', () => {
       .toEqual({ type: SearchTypes.SEARCH_PRODUCTS_SUCCESS, payload: products });
   });
 
-  it('"SearchTypes" should create action to failed search', () => {
+  it('"searchProductsFailure" should create action to failed search', () => {
     const error = 'error message';
 
     expect(cartActions.searchProductsFailure(error))
