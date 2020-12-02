@@ -1,4 +1,5 @@
 import {
+  selectCart,
   selectCartItems,
   selectCartHidden,
   selectCartItemsCount,
@@ -15,6 +16,9 @@ describe('Redux: Cart Selectors', () => {
       ],
     },
   };
+  it('"selectCart" should return cart', () => {
+    expect(selectCart(mockState)).toEqual(mockState.cart);
+  });
 
   it('"selectCartItems" should return items added to cart', () => {
     expect(selectCartItems(mockState)).toEqual(mockState.cart.cartItems);
