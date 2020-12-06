@@ -57,8 +57,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "4.0.0",
-    "react-scripts": "3.4.3",
-    "redux-saga-testing": "^2.0.1"
+    "react-scripts": "3.4.3"
   },
   "jest": {
     "snapshotSerializers": [
