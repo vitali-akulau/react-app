@@ -16,16 +16,4 @@ describe('Redux: Search Sagas', () => {
       expect(genObject.next().done).toBeTruthy();
     });
   });
-
-  describe('searchProductsStartAsync', () => {
-    it('1', () => {
-      const dispatched = [];
-      const saga = runSaga({
-        dispatch: (action) => dispatched.push(action),
-      }, searchProductsStartAsync, { payload: 'jacket' }).toPromise();
-
-      expect(dispatched[0])
-        .toEqual({ asd: 'asd' });
-    });
-  });
 });
