@@ -84,8 +84,12 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 };
 
 export const getCollectionSnapshot = async (collection) => {
-  const collectionRef = await firestore.collection(collection);
-  return collectionRef.get();
+  try {
+    const collectionRef = await firestore.collection(collection);
+    return collectionRef.get();
+  } catch (error) {
+    console.log(`Error on getting collections snapshot: ${error}`);
+  }
 };
 
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);

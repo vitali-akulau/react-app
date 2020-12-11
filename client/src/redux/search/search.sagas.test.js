@@ -1,4 +1,3 @@
-import { runSaga } from 'redux-saga';
 import { takeLatest } from 'redux-saga/effects';
 import { searchProductsStart, searchProductsStartAsync } from './search.sagas';
 import SearchTypes from './search.types';
