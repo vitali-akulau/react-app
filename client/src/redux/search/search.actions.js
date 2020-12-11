@@ -1,5 +1,5 @@
 import SearchTypes from './search.types';
-import getProductsBySearchQuery from './search.utils';
+import { getProductsBySearchQuery } from './search.utils';
 
 export const searchProductsStart = (searchQuery) => ({
   type: SearchTypes.SEARCH_PRODUCTS_START,

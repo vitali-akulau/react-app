@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import { convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 
-const getProductsBySearchQuery = (snapshot, searchQuery) => {
+export const getProductsBySearchQuery = (snapshot, searchQuery) => {
   const collections = convertCollectionsSnapshotToMap(snapshot);
   const allProducts = _.flatten(_.map(collections, 'items'));
 
@@ -9,5 +9,3 @@ const getProductsBySearchQuery = (snapshot, searchQuery) => {
     _.toLower(name).includes(_.toLower(searchQuery))
   ));
 };
-
-export default getProductsBySearchQuery;
