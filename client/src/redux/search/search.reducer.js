@@ -1,6 +1,8 @@
 import SearchTypes from './search.types';
+import { getProductsBySearchQuery } from './search.utils';
 
 const INITIAL_STATE = {
+  query: null,
   products: null,
   isFetching: false,
   errorMessage: undefined,
@@ -11,12 +13,13 @@ const searchReducer = (state = INITIAL_STATE, action) => {
     case SearchTypes.SEARCH_PRODUCTS_START:
       return {
         ...state,
+        query: action.payload,
         isFetching: true,
       };
     case SearchTypes.SEARCH_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload,
+        products: getProductsBySearchQuery(action.payload.snapshot, state.query),
         isFetching: false,
       };
     case SearchTypes.SEARCH_PRODUCTS_FAILURE:
