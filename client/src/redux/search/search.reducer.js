@@ -19,7 +19,7 @@ const searchReducer = (state = INITIAL_STATE, action) => {
     case SearchTypes.SEARCH_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: getProductsBySearchQuery(action.payload.snapshot, state.query),
+        products: getProductsBySearchQuery(action.payload, state.query),
         isFetching: false,
       };
     case SearchTypes.SEARCH_PRODUCTS_FAILURE:

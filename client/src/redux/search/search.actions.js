@@ -5,9 +5,9 @@ export const searchProductsStart = (searchQuery) => ({
   payload: searchQuery,
 });
 
-export const searchProductsSuccess = (snapshot, searchQuery) => ({
+export const searchProductsSuccess = (snapshot) => ({
   type: SearchTypes.SEARCH_PRODUCTS_SUCCESS,
-  payload: { snapshot, searchQuery },
+  payload: snapshot,
 });
 
 export const searchProductsFailure = (errorMessage) => ({

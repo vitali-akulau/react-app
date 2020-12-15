@@ -1,12 +1,15 @@
 import searchReducer from './search.reducer';
 import SearchTypes from './search.types';
+import * as searchUtils from './search.utils';
 
 describe('Redux: Search Reducer', () => {
   const initialState = {
+    query: null,
     products: null,
     isFetching: false,
     errorMessage: undefined,
   };
+  const query = 'product';
 
   it('should return initial state', () => {
     expect(searchReducer(undefined, {})).toEqual(initialState);
@@ -21,31 +24,70 @@ describe('Redux: Search Reducer', () => {
   describe('SEARCH_PRODUCTS_START', () => {
     const state = { ...initialState };
 
+    it('should add search query to state', () => {
+      expect(searchReducer(state, {
+        type: SearchTypes.SEARCH_PRODUCTS_START,
+        payload: query,
+      }))
+        .toContainEntry(['query', query]);
+    });
+
     it('should reflect start of fetching procedure', () => {
-      expect(searchReducer(state, { type: SearchTypes.SEARCH_PRODUCTS_START }))
-        .toEqual({ ...initialState, isFetching: true });
+      expect(searchReducer(state, {
+        type: SearchTypes.SEARCH_PRODUCTS_START,
+        payload: query,
+      }))
+        .toContainEntry(['isFetching', true]);
     });
   });
 
   describe('SEARCH_PRODUCTS_SUCCESS', () => {
-    const searchResults = [{ name: 'p1' }, { name: 'p2' }];
+    const state = { ...initialState, query, isFetching: true };
+    const searchResults = [{ name: 'product1' }, { name: 'product2' }];
+    const snapshot = {
+      portion: '1', of: '2', complex: '3', data: '4',
+    };
+    const getProductsBySearchQueryMock = jest.spyOn(searchUtils, 'getProductsBySearchQuery')
+      .mockImplementation(() => searchResults);
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should call data handler', () => {
+      searchReducer({ ...state }, {
+        type: SearchTypes.SEARCH_PRODUCTS_SUCCESS,
+        payload: snapshot,
+      });
+
+      expect(getProductsBySearchQueryMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('should provide proper data to handler', () => {
+      searchReducer({ ...state }, {
+        type: SearchTypes.SEARCH_PRODUCTS_SUCCESS,
+        payload: snapshot,
+      });
+
+      expect(getProductsBySearchQueryMock).toHaveBeenCalledWith(snapshot, query);
+    });
 
     it('should reflect end of fetching procedure', () => {
-      const state = { ...initialState, isFetching: true };
-
       expect(searchReducer(state, {
         type: SearchTypes.SEARCH_PRODUCTS_SUCCESS,
-        payload: searchResults,
-      })).toEqual({ ...initialState, products: searchResults, isFetching: false });
+        payload: snapshot,
+      })).toEqual({
+        ...initialState, query, products: searchResults, isFetching: false,
+      });
     });
 
     it('should add found products to state', () => {
-      const state = { ...initialState, isFetching: false };
-
       expect(searchReducer(state, {
         type: SearchTypes.SEARCH_PRODUCTS_SUCCESS,
         payload: searchResults,
-      })).toEqual({ ...initialState, products: searchResults });
+      })).toEqual({
+        ...initialState, query, products: searchResults, isFetching: false,
+      });
     });
   });
 
