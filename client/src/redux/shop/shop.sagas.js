@@ -7,7 +7,7 @@ import { fetchCollectionsFailure, fetchCollectionsSuccess } from './shop.actions
 
 export function* fetchCollectionsAsync() {
   try {
-    const snapshot = yield getCollectionSnapshot('collections');
+    const snapshot = yield call(getCollectionSnapshot, 'collections');
     yield put(fetchCollectionsSuccess(snapshot));
   } catch (error) {
     yield put(fetchCollectionsFailure(error.message));
