@@ -5,10 +5,10 @@ import { searchProductsSuccess, searchProductsFailure } from './search.actions';
 import SearchTypes from './search.types';
 import { getCollectionSnapshot } from '../../firebase/firebase.utils';
 
-export function* searchProductsStartAsync({ payload: searchQuery }) {
+export function* searchProductsStartAsync() {
   try {
-    const snapshot = yield getCollectionSnapshot('collections');
-    yield put(searchProductsSuccess(snapshot, searchQuery));
+    const snapshot = yield call(getCollectionSnapshot, 'collections');
+    yield put(searchProductsSuccess(snapshot));
   } catch (error) {
     yield put(searchProductsFailure(error));
   }
