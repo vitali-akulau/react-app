@@ -1,5 +1,6 @@
 import shopReducer from './shop.reducer';
 import ShopTypes from './shop.types';
+import * as firebaseUtils from '../../firebase/firebase.utils';
 
 describe('Redux: Shop Reducer', () => {
   const initialState = {
@@ -28,24 +29,38 @@ describe('Redux: Shop Reducer', () => {
   });
 
   describe('FETCH_COLLECTIONS_SUCCESS', () => {
+    const state = { ...initialState, isFetching: true };
     const collections = [{ id: 1, items: [{ name: 'name1' }] }, { id: 2, items: [{ name: 'name2' }] }];
+    const snapshot = {
+      portion: '1', of: '2', complex: '3', data: '4',
+    };
+    const convertCollectionsSnapshotToMapMock = jest.spyOn(firebaseUtils, 'convertCollectionsSnapshotToMap')
+      .mockImplementation(() => (collections));
+    const runReducer = (currentState, requestsnapshot) => shopReducer(currentState, {
+      type: ShopTypes.FETCH_COLLECTIONS_SUCCESS,
+      payload: requestsnapshot,
+    });
+
+    it('should call data handler', () => {
+      runReducer(state, snapshot);
+
+      expect(convertCollectionsSnapshotToMapMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('should provide proper data to data handler', () => {
+      runReducer(state, snapshot);
+
+      expect(convertCollectionsSnapshotToMapMock).toHaveBeenCalledWith(snapshot);
+    });
 
     it('should reflect end of fetching procedure', () => {
-      const state = { ...initialState, isFetching: true };
-
-      expect(shopReducer(state, {
-        type: ShopTypes.FETCH_COLLECTIONS_SUCCESS,
-        payload: collections,
-      })).toEqual({ ...initialState, collections, isFetching: false });
+      expect(runReducer(state, snapshot))
+        .toEqual({ ...initialState, collections, isFetching: false });
     });
 
     it('should add collections to state', () => {
-      const state = { ...initialState, isFetching: false };
-
-      expect(shopReducer(state, {
-        type: ShopTypes.FETCH_COLLECTIONS_SUCCESS,
-        payload: collections,
-      })).toEqual({ ...initialState, collections });
+      expect(runReducer(state, snapshot))
+        .toEqual({ ...initialState, collections, isFetching: false });
     });
   });
 

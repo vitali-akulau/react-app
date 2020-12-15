@@ -1,5 +1,4 @@
 import ShopTypes from './shop.types';
-import { convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 
 export const fetchCollectionsStart = () => ({
   type: ShopTypes.FETCH_COLLECTIONS_START,
@@ -7,7 +6,7 @@ export const fetchCollectionsStart = () => ({
 
 export const fetchCollectionsSuccess = (snapshot) => ({
   type: ShopTypes.FETCH_COLLECTIONS_SUCCESS,
-  payload: convertCollectionsSnapshotToMap(snapshot),
+  payload: snapshot,
 });
 
 export const fetchCollectionsFailure = (errorMessage) => ({
