@@ -31,7 +31,7 @@ describe('Redux: Shop Sagas', () => {
       expect(genObject.next().value).toEqual(call(getCollectionSnapshotMock, 'collections'));
     });
 
-    it('should put "success" actions', async () => {
+    it('should put "success" action', async () => {
       const dispatched = [];
       const snapshot = {
         portion: '1', of: '2', complex: '3', data: '4',
@@ -43,7 +43,7 @@ describe('Redux: Shop Sagas', () => {
       expect(dispatched[0]).toEqual(fetchCollectionsSuccess(snapshot));
     });
 
-    it('should put "success" actions', async () => {
+    it('should put "success" action', async () => {
       const dispatched = [];
       const error = {
         message: 'some error',
