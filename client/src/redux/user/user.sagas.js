@@ -5,14 +5,13 @@ import {
   signInSuccess, signInFailure, signOutSuccess, signOutFailure, signUpSuccess, signUpFailure,
 } from './user.actions';
 import {
-  googleProvider, auth, createUserProfileDocument, getCurrentUser,
+  googleProvider, auth, getCurrentUser, getUserSnapshot,
 } from '../../firebase/firebase.utils';
 import UserActionTypes from './user.types';
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
-    const userRef = yield call(createUserProfileDocument, userAuth, additionalData);
-    const userSnapshot = yield userRef.get();
+    const userSnapshot = yield call(getUserSnapshot, userAuth, additionalData);
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
     yield put(signInFailure(error));
