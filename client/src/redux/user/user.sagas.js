@@ -12,7 +12,7 @@ import UserActionTypes from './user.types';
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
     const userSnapshot = yield call(getUserSnapshot, userAuth, additionalData);
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
+    yield put(signInSuccess(userSnapshot));
   } catch (error) {
     yield put(signInFailure(error));
   }
