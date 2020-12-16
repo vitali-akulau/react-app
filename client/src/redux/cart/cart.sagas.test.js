@@ -8,7 +8,7 @@ describe('Redux: Cart Sagas', () => {
   describe('onSignOutSuccess', () => {
     const genObject = onSignOutSuccess();
 
-    it('should wait for every "SIGN_OUT_SUCCESS" action and call "clearCartOnSignOut"', () => {
+    it('should wait for latest "SIGN_OUT_SUCCESS" action and call "clearCartOnSignOut"', () => {
       expect(genObject.next().value)
         .toEqual(takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut));
     });

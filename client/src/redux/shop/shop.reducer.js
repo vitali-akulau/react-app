@@ -1,4 +1,5 @@
 import ShopTypes from './shop.types';
+import { convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 
 const INITIAL_STATE = {
   collections: null,
@@ -16,7 +17,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case ShopTypes.FETCH_COLLECTIONS_SUCCESS:
       return {
         ...state,
-        collections: action.payload,
+        collections: convertCollectionsSnapshotToMap(action.payload),
         isFetching: false,
       };
     case ShopTypes.FETCH_COLLECTIONS_FAILURE:

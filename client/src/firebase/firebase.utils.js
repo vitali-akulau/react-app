@@ -83,5 +83,23 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   }, {});
 };
 
+export const getCollectionSnapshot = async (collection) => {
+  try {
+    const collectionRef = await firestore.collection(collection);
+    return collectionRef.get();
+  } catch (error) {
+    console.log(`Error on getting collections snapshot: ${error}`);
+  }
+};
+
+export const getUserSnapshot = async (userAuth, additionalData) => {
+  try {
+    const userRef = await createUserProfileDocument(userAuth, additionalData);
+    return userRef.get();
+  } catch (error) {
+    console.log(`Error on getting user's snapshot: ${error}`);
+  }
+};
+
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 export default firebase;
