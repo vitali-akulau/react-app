@@ -1,4 +1,5 @@
 import UserActionTypes from './user.types';
+import { setCurrentUser } from './user.utils';
 
 const INITIAL_STATE = {
   currentUser: null,
@@ -10,7 +11,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_IN_SUCCESS:
       return {
         ...state,
-        currentUser: { id: action.payload.id, ...action.payload.data() },
+        currentUser: setCurrentUser(action.payload),
         error: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:

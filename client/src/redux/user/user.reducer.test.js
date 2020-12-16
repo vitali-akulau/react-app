@@ -1,11 +1,13 @@
 import userReducer from './user.reducer';
 import UserActionTypes from './user.types';
+import * as userUtils from './user.utils';
 
 describe('Redux: User Reducer', () => {
   const initialState = {
     currentUser: null,
     error: null,
   };
+  const snapshot = { id: 'aT123saxc4', data() { return { moreData: [] }; } };
   const currentUser = { id: 'aT123saxc4', email: 'some@email.com' };
   const error = 'error message';
 
@@ -20,12 +22,37 @@ describe('Redux: User Reducer', () => {
   });
 
   describe('SIGN_IN_SUCCESS', () => {
+    const setCurrentUserMock = jest.spyOn(userUtils, 'setCurrentUser');
+    setCurrentUserMock.mockImplementation(() => currentUser);
+
+    it('should call data handler', () => {
+      const state = { ...initialState };
+
+      userReducer(state, {
+        type: UserActionTypes.SIGN_IN_SUCCESS,
+        payload: snapshot,
+      });
+
+      expect(setCurrentUserMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('should pass proper data to handler', () => {
+      const state = { ...initialState };
+
+      userReducer(state, {
+        type: UserActionTypes.SIGN_IN_SUCCESS,
+        payload: snapshot,
+      });
+
+      expect(setCurrentUserMock).toHaveBeenCalledWith(snapshot);
+    });
+
     it('should set a current user', () => {
       const state = { ...initialState };
 
       expect(userReducer(state, {
         type: UserActionTypes.SIGN_IN_SUCCESS,
-        payload: currentUser,
+        payload: snapshot,
       })).toEqual({ ...state, currentUser });
     });
 
@@ -34,7 +61,7 @@ describe('Redux: User Reducer', () => {
 
       expect(userReducer(state, {
         type: UserActionTypes.SIGN_IN_SUCCESS,
-        payload: currentUser,
+        payload: snapshot,
       })).toEqual({ ...state, currentUser, error: null });
     });
   });
