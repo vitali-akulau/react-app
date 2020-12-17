@@ -52,6 +52,8 @@ export const CollectionItemContainer = styled.div`
   }
 `;
 
+CollectionItemContainer.displayName = 'CollectionItemContainer';
+
 export const CollectionItemImageContainer = styled.div`
   width: 100%;
   height: 95%;
@@ -61,6 +63,8 @@ export const CollectionItemImageContainer = styled.div`
   ${getBackgroundImage};
 `;
 
+CollectionItemImageContainer.displayName = 'CollectionItemImageContainer';
+
 export const CollectionFooterContainer = styled.div`
   width: 100%;
   height: 5%;
@@ -69,12 +73,18 @@ export const CollectionFooterContainer = styled.div`
   font-size: 18px;
 `;
 
+CollectionFooterContainer.displayName = 'CollectionFooterContainer';
+
 export const CollectionItemNameContainer = styled.span`
   width: 90%;
   margin-bottom: 15px;
 `;
 
+CollectionItemNameContainer.displayName = 'CollectionItemNameContainer';
+
 export const CollectionItemPriceContainer = styled.span`
   width: 10%;
   text-align: right;
 `;
+
+CollectionItemPriceContainer.displayName = 'CollectionItemPriceContainer';

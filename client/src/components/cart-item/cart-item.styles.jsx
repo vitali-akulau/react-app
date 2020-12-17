@@ -11,6 +11,8 @@ export const CartItemContainer = styled.div`
   }
 `;
 
+CartItemContainer.displayName = 'CartItemContainer';
+
 export const ItemDetailsContainer = styled.div`
   width: 70%;
   display: flex;
@@ -20,6 +22,10 @@ export const ItemDetailsContainer = styled.div`
   padding: 10px 20px;
 `;
 
+ItemDetailsContainer.displayName = 'ItemDetailsContainer';
+
 export const CartItemTextContainer = styled.span`
   font-size: 16px;
 `;
+
+CartItemTextContainer.displayName = 'CartItemTextContainer';

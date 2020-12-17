@@ -6,4 +6,6 @@ const CollectionOverviewContainer = styled.div`
   width: 100%
 `;
 
+CollectionOverviewContainer.displayName = 'CollectionOverviewContainer';
+
 export default CollectionOverviewContainer;

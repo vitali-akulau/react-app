@@ -18,6 +18,8 @@ export const CartDropdownContainer = styled.div`
   }
 `;
 
+CartDropdownContainer.displayName = 'CartDropdownContainer';
+
 export const CartItemsContainer = styled.div`
   height: 240px;
   display: flex;
@@ -25,7 +27,11 @@ export const CartItemsContainer = styled.div`
   overflow: scroll;
 `;
 
+CartItemsContainer.displayName = 'CartItemsContainer';
+
 export const EmptyMessageContainer = styled.span`
   font-size: 18px;
   margin: 50px auto;
 `;
+
+EmptyMessageContainer.displayName = 'EmptyMessageContainer';

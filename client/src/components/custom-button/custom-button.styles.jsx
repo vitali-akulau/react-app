@@ -59,4 +59,6 @@ const CustomButtonContainer = styled.button`
   ${getButtonAdditionalStyles}
 `;
 
+CustomButtonContainer.displayName = 'CustomButtonContainer';
+
 export default CustomButtonContainer;
