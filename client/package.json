@@ -11,6 +11,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "firebase": "^7.21.0",
+    "jest-styled-components": "^7.0.3",
     "lodash": "^4.17.20",
     "lodash.memoize": "^4.1.2",
     "node-sass": "^4.14.1",

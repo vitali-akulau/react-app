@@ -2,11 +2,11 @@
 | -------------------- | --------- | ----------------- | ------------------ | ----------- | --------- | ------------ |
 | cart-dropdown        |     -     |         +         |          -         |      +      |     -     |       -      |
 | cart-icon            |     -     |         +         |          +         |      -      |     -     |       -      |
-| cart-item            |     -     |         -         |          -         |      -      |     +     |       -      |
+| cart-item            |   done    |         -         |          -         |      -      |     +     |       -      |
 | checkout-cart-item   |     -     |         -         |          +         |      -      |     -     |       -      |
 | collection-item      |     -     |         -         |          +         |      -      |     -     |       -      |
 | collections-overview |     -     |         +         |          -         |      -      |     -     |       +      |
-| custom-button        |     +     |         -         |          -         |      -      |     -     |       -      |
+| custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | directory-menu       |     -     |         +         |          -         |      -      |     -     |       -      |
 | error-boundary       |     +     |         -         |          -         |      -      |     -     |       -      |
 | external-link        |     +     |         -         |          -         |      -      |     -     |       -      |
