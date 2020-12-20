@@ -1,0 +1,29 @@
+| Component            |   pure   | connected / props | connected / action | with router |
+| -------------------- | -------- | ----------------- | ------------------ | ----------- |
+| cart-dropdown        |          |                   |                    |             |
+| cart-icon            |          |                   |                    |             |
+| cart-item            |          |                   |                    |             |
+| checkout-cart-item   |          |                   |                    |             |
+| collection-item      |          |                   |                    |             |
+| collections-overview |          |                   |                    |             |
+| custom-button        |          |                   |                    |             |
+| directory-menu       |          |                   |                    |             |
+| error-boundary       |          |                   |                    |             |
+| external-link        |          |                   |                    |             |
+| footer               |          |                   |                    |             |
+| form-input           |          |                   |                    |             |
+| header               |          |                   |                    |             |
+| menu-item            |          |                   |                    |             |
+| preview              |          |                   |                    |             |
+| search               |          |                   |                    |             |
+| sign-in              |          |                   |                    |             |
+| sign-up              |          |                   |                    |             |
+| spinner              |          |                   |                    |             |
+| stripe-button        |          |                   |                    |             |
+| with-spinner         |          |                   |                    |             |
+| checkout             |          |                   |                    |             |
+| collection           |          |                   |                    |             |
+| homepage             |          |                   |                    |             |
+| search-results       |          |                   |                    |             |
+| shop                 |          |                   |                    |             |
+| signing              |          |                   |                    |             |
