@@ -9,7 +9,7 @@
 | custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | directory-menu       |     -     |         +         |          -         |      -      |     -     |       -      |
 | error-boundary       |   done    |         -         |          -         |      -      |     -     |       -      |
-| external-link        |     +     |         -         |          -         |      -      |     -     |       -      |
+| external-link        |   done    |         -         |          -         |      -      |     -     |       -      |
 | footer               |     +     |         -         |          -         |      -      |     -     |       -      |
 | form-input           |     +     |         -         |          -         |      -      |     -     |       -      |
 | header               |     -     |         +         |          +         |      -      |     -     |       -      |
