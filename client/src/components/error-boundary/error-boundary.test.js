@@ -23,6 +23,8 @@ describe('Components: Error Boundary', () => {
   it('updates state if error', () => {
     const MockComponent = () => null;
     const error = new Error('some error');
+    const mockOnError = jest.spyOn(console, 'log');
+    mockOnError.mockImplementation();
     wrapper = shallow(<ErrorBoundary><MockComponent /></ErrorBoundary>);
     wrapper.find('MockComponent').simulateError(error);
 
