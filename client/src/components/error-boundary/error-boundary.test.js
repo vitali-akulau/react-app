@@ -16,6 +16,10 @@ describe('Components: Error Boundary', () => {
     wrapper.unmount();
   });
 
+  afterAll(() => {
+    jest.clearAllMocks();
+  });
+
   it('has "hasErrored" set to "false" be default', () => {
     expect(wrapper.state().hasErrored).toEqual(false);
   });

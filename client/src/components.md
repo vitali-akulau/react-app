@@ -8,7 +8,7 @@
 | collections-overview |     -     |         +         |          -         |      -      |     -     |       +      |
 | custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | directory-menu       |     -     |         +         |          -         |      -      |     -     |       -      |
-| error-boundary       |     +     |         -         |          -         |      -      |     -     |       -      |
+| error-boundary       |   done    |         -         |          -         |      -      |     -     |       -      |
 | external-link        |     +     |         -         |          -         |      -      |     -     |       -      |
 | footer               |     +     |         -         |          -         |      -      |     -     |       -      |
 | form-input           |     +     |         -         |          -         |      -      |     -     |       -      |
