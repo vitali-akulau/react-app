@@ -20,7 +20,7 @@
 | sign-up              |     -     |         -         |          +         |      -      |     -     |       -      |
 | spinner              |   done    |         -         |          -         |      -      |     -     |       -      |
 | stripe-button        |   done    |         -         |          -         |      -      |     -     |       -      |
-| with-spinner         |     +     |         -         |          -         |      -      |     -     |       -      |
+| with-spinner         |   done    |         -         |          -         |      -      |     -     |       -      |
 | checkout             |     -     |         +         |          -         |      -      |     -     |       -      |
 | collection           |     -     |         +         |          -         |      -      |     -     |       +      |
 | homepage             |     +     |         -         |          -         |      -      |     -     |       -      |
