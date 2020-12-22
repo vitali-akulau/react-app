@@ -23,7 +23,7 @@
 | with-spinner         |   done    |         -         |          -         |      -      |     -     |       -      |
 | checkout             |     -     |         +         |          -         |      -      |     -     |       -      |
 | collection           |     -     |         +         |          -         |      -      |     -     |       +      |
-| homepage             |     +     |         -         |          -         |      -      |     -     |       -      |
+| homepage             |   done    |         -         |          -         |      -      |     -     |       -      |
 | search-results       |     -     |         +         |          -         |      -      |     -     |       +      |
 | shop                 |     -     |         -         |          +         |      -      |     -     |       -      |
 | signing              |     +     |         -         |          -         |      -      |     -     |       -      |
