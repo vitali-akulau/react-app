@@ -18,7 +18,7 @@
 | search               |     -     |         -         |          +         |      +      |     -     |       -      |
 | sign-in              |     -     |         -         |          +         |      -      |     -     |       -      |
 | sign-up              |     -     |         -         |          +         |      -      |     -     |       -      |
-| spinner              |     +     |         -         |          -         |      -      |     -     |       -      |
+| spinner              |   done    |         -         |          -         |      -      |     -     |       -      |
 | stripe-button        |     +     |         -         |          -         |      -      |     -     |       -      |
 | with-spinner         |     +     |         -         |          -         |      -      |     -     |       -      |
 | checkout             |     -     |         +         |          -         |      -      |     -     |       -      |
