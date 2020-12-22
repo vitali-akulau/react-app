@@ -14,10 +14,6 @@ describe('Components: Custom Button', () => {
     wrapper.unmount();
   });
 
-  it('renders component without errors', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('renders button text', () => {
     expect(wrapper.text()).toEqual(buttonText);
   });

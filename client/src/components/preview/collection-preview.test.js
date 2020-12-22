@@ -34,10 +34,6 @@ describe('Components: Collection Preview', () => {
   });
 
   it('should render collection title', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render collection title', () => {
     expect(wrapper.find('CollectionPreviewTitle').text()).toEqual(collectionTitle.toUpperCase());
   });
 
