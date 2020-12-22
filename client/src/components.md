@@ -10,7 +10,7 @@
 | directory-menu       |     -     |         +         |          -         |      -      |     -     |       -      |
 | error-boundary       |   done    |         -         |          -         |      -      |     -     |       -      |
 | external-link        |   done    |         -         |          -         |      -      |     -     |       -      |
-| footer               |     +     |         -         |          -         |      -      |     -     |       -      |
+| footer               |   done    |         -         |          -         |      -      |     -     |       -      |
 | form-input           |     +     |         -         |          -         |      -      |     -     |       -      |
 | header               |     -     |         +         |          +         |      -      |     -     |       -      |
 | menu-item            |     -     |         -         |          -         |      +      |     -     |       -      |
