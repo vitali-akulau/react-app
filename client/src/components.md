@@ -11,7 +11,7 @@
 | error-boundary       |   done    |         -         |          -         |      -      |     -     |       -      |
 | external-link        |   done    |         -         |          -         |      -      |     -     |       -      |
 | footer               |   done    |         -         |          -         |      -      |     -     |       -      |
-| form-input           |     +     |         -         |          -         |      -      |     -     |       -      |
+| form-input           |   done    |         -         |          -         |      -      |     -     |       -      |
 | header               |     -     |         +         |          +         |      -      |     -     |       -      |
 | menu-item            |     -     |         -         |          -         |      +      |     -     |       -      |
 | preview              |     +     |         -         |          -         |      -      |     -     |       -      |
