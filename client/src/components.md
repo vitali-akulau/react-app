@@ -26,4 +26,4 @@
 | homepage             |   done    |         -         |          -         |      -      |     -     |       -      |
 | search-results       |     -     |         +         |          -         |      -      |     -     |       +      |
 | shop                 |     -     |         -         |          +         |      -      |     -     |       -      |
-| signing              |     +     |         -         |          -         |      -      |     -     |       -      |
+| signing              |   done    |         -         |          -         |      -      |     -     |       -      |
