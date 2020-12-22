@@ -14,7 +14,7 @@
 | form-input           |   done    |         -         |          -         |      -      |     -     |       -      |
 | header               |     -     |         +         |          +         |      -      |     -     |       -      |
 | menu-item            |     -     |         -         |          -         |      +      |     -     |       -      |
-| preview              |     +     |         -         |          -         |      -      |     -     |       -      |
+| preview              |   done    |         -         |          -         |      -      |     -     |       -      |
 | search               |     -     |         -         |          +         |      +      |     -     |       -      |
 | sign-in              |     -     |         -         |          +         |      -      |     -     |       -      |
 | sign-up              |     -     |         -         |          +         |      -      |     -     |       -      |
