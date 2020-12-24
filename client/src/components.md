@@ -7,7 +7,7 @@
 | collection-item      |     -     |         -         |          +         |      -      |     -     |       -      |
 | collections-overview |     -     |         +         |          -         |      -      |     -     |       +      |
 | custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |
-| directory-menu       |     -     |         +         |          -         |      -      |     -     |       -      |
+| directory-menu       |   done    |         +         |          -         |      -      |     -     |       -      |
 | error-boundary       |   done    |         -         |          -         |      -      |     -     |       -      |
 | external-link        |   done    |         -         |          -         |      -      |     -     |       -      |
 | footer               |   done    |         -         |          -         |      -      |     -     |       -      |
