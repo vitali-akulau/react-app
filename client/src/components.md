@@ -12,7 +12,7 @@
 | external-link        |   done    |         -         |          -         |      -      |     -     |       -      |
 | footer               |   done    |         -         |          -         |      -      |     -     |       -      |
 | form-input           |   done    |         -         |          -         |      -      |     -     |       -      |
-| header               |     -     |         +         |          +         |      -      |     -     |       -      |
+| header               |   done    |         +         |          +         |      -      |     -     |       -      |
 | menu-item            |     -     |         -         |          -         |      +      |     -     |       -      |
 | preview              |   done    |         -         |          -         |      -      |     -     |       -      |
 | search               |     -     |         -         |          +         |      +      |     -     |       -      |
