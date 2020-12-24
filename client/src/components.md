@@ -1,6 +1,6 @@
 | Component            |   pure    | connected / props | connected / action | with router | with memo | with spinner |
 | -------------------- | --------- | ----------------- | ------------------ | ----------- | --------- | ------------ |
-| cart-dropdown        |     -     |         +         |          -         |      +      |     -     |       -      |
+| cart-dropdown        |   done    |         +         |          -         |      +      |     -     |       -      |
 | cart-icon            |     -     |         +         |          +         |      -      |     -     |       -      |
 | cart-item            |   done    |         -         |          -         |      -      |     +     |       -      |
 | checkout-cart-item   |     -     |         -         |          +         |      -      |     -     |       -      |

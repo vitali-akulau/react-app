@@ -8,7 +8,7 @@ import CustomButton from '../custom-button/custom-button.component';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { toggleCartDropdown } from '../../redux/cart/cart.actions';
 
-const CartDropdown = ({ cartItems, history, dispatch }) => (
+export const CartDropdown = ({ cartItems, history, dispatch }) => (
   <CartDropdownContainer>
     <CartItemsContainer>
       {
@@ -27,7 +27,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
   </CartDropdownContainer>
 );
 
-const mapStateToProps = createStructuredSelector({
+export const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
 });
 
