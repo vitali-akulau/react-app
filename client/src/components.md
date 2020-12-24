@@ -3,7 +3,7 @@
 | cart-dropdown        |   done    |         +         |          -         |      +      |     -     |       -      |
 | cart-icon            |   done    |         +         |          +         |      -      |     -     |       -      |
 | cart-item            |   done    |         -         |          -         |      -      |     +     |       -      |
-| checkout-cart-item   |     -     |         -         |          +         |      -      |     -     |       -      |
+| checkout-cart-item   |   done    |         -         |          +         |      -      |     -     |       -      |
 | collection-item      |     -     |         -         |          +         |      -      |     -     |       -      |
 | collections-overview |     -     |         +         |          -         |      -      |     -     |       +      |
 | custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |

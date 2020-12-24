@@ -12,7 +12,7 @@ import {
 } from './checkout-cart-item.styles';
 import { addItem, clearItemFromCart, removeItem } from '../../redux/cart/cart.actions';
 
-const CheckoutCartItem = ({
+export const CheckoutCartItem = ({
   cartItem, addItem, clearItem, removeItem,
 }) => {
   const {
@@ -35,7 +35,7 @@ const CheckoutCartItem = ({
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
   clearItem: (item) => dispatch(clearItemFromCart(item)),
   removeItem: (item) => dispatch(removeItem(item)),
