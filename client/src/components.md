@@ -4,7 +4,7 @@
 | cart-icon            |   done    |         +         |          +         |      -      |     -     |       -      |
 | cart-item            |   done    |         -         |          -         |      -      |     +     |       -      |
 | checkout-cart-item   |   done    |         -         |          +         |      -      |     -     |       -      |
-| collection-item      |     -     |         -         |          +         |      -      |     -     |       -      |
+| collection-item      |   done    |         -         |          +         |      -      |     -     |       -      |
 | collections-overview |     -     |         +         |          -         |      -      |     -     |       +      |
 | custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | directory-menu       |   done    |         +         |          -         |      -      |     -     |       -      |
