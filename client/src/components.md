@@ -5,7 +5,7 @@
 | cart-item            |   done    |         -         |          -         |      -      |     +     |       -      |
 | checkout-cart-item   |   done    |         -         |          +         |      -      |     -     |       -      |
 | collection-item      |   done    |         -         |          +         |      -      |     -     |       -      |
-| collections-overview |     -     |         +         |          -         |      -      |     -     |       +      |
+| collections-overview |   done    |         +         |          -         |      -      |     -     |       +      |
 | custom-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | directory-menu       |   done    |         +         |          -         |      -      |     -     |       -      |
 | error-boundary       |   done    |         -         |          -         |      -      |     -     |       -      |
