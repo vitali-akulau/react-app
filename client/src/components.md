@@ -25,5 +25,5 @@
 | collection           |   done    |         +         |          -         |      -      |     -     |       +      |
 | homepage             |   done    |         -         |          -         |      -      |     -     |       -      |
 | search-results       |   done    |         +         |          -         |      -      |     -     |       +      |
-| shop                 |     -     |         -         |          +         |      -      |     -     |       -      |
+| shop                 |   done    |         -         |          +         |      -      |     -     |       -      |
 | signing              |   done    |         -         |          -         |      -      |     -     |       -      |
