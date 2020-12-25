@@ -1,35 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CartDropdown, mapStateToProps } from '../../../../components/cart-dropdown/cart-dropdown.component';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Components: Cart Dropdown', () => {
-  const initialState = {
-    cart: {
-      cartItems: [
-        {
-          imageUrl: 'https://www.product-item-image.com/smth.jpeg',
-          name: 'Levi\'s 512',
-          price: 50,
-          quantity: 4,
-          id: 234,
-        },
-        {
-          imageUrl: 'https://www.product-item-image.com/smth-1.jpeg',
-          name: 'Nike Air Max 90',
-          price: 150,
-          quantity: 2,
-          id: 14,
-        },
-        {
-          imageUrl: 'https://www.product-item-image.com/smth-2.jpeg',
-          name: 'Jack Wolfskin Red River Shirt',
-          price: 40,
-          quantity: 1,
-          id: 67,
-        },
-      ],
-    },
-  };
+  const initialState = getMockedState(['cart']);
 
   describe('Cart Dropdown', () => {
     let wrapper;

@@ -1,14 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MenuItem } from '../../../../components/menu-item/menu-item.component';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Components: Menu Item', () => {
   let wrapper;
-  const menuItemData = {
-    title: 'Jeans',
-    imageUrl: 'https://www.image-url-jeans.com',
-    linkUrl: '/jeans',
-  };
+  const initialState = getMockedState(['directory']);
+  const [menuItemData] = initialState.directory.sections;
 
   beforeEach(() => {
     wrapper = shallow(<MenuItem {...menuItemData} />);

@@ -2,35 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { omit } from 'lodash';
 import { DirectoryMenu, mapStateToProps } from '../../../../components/directory-menu/directory-menu.component';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Components: Directory Menu', () => {
-  const initialState = {
-    directory: {
-      sections: [
-        {
-          id: 1,
-          title: 'Jeans',
-          imageUrl: 'https://www.image-url-jeans.com',
-          size: 'large',
-          linkUrl: '/jeans',
-        },
-        {
-          id: 2,
-          title: 'Jackets',
-          imageUrl: 'https://www.image-url-jackets.com',
-          size: 'large',
-          linkUrl: '/jackets',
-        },
-        {
-          id: 3,
-          title: 'Sneakers',
-          imageUrl: 'https://www.image-url-sneakers.com',
-          size: 'small',
-          linkUrl: '/sneakers',
-        },
-      ],
-    },
-  };
+  const initialState = getMockedState(['directory']);
 
   describe('Directory Menu', () => {
     let wrapper;

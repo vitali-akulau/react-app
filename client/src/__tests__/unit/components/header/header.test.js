@@ -2,16 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Header, mapStateToProps, mapDispatchToProps } from '../../../../components/header/header.component';
 import { signOutStart } from '../../../../redux/user/user.actions';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Components: Header', () => {
-  const initialState = {
-    cart: {
-      hidden: true,
-    },
-    user: {
-      currentUser: null,
-    },
-  };
+  const initialState = getMockedState(['cart', 'user']);
 
   describe('Header', () => {
     let wrapper;

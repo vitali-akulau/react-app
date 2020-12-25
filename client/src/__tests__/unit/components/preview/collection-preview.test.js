@@ -1,40 +1,25 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { values } from 'lodash';
 import CollectionPreview from '../../../../components/preview/collection-preview.component';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Components: Collection Preview', () => {
   let wrapper;
-  const collectionTitle = 'Products';
+  const initialState = getMockedState(['shop']);
+  const [collection] = values(initialState.shop.collections);
   const previewItemsNumber = 2;
-  const productItems = [
-    {
-      name: 'jeans',
-      id: 4,
-    },
-    {
-      name: 'boots',
-      id: 3,
-    },
-    {
-      name: 'jacket',
-      id: 22,
-    },
-    {
-      name: 'hoodie',
-      id: 12,
-    },
-  ];
 
   beforeAll(() => {
     wrapper = shallow(<CollectionPreview
-      title={collectionTitle}
+      title={collection.title}
+      items={collection.items}
       previewItemsNumber={previewItemsNumber}
-      items={productItems}
     />);
   });
 
   it('should render collection title', () => {
-    expect(wrapper.find('CollectionPreviewTitle').text()).toEqual(collectionTitle.toUpperCase());
+    expect(wrapper.find('CollectionPreviewTitle').text()).toEqual(collection.title.toUpperCase());
   });
 
   it('should render supposed amount of items', () => {
@@ -42,10 +27,10 @@ describe('Components: Collection Preview', () => {
   });
 
   it('should add link to collection overview', () => {
-    expect(wrapper.find('CollectionPreviewTitle').prop('to')).toEqual(`/shop/${collectionTitle.toLowerCase()}`);
+    expect(wrapper.find('CollectionPreviewTitle').prop('to')).toEqual(`/shop/${collection.title.toLowerCase()}`);
   });
 
   it('should pass item data to collection item component', () => {
-    expect(wrapper.find('Connect(CollectionItem)').at(0).prop('item')).toEqual(productItems[0]);
+    expect(wrapper.find('Connect(CollectionItem)').at(0).prop('item')).toEqual(collection.items[0]);
   });
 });

@@ -2,15 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { CheckoutCartItem, mapDispatchToProps } from '../../../../components/checkout-cart-item/checkout-cart-item.component';
 import { addItem, clearItemFromCart, removeItem } from '../../../../redux/cart/cart.actions';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Components: Checkout Cart item', () => {
-  const cartItem = {
-    imageUrl: 'https://www.product-item-image.com/smth.jpeg',
-    name: 'Levi\'s 512',
-    price: 50,
-    quantity: 4,
-    id: 234,
-  };
+  const [cartItem] = getMockedState(['cart']).cart.cartItems;
 
   describe('Checkout Cart Item', () => {
     let wrapper;
