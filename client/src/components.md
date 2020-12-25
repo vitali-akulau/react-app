@@ -22,7 +22,7 @@
 | stripe-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | with-spinner         |   done    |         -         |          -         |      -      |     -     |       -      |
 | checkout             |   done    |         +         |          -         |      -      |     -     |       -      |
-| collection           |     -     |         +         |          -         |      -      |     -     |       +      |
+| collection           |   done    |         +         |          -         |      -      |     -     |       +      |
 | homepage             |   done    |         -         |          -         |      -      |     -     |       -      |
 | search-results       |     -     |         +         |          -         |      -      |     -     |       +      |
 | shop                 |     -     |         -         |          +         |      -      |     -     |       -      |
