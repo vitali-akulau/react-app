@@ -24,6 +24,6 @@
 | checkout             |   done    |         +         |          -         |      -      |     -     |       -      |
 | collection           |   done    |         +         |          -         |      -      |     -     |       +      |
 | homepage             |   done    |         -         |          -         |      -      |     -     |       -      |
-| search-results       |     -     |         +         |          -         |      -      |     -     |       +      |
+| search-results       |   done    |         +         |          -         |      -      |     -     |       +      |
 | shop                 |     -     |         -         |          +         |      -      |     -     |       -      |
 | signing              |   done    |         -         |          -         |      -      |     -     |       -      |

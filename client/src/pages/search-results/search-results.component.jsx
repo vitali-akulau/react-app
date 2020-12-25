@@ -7,7 +7,7 @@ import CollectionPreview from '../../components/preview/collection-preview.compo
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import { selectQueriedProducts, selectIsFetching } from '../../redux/search/search.selectors';
 
-const SearchResultsPage = ({ isLoading, products }) => (
+export const SearchResultsPage = ({ isLoading, products }) => (
   <div>
     <SearchTitle>SEARCH</SearchTitle>
     {
@@ -26,7 +26,7 @@ const SearchResultsPage = ({ isLoading, products }) => (
   </div>
 );
 
-const mapStateToProps = createStructuredSelector({
+export const mapStateToProps = createStructuredSelector({
   isLoading: selectIsFetching,
   products: selectQueriedProducts,
 });
