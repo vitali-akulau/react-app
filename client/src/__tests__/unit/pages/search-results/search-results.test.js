@@ -1,45 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SearchResultsPage, mapStateToProps } from '../../../../pages/search-results/search-results.component';
+import getMockedState from "../../../utils/mock-state-provider";
 
 describe('Pages: Search Results', () => {
-  const initialState = {
-    search: {
-      isFetching: false,
-      products: [
-        {
-          id: 5,
-          imageUrl: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
-          name: 'Green Beanie',
-          price: 18,
-        },
-        {
-          id: 4,
-          imageUrl: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
-          name: 'Grey Brim',
-          price: 25,
-        },
-        {
-          id: 6,
-          imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
-          name: 'Palm Tree Cap',
-          price: 14,
-        },
-        {
-          id: 7,
-          imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
-          name: 'Red Beanie',
-          price: 18,
-        },
-        {
-          id: 8,
-          imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
-          name: 'Wolf Cap',
-          price: 14,
-        },
-      ],
-    },
-  };
+  const initialState = getMockedState(['search']);
 
   describe('Search Results', () => {
     let wrapper;
