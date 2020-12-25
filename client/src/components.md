@@ -21,7 +21,7 @@
 | spinner              |   done    |         -         |          -         |      -      |     -     |       -      |
 | stripe-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | with-spinner         |   done    |         -         |          -         |      -      |     -     |       -      |
-| checkout             |     -     |         +         |          -         |      -      |     -     |       -      |
+| checkout             |   done    |         +         |          -         |      -      |     -     |       -      |
 | collection           |     -     |         +         |          -         |      -      |     -     |       +      |
 | homepage             |   done    |         -         |          -         |      -      |     -     |       -      |
 | search-results       |     -     |         +         |          -         |      -      |     -     |       +      |
