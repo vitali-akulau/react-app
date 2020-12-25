@@ -13,7 +13,7 @@
 | footer               |   done    |         -         |          -         |      -      |     -     |       -      |
 | form-input           |   done    |         -         |          -         |      -      |     -     |       -      |
 | header               |   done    |         +         |          +         |      -      |     -     |       -      |
-| menu-item            |     -     |         -         |          -         |      +      |     -     |       -      |
+| menu-item            |   done    |         -         |          -         |      +      |     -     |       -      |
 | preview              |   done    |         -         |          -         |      -      |     -     |       -      |
 | search               |     -     |         -         |          +         |      +      |     -     |       -      |
 | sign-in              |     -     |         -         |          +         |      -      |     -     |       -      |
