@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run:
           name: Install client side dependencies
-          command: cd client && yarn install --frozen-lockfile
+          command: cd client && yarn install
       - run:
           name: Install server side dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install
       - run:
           name: Run client unit tests
           command: cd client && yarn test src/__tests__/unit
