@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { SearchInputContainer, FormInputContainer, SearchIconContainer } from './search.styles';
 import { searchProductsStart } from '../../redux/search/search.actions';
 
-const SearchBar = ({ searchProductsStart, history }) => {
+export const SearchBar = ({ searchProductsStart, history }) => {
   const [searchQuery, setSearchQuery] = useState({ query: '' });
   const { query } = searchQuery;
 
@@ -35,7 +35,7 @@ const SearchBar = ({ searchProductsStart, history }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   searchProductsStart: (searchQuery) => dispatch(searchProductsStart(searchQuery)),
 });
 

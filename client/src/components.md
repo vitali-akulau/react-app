@@ -15,7 +15,7 @@
 | header               |   done    |         +         |          +         |      -      |     -     |       -      |
 | menu-item            |   done    |         -         |          -         |      +      |     -     |       -      |
 | preview              |   done    |         -         |          -         |      -      |     -     |       -      |
-| search               |     -     |         -         |          +         |      +      |     -     |       -      |
+| search               |   done    |         -         |          +         |      +      |     -     |       -      |
 | sign-in              |     -     |         -         |          +         |      -      |     -     |       -      |
 | sign-up              |     -     |         -         |          +         |      -      |     -     |       -      |
 | spinner              |   done    |         -         |          -         |      -      |     -     |       -      |
