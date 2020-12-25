@@ -13,7 +13,7 @@ jobs:
           command: yarn install --frozen-lockfile
       - run:
           name: Run client unit tests
-          command: cd client && yarn test
+          command: cd client && yarn test src/__tests__/unit
 workflows:
   version: 2
   build_and_test:
