@@ -16,8 +16,8 @@
 | menu-item            |   done    |         -         |          -         |      +      |     -     |       -      |
 | preview              |   done    |         -         |          -         |      -      |     -     |       -      |
 | search               |   done    |         -         |          +         |      +      |     -     |       -      |
-| sign-in              |     -     |         -         |          +         |      -      |     -     |       -      |
-| sign-up              |     -     |         -         |          +         |      -      |     -     |       -      |
+| sign-in              |   done    |         -         |          +         |      -      |     -     |       -      |
+| sign-up              |   done    |         -         |          +         |      -      |     -     |       -      |
 | spinner              |   done    |         -         |          -         |      -      |     -     |       -      |
 | stripe-button        |   done    |         -         |          -         |      -      |     -     |       -      |
 | with-spinner         |   done    |         -         |          -         |      -      |     -     |       -      |
