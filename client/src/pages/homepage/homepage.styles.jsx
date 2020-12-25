@@ -11,4 +11,6 @@ const HomepageContainer = styled.div`
   }
 `;
 
+HomepageContainer.displayName = 'HomepageContainer';
+
 export default HomepageContainer;

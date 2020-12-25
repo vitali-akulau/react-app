@@ -15,6 +15,8 @@ export const HeaderContainer = styled.div`
   }
 `;
 
+HeaderContainer.displayName = 'HeaderContainer';
+
 export const LogoContainer = styled(Link)`
   height: 100%;
   width: 50px;
@@ -24,6 +26,8 @@ export const LogoContainer = styled(Link)`
     padding: 0;
   }
 `;
+
+LogoContainer.displayName = 'LogoContainer';
 
 export const OptionsContainer = styled.div`
   width: 50%;
@@ -37,7 +41,11 @@ export const OptionsContainer = styled.div`
   }
 `;
 
+OptionsContainer.displayName = 'OptionsContainer';
+
 export const OptionLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
 `;
+
+OptionLink.displayName = 'OptionLink';

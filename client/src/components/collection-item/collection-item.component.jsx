@@ -10,7 +10,7 @@ import {
 import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
 
-const CollectionItem = ({ item, addItemToCart }) => {
+export const CollectionItem = ({ item, addItemToCart }) => {
   const { name, price } = item;
 
   return (
@@ -25,7 +25,7 @@ const CollectionItem = ({ item, addItemToCart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItem(item)),
 });
 

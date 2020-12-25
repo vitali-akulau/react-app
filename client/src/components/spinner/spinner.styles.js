@@ -8,6 +8,8 @@ export const SpinnerOverlay = styled.div`
   align-items: center;
 `;
 
+SpinnerOverlay.displayName = 'SpinnerOverlay';
+
 export const SpinnerContainer = styled.div`
   display: inline-block;
   width: 50px;
@@ -28,3 +30,5 @@ export const SpinnerContainer = styled.div`
     }
   }
 `;
+
+SpinnerContainer.displayName = 'SpinnerContainer';
