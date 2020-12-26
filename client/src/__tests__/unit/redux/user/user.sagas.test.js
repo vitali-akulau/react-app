@@ -147,7 +147,7 @@ describe('Redux: User Sagas', () => {
         const genObject = userSagas.signInWithGoogle();
 
         expect(genObject.next().value)
-          .toEqual(call(signInWithPopupMock, firebaseUtils.googleProvider));
+          .toEqual(signInWithPopupMock(firebaseUtils.googleProvider));
       });
 
       it('should put "success" action', async () => {
@@ -194,7 +194,7 @@ describe('Redux: User Sagas', () => {
 
         expect(genObject.next().value)
           .toEqual(
-            call(signInWithEmailAndPasswordMock, userCredentials.email, userCredentials.password),
+            signInWithEmailAndPasswordMock(userCredentials.email, userCredentials.password),
           );
       });
 
@@ -283,7 +283,7 @@ describe('Redux: User Sagas', () => {
       it('should call google sign out', () => {
         const genObject = userSagas.signOut();
 
-        expect(genObject.next().value).toEqual(call(signOutMock));
+        expect(genObject.next().value).toEqual(signOutMock());
       });
 
       it('should put "success" action', async () => {
@@ -318,7 +318,7 @@ describe('Redux: User Sagas', () => {
         const { email, password } = userData;
 
         expect(genObject.next().value)
-          .toEqual(call(createUserWithEmailAndPasswordMock, email, password));
+          .toEqual(createUserWithEmailAndPasswordMock(email, password));
       });
 
       it('should put "success" action', async () => {
