@@ -42,6 +42,15 @@ describe('Components: Header', () => {
       expect(wrapper.find('OptionLink').at(2).text()).toEqual('SIGN OUT');
     });
 
+    it('should be able to log out user', () => {
+      const currentUser = { id: 'kjfjksfal123', displayName: 'User Name' };
+      const signOutStartMock = jest.fn();
+      wrapper.setProps({ currentUser, signOutStart: signOutStartMock });
+      wrapper.find('OptionLink').at(2).prop('onClick')();
+
+      expect(signOutStartMock).toHaveBeenCalledTimes(1);
+    });
+
     it('should hide cart dropdown', () => {
       wrapper.setProps({ hidden: true });
 

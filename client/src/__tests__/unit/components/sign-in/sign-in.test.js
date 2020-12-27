@@ -1,11 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { SignIn, mapDispatchToProps } from '../../../../components/sign-in/sign-in.component';
 import { googleSignInStart, emailSignInStart } from '../../../../redux/user/user.actions';
 
 describe('Components: Sign In', () => {
   describe('Sign In', () => {
     const wrapper = shallow(<SignIn />);
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
 
     it('should render "email" field', () => {
       expect(wrapper.find('FormInput[name="email"]')).toHaveLength(1);
@@ -25,6 +29,22 @@ describe('Components: Sign In', () => {
 
     it('should render "Sign in with Google" button', () => {
       expect(wrapper.find('CustomButton[type="button"]').prop('children')).toEqual('Sign In with Google');
+    });
+
+    it('should be able to trigger sign in', () => {
+      const emailSignInStartMock = jest.fn();
+      const mountedWrapper = mount(<SignIn emailSignInStart={emailSignInStartMock} />);
+
+      mountedWrapper.find('form').simulate('submit', { preventDefault() {} });
+      expect(emailSignInStartMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('should be able to trigger "Sign in with Google"', () => {
+      const googleSignInStartMock = jest.fn();
+      wrapper.setProps({ googleSignInStart: googleSignInStartMock });
+
+      wrapper.find('CustomButton[type="button"]').prop('onClick')();
+      expect(googleSignInStartMock).toHaveBeenCalledTimes(1);
     });
   });
 
