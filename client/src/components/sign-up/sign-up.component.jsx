@@ -6,7 +6,7 @@ import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-const SignUp = ({ signUpStart }) => {
+export const SignUp = ({ signUpStart }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
     email: '',
@@ -78,7 +78,7 @@ const SignUp = ({ signUpStart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   signUpStart: (email, password, displayName) => (
     dispatch(signUpStart({ email, password, displayName }))
   ),

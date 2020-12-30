@@ -6,10 +6,14 @@ export const CollectionPageContainer = styled.div`
   width: 100%
 `;
 
+CollectionPageContainer.displayName = 'CollectionPageContainer';
+
 export const CollectionPageTitle = styled.h2`
   font-size: 38px;
   margin: 0 auto 30px;
 `;
+
+CollectionPageTitle.displayName = 'CollectionPageTitle';
 
 export const CollectionPageItemsContainer = styled.div`
   display: grid;
@@ -20,3 +24,5 @@ export const CollectionPageItemsContainer = styled.div`
     margin-bottom: 30px;
   }
 `;
+
+CollectionPageItemsContainer.displayName = 'CollectionPageItemsContainer';

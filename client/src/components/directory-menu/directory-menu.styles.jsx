@@ -8,4 +8,6 @@ const DirectoryMenuContainer = styled.div`
   grid-gap: 10px;
 `;
 
+DirectoryMenuContainer.displayName = 'DirectoryMenuContainer';
+
 export default DirectoryMenuContainer;

@@ -7,7 +7,7 @@ const ExternalLink = (props) => {
     <a
       rel="noopener noreferrer"
       target="_blank"
-      href={`${href}`}
+      href={href}
       {...otherProps}
     >
       {children}

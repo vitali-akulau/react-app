@@ -7,4 +7,6 @@ const SigningPageContainer = styled.div`
   margin: 30px auto;
 `;
 
+SigningPageContainer.displayName = 'SigningPageContainer';
+
 export default SigningPageContainer;

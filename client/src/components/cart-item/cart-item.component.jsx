@@ -3,14 +3,18 @@ import { CartItemContainer, ItemDetailsContainer, CartItemTextContainer } from '
 
 const CartItem = ({
   item: {
-    imageUrl, name, price, quantity,
+    imageUrl, name, price, quantity, id,
   },
 }) => (
   <CartItemContainer>
     <img src={imageUrl} alt="item" />
     <ItemDetailsContainer>
-      <CartItemTextContainer>{name}</CartItemTextContainer>
-      <CartItemTextContainer>{`${quantity}x${price}`}</CartItemTextContainer>
+      <CartItemTextContainer data-test={`item-name-${id}`}>
+        {name}
+      </CartItemTextContainer>
+      <CartItemTextContainer data-test={`item-total-${id}`}>
+        {`${quantity}x${price}`}
+      </CartItemTextContainer>
     </ItemDetailsContainer>
   </CartItemContainer>
 );

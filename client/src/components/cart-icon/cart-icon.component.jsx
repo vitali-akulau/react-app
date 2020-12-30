@@ -5,18 +5,18 @@ import { CartIconContainer, ShoppingIconContainer, ItemCountContainer } from './
 import { toggleCartDropdown } from '../../redux/cart/cart.actions';
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 
-const CartIcon = ({ toggleCartDropdown, itemsCount }) => (
+export const CartIcon = ({ toggleCartDropdown, itemsCount }) => (
   <CartIconContainer onClick={toggleCartDropdown}>
     <ShoppingIconContainer />
     <ItemCountContainer>{itemsCount}</ItemCountContainer>
   </CartIconContainer>
 );
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   toggleCartDropdown: () => dispatch(toggleCartDropdown()),
 });
 
-const mapStateToProps = createStructuredSelector({
+export const mapStateToProps = createStructuredSelector({
   itemsCount: selectCartItemsCount,
 });
 

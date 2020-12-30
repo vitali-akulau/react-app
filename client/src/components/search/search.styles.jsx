@@ -11,6 +11,8 @@ export const SearchInputContainer = styled.div`
   align-items: center;
 `;
 
+SearchInputContainer.displayName = 'SearchInputContainer';
+
 export const FormInputContainer = styled(FormInput)`
   border-bottom: none;
   margin: 0px;
@@ -19,7 +21,11 @@ export const FormInputContainer = styled(FormInput)`
   color: black;
 `;
 
+FormInputContainer.displayName = 'FormInputContainer';
+
 export const SearchIconContainer = styled(SearchLogo)`
   height: 50%;
   width: 48px;
 `;
+
+SearchIconContainer.displayName = 'SearchIconContainer';

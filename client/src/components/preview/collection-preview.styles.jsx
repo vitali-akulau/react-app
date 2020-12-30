@@ -24,6 +24,8 @@ export const CollectionPreviewContainer = styled.div`
   }
 `;
 
+CollectionPreviewContainer.displayName = 'CollectionPreviewContainer';
+
 export const CollectionPreviewTitle = styled(Link)`
   font-size: 28px;
   margin-bottom: 25px;
@@ -33,6 +35,8 @@ export const CollectionPreviewTitle = styled(Link)`
     color: grey;
   }
 `;
+
+CollectionPreviewTitle.displayName = 'CollectionPreviewTitle';
 
 export const PreviewContainer = styled.div`
   display: grid;
@@ -45,3 +49,5 @@ export const PreviewContainer = styled.div`
     grid-gap: 15px;
   }
 `;
+
+PreviewContainer.displayName = 'PreviewContainer';

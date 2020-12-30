@@ -24,6 +24,8 @@ export const FormInputGroupContainer = styled.div`
   }
 `;
 
+FormInputGroupContainer.displayName = 'FormInputGroupContainer';
+
 export const FormInputContainer = styled.input`
   background: none;
     background-color: white;
@@ -46,6 +48,8 @@ export const FormInputContainer = styled.input`
     }
 `;
 
+FormInputContainer.displayName = 'FormInputContainer';
+
 export const FormInputLabel = styled.label`
   color: ${subColor};
   font-size: 16px;
@@ -57,3 +61,5 @@ export const FormInputLabel = styled.label`
   transition: 300ms ease all;
   ${isInputHasValue}
 `;
+
+FormInputLabel.displayName = 'FormInputLabel';

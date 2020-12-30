@@ -17,9 +17,13 @@ export const FooterContainer = styled.div`
   }
 `;
 
+FooterContainer.displayName = 'FooterContainer';
+
 export const FooterColumnsContainer = styled.div`
   width: 100%;
 `;
+
+FooterColumnsContainer.displayName = 'FooterColumnsContainer';
 
 export const LinksColumnContainer = styled.div`
   width: ${({ blocks }) => `${blocks ? parseInt(blocks, 10) * 16 : 16}%`};
@@ -44,10 +48,16 @@ export const LinksColumnContainer = styled.div`
   }
 `;
 
+LinksColumnContainer.displayName = 'LinksColumnContainer';
+
 export const FooterLink = styled(Link)`
   ${linksSharedStyles}
 `;
 
+FooterLink.displayName = 'FooterLink';
+
 export const FooterExternalLink = styled(ExternalLink)`
   ${linksSharedStyles}
 `;
+
+FooterExternalLink.displayName = 'FooterExternalLink';
