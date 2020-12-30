@@ -53,6 +53,7 @@ export const getCurrentUser = () => new Promise((resolve, reject) => {
   }, reject);
 });
 
+// just to initial load of data to the firestore
 export const addCollectionsAndDocs = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
 
