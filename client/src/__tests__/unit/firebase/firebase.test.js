@@ -1,6 +1,12 @@
 import * as firebaseUtils from '../../../firebase/firebase.utils';
 
 describe('Firebase Utils', () => {
+  let userRef = {};
+  const userAuth = {
+    uid: 'a13d1ADD34rf',
+    displayName: 'John Doe',
+    email: 'johndoe@email.com',
+  };
   const firestoreDocMock = jest.spyOn(firebaseUtils.firestore, 'doc');
   const error = { message: 'some error' };
   const additionalData = { age: '30', size: 'M' };
@@ -20,29 +26,22 @@ describe('Firebase Utils', () => {
       },
     ],
   };
+  const successGetExistingUser = jest.fn()
+    .mockImplementation(async () => Promise.resolve({ exists: true }));
+  const successGetNewUser = jest.fn()
+    .mockImplementation(async () => Promise.resolve({ exists: false }));
+  const failureGet = jest.fn()
+    .mockImplementation(async () => Promise.reject(error));
+  const successSet = jest.fn()
+    .mockImplementation(async () => Promise.resolve({}));
+  const failureSet = jest.fn()
+    .mockImplementation(async () => Promise.reject(error));
 
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   describe('createUserProfileDocument', () => {
-    let userRef = {};
-    const userAuth = {
-      uid: 'a13d1ADD34rf',
-      displayName: 'John Doe',
-      email: 'johndoe@email.com',
-    };
-    const successGetExistingUser = jest.fn()
-      .mockImplementation(async () => Promise.resolve({ exists: true }));
-    const successGetNewUser = jest.fn()
-      .mockImplementation(async () => Promise.resolve({ exists: false }));
-    // const failureGet = jest.fn()
-    //   .mockImplementation(async () => Promise.reject(error));
-    const successSet = jest.fn()
-      .mockImplementation(async () => Promise.resolve({}));
-    const failureSet = jest.fn()
-      .mockImplementation(async () => Promise.reject(error));
-
     it('should return if no "userAuth" is provided', async () => {
       userRef = { get: successGetExistingUser, set: successSet };
       firestoreDocMock.mockImplementation(() => (userRef));
@@ -121,11 +120,6 @@ describe('Firebase Utils', () => {
   });
 
   describe('getCurrentUser', () => {
-    const userAuth = {
-      uid: 'a13d1ADD34rf',
-      displayName: 'John Doe',
-      email: 'johndoe@email.com',
-    };
     const onAuthStateChangedMock = jest.spyOn(firebaseUtils.auth, 'onAuthStateChanged');
 
     it('should call "onAuthStateChangedMock" listener', () => {
@@ -224,7 +218,7 @@ describe('Firebase Utils', () => {
         .toEqual(collectionsSnapshot);
     });
 
-    it('should return error if it can\'t get collections snapshot', async () => {
+    it("should return error if it can't get collections snapshot", async () => {
       firestoreCollectionMock.mockImplementation(() => (
         {
           get: jest.fn().mockImplementation(async () => Promise.reject(error)),
@@ -234,6 +228,44 @@ describe('Firebase Utils', () => {
       await expect(firebaseUtils.getCollectionSnapshot(collectionPath))
         .rejects
         .toEqual(error);
+    });
+  });
+
+  describe('getUserSnapshot', () => {
+    it('should call firestore to get user reference', async () => {
+      userRef = { get: successGetExistingUser };
+      firestoreDocMock.mockImplementation(() => (userRef));
+
+      await expect(firebaseUtils.getUserSnapshot(userAuth));
+
+      expect(firestoreDocMock).toBeCalledTimes(1);
+    });
+
+    it('should call firestore with proper pass', async () => {
+      userRef = { get: successGetExistingUser };
+      firestoreDocMock.mockImplementation(() => (userRef));
+
+      await expect(firebaseUtils.getUserSnapshot(userAuth));
+
+      expect(firestoreDocMock).toBeCalledWith(`users/${userAuth.uid}`);
+    });
+
+    it('should return user snapshot', async () => {
+      userRef = { get: successGetExistingUser };
+      firestoreDocMock.mockImplementation(() => (userRef));
+
+      await expect(firebaseUtils.getUserSnapshot(userAuth))
+        .resolves
+        .toEqual({ exists: true });
+    });
+
+    it("should return error if it can't get user snapshot", async () => {
+      userRef = { get: failureGet };
+      firestoreDocMock.mockImplementation(() => (userRef));
+
+      await expect(firebaseUtils.getUserSnapshot(userAuth))
+        .rejects
+        .toThrowError(`Error on getting user's snapshot: ${error.message}`);
     });
   });
 });
