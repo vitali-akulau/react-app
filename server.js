@@ -24,10 +24,42 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(port, (error) => {
+let connections = [];
+
+const server = app.listen(port, (error) => {
   if (error) throw error;
   console.log(`Server is running on port ${port}`);
 });
+
+setInterval(() => server.getConnections((err, currentConnections) => (
+  console.log(`${currentConnections} connections currently open`)
+)), 60000);
+
+server.on('connection', (connection) => {
+  connections.push(connection);
+  connection.on('close', () => {
+    connections = connections.filter((curr) => curr !== connection);
+  });
+});
+
+const shutDown = () => {
+  console.log('Received kill signal, shutting down gracefully');
+  server.close(() => {
+    console.log('Closed out remaining connections');
+    process.exit(0);
+  });
+
+  setTimeout(() => {
+    console.error('Could not close connections in time, forcefully shutting down');
+    process.exit(1);
+  }, 10000);
+
+  connections.forEach((curr) => curr.end());
+  setTimeout(() => connections.forEach((curr) => curr.destroy()), 5000);
+};
+
+process.on('SIGTERM', shutDown);
+process.on('SIGINT', shutDown);
 
 app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
