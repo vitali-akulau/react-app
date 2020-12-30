@@ -1,11 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { SignUp, mapDispatchToProps } from '../../../../components/sign-up/sign-up.component';
 import { signUpStart } from '../../../../redux/user/user.actions';
 
 describe('Components: Sign Up', () => {
   describe('Sign Up', () => {
     const wrapper = shallow(<SignUp />);
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
 
     it('should render form title', () => {
       expect(wrapper.find('SignUpTitle').text()).toEqual('Create account');
@@ -29,6 +33,14 @@ describe('Components: Sign Up', () => {
 
     it('should render submit button', () => {
       expect(wrapper.find('CustomButton[type="submit"]').prop('children')).toEqual('Sign Up');
+    });
+
+    it('should be able to trigger sign up', () => {
+      const signUpStartMock = jest.fn();
+      const mountedWrapper = mount(<SignUp signUpStart={signUpStartMock} />);
+
+      mountedWrapper.find('form').simulate('submit', { preventDefault() {} });
+      expect(signUpStartMock).toHaveBeenCalledTimes(1);
     });
   });
 

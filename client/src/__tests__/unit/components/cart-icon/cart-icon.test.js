@@ -31,6 +31,15 @@ describe('Components: Cart Icon', () => {
     it('should render cart svg icon', () => {
       expect(wrapper.find('ShoppingIconContainer')).toHaveLength(1);
     });
+
+    it('should be able to update dropdown toggle state', () => {
+      const toggleCartDropdownMock = jest.fn();
+
+      wrapper.setProps({ toggleCartDropdown: toggleCartDropdownMock });
+      wrapper.find('CartIconContainer').prop('onClick')();
+
+      expect(toggleCartDropdownMock).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('mapStateToProps', () => {

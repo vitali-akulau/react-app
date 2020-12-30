@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import { values } from 'lodash';
 import { CollectionItem, mapDispatchToProps } from '../../../../components/collection-item/collection-item.component';
 import { addItem } from '../../../../redux/cart/cart.actions';
-import getMockedState from "../../../utils/mock-state-provider";
+import getMockedState from '../../../utils/mock-state-provider';
 
 describe('Components: Collection Item', () => {
   describe('Collection Item', () => {
     let wrapper;
-    const collectionItems = values(getMockedState(['shop']).shop.collections)[0].items
+    const collectionItems = values(getMockedState(['shop']).shop.collections)[0].items;
     const [collectionItem] = collectionItems;
 
     beforeEach(() => {
@@ -33,6 +33,15 @@ describe('Components: Collection Item', () => {
     it('should render "Add to cart" button', () => {
       expect(wrapper.find('CustomButton').prop('children'))
         .toEqual('Add to Cart');
+    });
+
+    it('should be able to add item to cart', () => {
+      const addItemToCartMock = jest.fn();
+
+      wrapper.setProps({ addItemToCart: addItemToCartMock });
+      wrapper.find('CustomButton').prop('onClick')();
+
+      expect(addItemToCartMock).toHaveBeenCalledTimes(1);
     });
   });
 

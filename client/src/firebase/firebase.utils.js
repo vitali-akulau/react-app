@@ -40,7 +40,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      console.log('Error creating user', error.message);
+      throw new Error(`Error creating user: ${error.message}`);
     }
   }
   return userRef;
@@ -53,6 +53,7 @@ export const getCurrentUser = () => new Promise((resolve, reject) => {
   }, reject);
 });
 
+// just to initial load of data to the firestore
 export const addCollectionsAndDocs = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
 
@@ -88,7 +89,7 @@ export const getCollectionSnapshot = async (collection) => {
     const collectionRef = await firestore.collection(collection);
     return collectionRef.get();
   } catch (error) {
-    console.log(`Error on getting collections snapshot: ${error}`);
+    throw new Error(`Error on getting collections snapshot: ${error.message}`);
   }
 };
 
@@ -97,7 +98,7 @@ export const getUserSnapshot = async (userAuth, additionalData) => {
     const userRef = await createUserProfileDocument(userAuth, additionalData);
     return userRef.get();
   } catch (error) {
-    console.log(`Error on getting user's snapshot: ${error}`);
+    throw new Error(`Error on getting user's snapshot: ${error.message}`);
   }
 };
 
