@@ -5,8 +5,9 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
+    'plugin:react/recommended',
+    "plugin:wdio/recommended",
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,7 +18,12 @@ module.exports = {
   },
   plugins: [
     'react',
+    'wdio',
   ],
+  globals: {
+    $: 'readonly',
+  },
   rules: {
+    "class-methods-use-this": 0,
   },
 };
