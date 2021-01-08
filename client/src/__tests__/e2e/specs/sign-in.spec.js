@@ -1,9 +1,9 @@
+const SigningPage = require('../pages/signing.page');
+
 describe('Sign In', () => {
   it('TA-1: User should be able to sign in with valid credentials', () => {
     browser.url('/signing');
-    $('[name="email"]').setValue('loripsum@yahoo.com');
-    $('[name="password"]').setValue('qazwsx123');
-    $('[type="submit"]=Sign In').click();
+    SigningPage.signIn('loripsum@yahoo.com', 'qazwsx123');
     $('div=SIGN OUT').waitForDisplayed({ timeout: 5000 });
   });
 });
