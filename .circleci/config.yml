@@ -3,20 +3,24 @@ jobs:
   start_app:
     docker:
       - image: circleci/node:14.15.4
+    pre-steps:
+      - run:
+          name: Install Chrome dependencies
+          command: sudo apt-get install -y libxtst6 libnss3 libnspr4 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libgdk-pixbuf2.0-0
+      - run:
+          name: Download Chrome
+          command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run:
+          name: Install Chrome
+          command: sudo dpkg -i google-chrome-stable_current_amd64.deb
     steps:
       - checkout
-      - run:
-          name: Install chrome missing dependecies
-          command: sudo apt-get install -y libxtst6 libnss3 libnspr4 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libgdk-pixbuf2.0-0
       - run:
           name: Install client side dependencies
           command: cd client && yarn install
       - run:
           name: Install server side dependencies
           command: yarn install
-      - run:
-          name: Check
-          command: which chromedriver
       - run:
           name: Run client unit tests
           command: cd client && yarn test src/__tests__/unit/**
