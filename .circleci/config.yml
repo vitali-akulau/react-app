@@ -16,7 +16,8 @@ jobs:
           command: cd client && yarn test src/__tests__/unit/**
       - run:
           name: Start app
-          command: yarn dev && done
+          command: yarn dev
+          background: true
       - run:
           name: Run E2E tests
           command: cd client && yarn wdio:run
