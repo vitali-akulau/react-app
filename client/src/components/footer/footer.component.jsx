@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { ReactComponent as TiktokLogo } from '../../static/tiktok.svg';
 import { ReactComponent as InstagramLogo } from '../../static/instagram.svg';
 import { ReactComponent as TwitterLogo } from '../../static/twitter.svg';
@@ -11,7 +14,7 @@ import {
   FooterExternalLink,
 } from './footer.styles';
 
-const Footer = () => (
+export const Footer = ({ currentUser }) => (
   <FooterContainer>
     <FooterColumnsContainer>
       <LinksColumnContainer>
@@ -38,7 +41,11 @@ const Footer = () => (
       <LinksColumnContainer>
         <ul>
           <li><FooterLink to="/"><h4>FIND A STORE</h4></FooterLink></li>
-          <li><FooterLink to="/signing"><h4>SIGN UP</h4></FooterLink></li>
+          {
+            currentUser
+              ? null
+              : <li><FooterLink to="/signing"><h4>SIGN UP</h4></FooterLink></li>
+          }
           <li><FooterLink to="/"><h4>BECOME A MEMBER</h4></FooterLink></li>
           <li><FooterLink to="/"><h4>SEND US FEEDBACK</h4></FooterLink></li>
         </ul>
@@ -54,4 +61,8 @@ const Footer = () => (
   </FooterContainer>
 );
 
-export default Footer;
+export const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps)(Footer);
