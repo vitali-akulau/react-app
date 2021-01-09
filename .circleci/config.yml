@@ -15,6 +15,9 @@ jobs:
           name: Install server side dependencies
           command: yarn install
       - run:
+          name: Check
+          command: which chromedriver
+      - run:
           name: Run client unit tests
           command: cd client && yarn test src/__tests__/unit/**
       - run:
