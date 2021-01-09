@@ -1,8 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Footer from '../../../../components/footer/footer.component';
+import { Footer, mapStateToProps } from '../../../../components/footer/footer.component';
+import getMockedState from '../../../utils/mock-state-provider';
 
 describe('Components: Footer', () => {
+  const initialState = getMockedState(['user']);
   let wrapper;
 
   beforeAll(() => {
@@ -71,11 +73,33 @@ describe('Components: Footer', () => {
       expect(container.find('h4')).toEqual({});
     });
 
-    it('should render links', () => {
+    it('should render all links if user is not logged in', () => {
+      wrapper.setProps({ currentUser: null });
+
+      expect(container.find('FooterLink')).toHaveLength(4);
+    });
+
+    it('should render proper links if user is not logged in', () => {
+      wrapper.setProps({ currentUser: null });
+
       expect(container.find('FooterLink[to="/"]').at(0).text()).toEqual('FIND A STORE');
       expect(container.find('FooterLink[to="/signing"]').text()).toEqual('SIGN UP');
       expect(container.find('FooterLink[to="/"]').at(1).text()).toEqual('BECOME A MEMBER');
       expect(container.find('FooterLink[to="/"]').at(2).text()).toEqual('SEND US FEEDBACK');
+    });
+
+    it('should render less links if user is logged in', () => {
+      wrapper.setProps({ currentUser: initialState.user.currentUser });
+      const updatedContainer = wrapper.find('LinksColumnContainer').at(2);
+
+      expect(updatedContainer.find('FooterLink')).toHaveLength(3);
+    });
+
+    it('should NOT render "SIGN UP" link if user is not logged in', () => {
+      wrapper.setProps({ currentUser: initialState.user.currentUser });
+
+      const updatedContainer = wrapper.find('LinksColumnContainer').at(2);
+      expect(updatedContainer.find('FooterLink[to="/signing"]')).toHaveLength(0);
     });
   });
 
@@ -107,6 +131,13 @@ describe('Components: Footer', () => {
         .toBeTruthy();
       expect(container.find('FooterExternalLink[href="https://facebook.com/"]').find('FacebookLogo'))
         .toBeTruthy();
+    });
+  });
+
+  describe('mapStateToProps', () => {
+    it('map state to props', () => {
+      expect(mapStateToProps(initialState))
+        .toContainEntry(['currentUser', initialState.user.currentUser]);
     });
   });
 });
