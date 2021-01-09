@@ -213,7 +213,7 @@ const mockedState = {
     },
   },
   user: {
-    currentUser: null,
+    currentUser: { displayName: 'User User', id: 'qrw3wQ12ws', email: 'user@email.com' },
     errorMessage: null,
   },
 };

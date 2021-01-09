@@ -14,7 +14,7 @@ import {
   FooterExternalLink,
 } from './footer.styles';
 
-const Footer = ({ currentUser }) => (
+export const Footer = ({ currentUser }) => (
   <FooterContainer>
     <FooterColumnsContainer>
       <LinksColumnContainer>
@@ -61,7 +61,7 @@ const Footer = ({ currentUser }) => (
   </FooterContainer>
 );
 
-const mapStateToProps = createStructuredSelector({
+export const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 

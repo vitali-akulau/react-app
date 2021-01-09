@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Header, mapStateToProps, mapDispatchToProps } from '../../../../components/header/header.component';
 import { signOutStart } from '../../../../redux/user/user.actions';
-import getMockedState from "../../../utils/mock-state-provider";
+import getMockedState from '../../../utils/mock-state-provider';
 
 describe('Components: Header', () => {
   const initialState = getMockedState(['cart', 'user']);
@@ -14,7 +14,6 @@ describe('Components: Header', () => {
       wrapper = shallow(
         <Header
           hidden={initialState.cart.hidden}
-          currentUser={initialState.user.currentUser}
         />,
       );
     });
@@ -32,20 +31,23 @@ describe('Components: Header', () => {
     });
 
     it('should have link to "Sign In" if user is not logged in', () => {
+      wrapper.setProps({ currentUser: null });
+
       expect(wrapper.find('OptionLink[to="/signing"]').text()).toEqual('SIGN IN');
     });
 
     it('should have link to "Sign Out" if user is logged in', () => {
-      const currentUser = { id: 'kjfjksfal123', displayName: 'User Name' };
-      wrapper.setProps({ currentUser });
+      wrapper.setProps({ currentUser: initialState.user.currentUser });
 
       expect(wrapper.find('OptionLink').at(2).text()).toEqual('SIGN OUT');
     });
 
     it('should be able to log out user', () => {
-      const currentUser = { id: 'kjfjksfal123', displayName: 'User Name' };
       const signOutStartMock = jest.fn();
-      wrapper.setProps({ currentUser, signOutStart: signOutStartMock });
+      wrapper.setProps({
+        currentUser: initialState.user.currentUser,
+        signOutStart: signOutStartMock,
+      });
       wrapper.find('OptionLink').at(2).prop('onClick')();
 
       expect(signOutStartMock).toHaveBeenCalledTimes(1);
@@ -60,7 +62,6 @@ describe('Components: Header', () => {
     it('should show cart dropdown', () => {
       wrapper.setProps({ hidden: false });
 
-      expect(wrapper).toMatchSnapshot();
       expect(wrapper.find('withRouter(Connect(CartDropdown))')).toHaveLength(1);
     });
   });
