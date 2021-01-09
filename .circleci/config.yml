@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install chrome dependeccies
+          command: apt install libnss libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
+      - run:
           name: Install client side dependencies
           command: cd client && yarn install
       - run:
