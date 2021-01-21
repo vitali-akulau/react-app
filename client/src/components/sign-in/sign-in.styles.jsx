@@ -19,4 +19,13 @@ export const SignInButtonsContainer = styled.div`
   justify-content: space-between;
 `;
 
+export const ErrorContainer = styled.div`
+  border-radius: 0.25rem;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  color: white;
+  background-color: #dc3545;
+`;
+
 SignInButtonsContainer.displayName = 'SignInButtonsContainer';
