@@ -13,6 +13,10 @@ class SigningPage extends BasePage {
     return $('[data-test="sign-in-submit"]');
   }
 
+  get signInError() {
+    return $('[data-test="sign-in-error"]');
+  }
+
   enterSignInEmail(email) {
     this.signInEmailField.setValue(email);
   }
