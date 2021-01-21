@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { SignIn, mapDispatchToProps } from '../../../../components/sign-in/sign-in.component';
+import { SignIn, mapDispatchToProps, mapStateToProps } from '../../../../components/sign-in/sign-in.component';
 import { googleSignInStart, emailSignInStart } from '../../../../redux/user/user.actions';
+import getMockedState from '../../../utils/mock-state-provider';
 
 describe('Components: Sign In', () => {
   describe('Sign In', () => {
@@ -45,6 +46,14 @@ describe('Components: Sign In', () => {
 
       wrapper.find('CustomButton[type="button"]').prop('onClick')();
       expect(googleSignInStartMock).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('mapStateToProps', () => {
+    it('should map state to props', () => {
+      const initialState = getMockedState(['user']);
+
+      expect(mapStateToProps(initialState)).toContainEntry(['error', initialState.user.error]);
     });
   });
 

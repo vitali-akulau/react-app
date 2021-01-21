@@ -1,4 +1,4 @@
-import { selectUser, selectCurrentUser } from '../../../../redux/user/user.selectors';
+import { selectUser, selectCurrentUser, selectError } from '../../../../redux/user/user.selectors';
 
 describe('Redux: User Selectors', () => {
   const mockState = {
@@ -9,6 +9,9 @@ describe('Redux: User Selectors', () => {
         email: 'some@email.com',
       },
     },
+    error: {
+      message: 'error occured during some procedure',
+    },
   };
 
   it('"selectUser" should return user', () => {
@@ -17,5 +20,9 @@ describe('Redux: User Selectors', () => {
 
   it('"selectCurrentUser" should return current user object if they are logged in', () => {
     expect(selectCurrentUser(mockState)).toEqual(mockState.user.currentUser);
+  });
+
+  it('"selectError" should return error', () => {
+    expect(selectError(mockState)).toEqual(mockState.user.error);
   });
 });

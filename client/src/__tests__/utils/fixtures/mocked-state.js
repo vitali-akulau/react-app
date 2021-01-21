@@ -214,7 +214,7 @@ const mockedState = {
   },
   user: {
     currentUser: { displayName: 'User User', id: 'qrw3wQ12ws', email: 'user@email.com' },
-    errorMessage: null,
+    error: { message: 'Some error occurred during some operation' },
   },
 };
 
