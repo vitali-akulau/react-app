@@ -30,6 +30,11 @@ class SigningPage extends BasePage {
     this.enterSignInPassword(password);
     this.submitSignInButton.click();
   }
+
+  getSignInError() {
+    this.signInError.waitForDisplayed();
+    return this.signInError.getText();
+  }
 }
 
 module.exports = new SigningPage();

@@ -1,6 +1,7 @@
 const Chance = require('chance');
 const { userCredentials } = require('../fixtures/signing');
 const SigningPage = require('../pages/signing.page');
+const { errorMessages } = require('../support/messages');
 
 const chance = new Chance();
 
@@ -21,6 +22,14 @@ describe('Sign In', () => {
     const invalidPassword = chance.word();
 
     SigningPage.signIn(email, invalidPassword);
-    SigningPage.signInError.waitForDisplayed();
+    expect(SigningPage.signInError).toHaveText(errorMessages.wrongPassword);
+  });
+
+  it('TA-3: User unable to sign in with unregistered email', () => {
+    const unregisteredEmail = chance.email();
+    const password = chance.word();
+
+    SigningPage.signIn(unregisteredEmail, password);
+    expect(SigningPage.signInError).toHaveText(errorMessages.unregisteredEmail);
   });
 });
