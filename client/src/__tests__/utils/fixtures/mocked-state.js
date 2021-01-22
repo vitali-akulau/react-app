@@ -218,4 +218,4 @@ const mockedState = {
   },
 };
 
-export default mockedState;
+module.exports = mockedState;

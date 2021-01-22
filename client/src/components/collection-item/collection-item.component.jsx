@@ -11,10 +11,10 @@ import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
 
 export const CollectionItem = ({ item, addItemToCart }) => {
-  const { name, price } = item;
+  const { name, price, id } = item;
 
   return (
-    <CollectionItemContainer>
+    <CollectionItemContainer data-test={`item-container-${id}`}>
       <CollectionItemImageContainer {...item} />
       <CollectionFooterContainer>
         <CollectionItemNameContainer>{name}</CollectionItemNameContainer>

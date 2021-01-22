@@ -19,6 +19,11 @@ exports.config = {
   specs: [
     'src/__tests__/e2e/specs/**/*.js',
   ],
+  suites: {
+    search: [
+      'src/__tests__/e2e/specs/search.spec.js',
+    ],
+  },
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
