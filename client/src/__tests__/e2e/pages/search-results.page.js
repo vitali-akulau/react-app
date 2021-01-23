@@ -1,6 +1,10 @@
-const Basepage = require('./basepage.page');
+const BasePage = require('./basepage.page');
 
-class SearchResultsPage extends Basepage {
+class SearchResultsPage extends BasePage {
+  get emptyResultsContainer() {
+    return $('p*=Nothing found');
+  }
+
   getFoundProductById(id) {
     return $(`[data-test=item-container-${id}]`);
   }
