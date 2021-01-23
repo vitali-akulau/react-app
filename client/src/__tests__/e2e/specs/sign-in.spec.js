@@ -76,6 +76,7 @@ describe('Sign In', () => {
     const { email, password } = userCredentials.emailSignIn.valid;
 
     SigningPage.signIn(email, password);
-    SigningPage.signUpFooterLink.waitForDisplayed({ reverse: true });
+    expect(SigningPage.signUpFooterLink.waitForDisplayed({ reverse: true }))
+      .toBe(true);
   });
 });
