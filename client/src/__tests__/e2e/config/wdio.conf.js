@@ -23,6 +23,9 @@ exports.config = {
     search: [
       'src/__tests__/e2e/specs/search.spec.js',
     ],
+    signIn: [
+      'src/__tests__/e2e/specs/sign-in.spec.js',
+    ],
   },
   // Patterns to exclude.
   exclude: [

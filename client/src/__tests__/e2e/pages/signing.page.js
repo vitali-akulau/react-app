@@ -17,6 +17,10 @@ class SigningPage extends BasePage {
     return $('[data-test="sign-in-error"]');
   }
 
+  get signInWithGoogleButton() {
+    return $('[data-test="google-sign-in"]');
+  }
+
   enterSignInEmail(email) {
     this.signInEmailField.setValue(email);
   }
@@ -31,9 +35,17 @@ class SigningPage extends BasePage {
     this.submitSignInButton.click();
   }
 
+  startSignInWithGoogle() {
+    this.signInWithGoogleButton.click();
+  }
+
   getSignInError() {
     this.signInError.waitForDisplayed();
     return this.signInError.getText();
+  }
+
+  getInvalidField(fieldName) {
+    return $(`input[name=${fieldName}]`);
   }
 }
 

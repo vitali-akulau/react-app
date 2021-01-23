@@ -15,7 +15,7 @@ import {
 } from './footer.styles';
 
 export const Footer = ({ currentUser }) => (
-  <FooterContainer>
+  <FooterContainer data-test="footer">
     <FooterColumnsContainer>
       <LinksColumnContainer>
         <h4>COMPANY</h4>

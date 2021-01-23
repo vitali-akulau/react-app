@@ -20,6 +20,10 @@ export const SignIn = ({ googleSignInStart, emailSignInStart, error }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if ((!email || email === ' ') || (!password || password === ' ')) {
+      return null;
+    }
+
     emailSignInStart(email, password);
   };
 
