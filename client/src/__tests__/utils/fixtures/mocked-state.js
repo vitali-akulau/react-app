@@ -126,10 +126,10 @@ const mockedState = {
           },
         ],
       },
-      mens: {
+      men: {
         id: 'CNxLqIcH6K7GAVbjWlVc',
-        routeName: 'mens',
-        title: 'Mens',
+        routeName: 'men',
+        title: 'Men',
         items: [
           {
             id: 30, imageUrl: 'https://i.ibb.co/xJS0T3Y/camo-vest.png', name: 'Camo Down Vest', price: 325,
@@ -182,10 +182,10 @@ const mockedState = {
           },
         ],
       },
-      womens: {
+      women: {
         id: 'epCsDwzGwTZRBxyHJSWA',
-        routeName: 'womens',
-        title: 'Womens',
+        routeName: 'women',
+        title: 'Women',
         items: [
           {
             id: 23, imageUrl: 'https://i.ibb.co/7CQVJNm/blue-tank.png', name: 'Blue Tanktop', price: 25,
