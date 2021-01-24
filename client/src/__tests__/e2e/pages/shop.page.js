@@ -2,6 +2,10 @@ const { times } = require('lodash');
 const BasePage = require('./basepage.page');
 
 class ShopPage extends BasePage {
+  get checkoutButton() {
+    return $('button=GO TO CHECKOUT');
+  }
+
   getProductCardById(id) {
     const productCard = $(`[data-test=item-container-${id}]`);
 
@@ -17,6 +21,14 @@ class ShopPage extends BasePage {
         this.getProductCardById(id).$('button=Add to Cart').click();
       });
     });
+  }
+
+  openCart() {
+    this.cartItemsCounter.click();
+  }
+
+  goToCheckout() {
+    this.checkoutButton.click();
   }
 }
 

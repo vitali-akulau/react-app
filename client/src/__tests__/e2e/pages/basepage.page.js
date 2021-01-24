@@ -38,6 +38,17 @@ class BasePage {
     return this.cartItemsCounter.getText();
   }
 
+  getCartItem(id) {
+    const cartContainer = $(`[data-test=cart-item-${id}]`);
+
+    cartContainer.scrollIntoView();
+    return cartContainer;
+  }
+
+  getCartItems() {
+    return $$('[data-test^=cart-item-]');
+  }
+
   searchForProduct(query) {
     this.searchBar.setValue(query);
     browser.keys(keys.Enter);
