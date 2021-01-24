@@ -38,6 +38,10 @@ class BasePage {
     this.signOutButton.click();
   }
 
+  openCart() {
+    this.cartItemsCounter.click();
+  }
+
   getCartProductsCount() {
     return this.cartItemsCounter.getText();
   }
@@ -67,6 +71,10 @@ class BasePage {
     const activeWindows = browser.getWindowHandles();
     const [childWindow] = _.without(activeWindows, parentWindowGUID);
     browser.switchToWindow(childWindow);
+  }
+
+  switchToFrame(frame) {
+    browser.switchToFrame(frame);
   }
 }
 

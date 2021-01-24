@@ -5,15 +5,15 @@ const getMockedState = require('../../utils/mock-state-provider');
 const { shop } = getMockedState(['shop']);
 const { collections } = shop;
 
-const getRandomCount = (maxValue) => _.sample(_.range(1, maxValue));
+const getRandomCount = (minValue, maxValue) => _.sample(_.range(minValue, maxValue));
 
-const getProductsMap = (products, count) => {
-  const productsToMap = _.sampleSize(products, count);
+const getProductsMap = (products, productsCount, minItemsCount = 1) => {
+  const productsToMap = _.sampleSize(products, productsCount);
 
   return _.map(productsToMap, (product) => (
     {
       ...product,
-      count: getRandomCount(MAX_ITEMS_COUNT),
+      count: getRandomCount(minItemsCount, MAX_ITEMS_COUNT),
     }
   ));
 };

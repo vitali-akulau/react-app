@@ -6,6 +6,10 @@ class CheckoutPage extends BasePage {
     return $('[data-test=checkout-total]');
   }
 
+  get stripeCheckoutButton() {
+    return $('button.StripeCheckout').$('span');
+  }
+
   getCheckoutItem(id) {
     return $(`[data-test=checkout-item-${id}]`);
   }
@@ -20,6 +24,11 @@ class CheckoutPage extends BasePage {
 
   getCheckoutItemRemoveButton(id) {
     return this.getCheckoutItem(id).$('[data-test=item-remove]');
+  }
+
+  getCheckoutItemCounterCount(id) {
+    return Number
+      .parseInt(this.getCheckoutItem(id).$('[data-test=item-counter]').getText(), 10);
   }
 
   getCheckoutItems() {
@@ -44,6 +53,10 @@ class CheckoutPage extends BasePage {
 
   removeItem(id) {
     this.getCheckoutItemRemoveButton(id).click();
+  }
+
+  proceedToPayment() {
+    this.stripeCheckoutButton.click();
   }
 }
 

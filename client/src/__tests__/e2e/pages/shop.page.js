@@ -23,10 +23,6 @@ class ShopPage extends BasePage {
     });
   }
 
-  openCart() {
-    this.cartItemsCounter.click();
-  }
-
   goToCheckout() {
     this.checkoutButton.click();
   }

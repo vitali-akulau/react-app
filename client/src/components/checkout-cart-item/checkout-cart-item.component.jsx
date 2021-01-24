@@ -31,7 +31,11 @@ export const CheckoutCartItem = ({
         >
           &#10094;
         </ArrowContainer>
-        <ValueContainer>{quantity}</ValueContainer>
+        <ValueContainer
+          data-test="item-counter"
+        >
+          {quantity}
+        </ValueContainer>
         <ArrowContainer
           onClick={() => addItem(cartItem)}
           data-test="item-increase-count"
