@@ -1,10 +1,19 @@
-version: 2
+version: 2.1
 jobs:
   start_app:
     docker:
       - image: circleci/node:14.15.4
     steps:
       - checkout
+      - run:
+          name: Install Chrome dependencies
+          command: sudo apt-get install -y libxtst6 libnss3 libnspr4 libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0 libgdk-pixbuf2.0-0 fonts-liberation xdg-utils
+      - run:
+          name: Download Chrome
+          command: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run:
+          name: Install Chrome
+          command: sudo dpkg -i google-chrome-stable_current_amd64.deb
       - run:
           name: Install client side dependencies
           command: cd client && yarn install
@@ -14,8 +23,17 @@ jobs:
       - run:
           name: Run client unit tests
           command: cd client && yarn test src/__tests__/unit/**
+      - run:
+          name: Start app
+          command: yarn dev
+          background: true
+      - run:
+          name: Run E2E tests
+          command: yarn server:start && cd client && yarn wdio:run
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - start_app
+      - start_app:
+          pre-steps:
+
