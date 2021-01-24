@@ -16,7 +16,7 @@ describe('Shop', () => {
     browser.reloadSession();
   });
 
-  it('User should be able to add products from "Preview" page', () => {
+  it('TA-26: User should be able to add products from "Preview" page', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 2);
     const targetProductsCount = getTargetProductsCount(targetProducts);

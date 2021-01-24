@@ -2,10 +2,6 @@ const { times } = require('lodash');
 const BasePage = require('./basepage.page');
 
 class ShopPage extends BasePage {
-  get cartItemsCounter() {
-    return $('[data-test="cart-items-counter"]');
-  }
-
   getProductCardById(id) {
     const productCard = $(`[data-test=item-container-${id}]`);
 
@@ -21,10 +17,6 @@ class ShopPage extends BasePage {
         this.getProductCardById(id).$('button=Add to Cart').click();
       });
     });
-  }
-
-  getCartProductsCount() {
-    return this.cartItemsCounter.getText();
   }
 }
 

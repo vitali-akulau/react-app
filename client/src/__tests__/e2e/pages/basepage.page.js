@@ -1,5 +1,5 @@
-const { keys } = require('../support/keys');
 const _ = require('lodash');
+const { keys } = require('../support/keys');
 
 class BasePage {
   get signInButton() {
@@ -22,12 +22,20 @@ class BasePage {
     return this.footer.$('a=SIGN UP');
   }
 
+  get cartItemsCounter() {
+    return $('[data-test="cart-items-counter"]');
+  }
+
   open(url) {
     browser.url(url);
   }
 
   signOut() {
     this.signOutButton.click();
+  }
+
+  getCartProductsCount() {
+    return this.cartItemsCounter.getText();
   }
 
   searchForProduct(query) {
