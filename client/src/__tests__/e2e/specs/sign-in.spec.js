@@ -56,7 +56,7 @@ describe('Sign In', () => {
       .toBe(errorMessages.emptyRequiredField);
   });
 
-  it('TA-6: User is able to sign in using Google', () => {
+  xit('TA-6: User is able to sign in using Google', () => {
     const { email, password } = userCredentials.googleSignIn.valid;
     const mainWindowGUID = browser.getWindowHandle();
 
