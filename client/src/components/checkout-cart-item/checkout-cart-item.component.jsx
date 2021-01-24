@@ -16,21 +16,36 @@ export const CheckoutCartItem = ({
   cartItem, addItem, clearItem, removeItem,
 }) => {
   const {
-    name, imageUrl, price, quantity,
+    name, imageUrl, price, quantity, id,
   } = cartItem;
   return (
-    <CheckoutItemContainer>
+    <CheckoutItemContainer data-test={`checkout-item-${id}`}>
       <CheckoutItemImageContainer>
         <img src={imageUrl} alt="checkout cart item" />
       </CheckoutItemImageContainer>
       <NameContainer>{name}</NameContainer>
       <QuantityContainer>
-        <ArrowContainer onClick={() => removeItem(cartItem)}>&#10094;</ArrowContainer>
+        <ArrowContainer
+          onClick={() => removeItem(cartItem)}
+          data-test="item-reduce-count"
+        >
+          &#10094;
+        </ArrowContainer>
         <ValueContainer>{quantity}</ValueContainer>
-        <ArrowContainer onClick={() => addItem(cartItem)}>&#10095;</ArrowContainer>
+        <ArrowContainer
+          onClick={() => addItem(cartItem)}
+          data-test="item-increase-count"
+        >
+          &#10095;
+        </ArrowContainer>
       </QuantityContainer>
       <PriceContainer>{price}</PriceContainer>
-      <RemoveButton onClick={() => clearItem(cartItem)}>&#10005;</RemoveButton>
+      <RemoveButton
+        onClick={() => clearItem(cartItem)}
+        data-test="item-remove"
+      >
+        &#10005;
+      </RemoveButton>
     </CheckoutItemContainer>
   );
 };
