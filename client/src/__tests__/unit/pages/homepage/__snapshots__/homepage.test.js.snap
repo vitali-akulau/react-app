@@ -5,9 +5,3 @@ exports[`Pages: Homepage should render without errors 1`] = `
   <Connect(DirectoryMenu) />
 </HomepageContainer>
 `;
-
-exports[`Pages: HomepagePage should render without errors 1`] = `
-<HomepageContainer>
-  <Connect(DirectoryMenu) />
-</HomepageContainer>
-`;
