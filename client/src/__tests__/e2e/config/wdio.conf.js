@@ -29,6 +29,9 @@ exports.config = {
     shop: [
       'src/__tests__/e2e/specs/shop.spec.js',
     ],
+    checkout: [
+      'src/__tests__/e2e/specs/checkout.spec.js',
+    ],
   },
   // Patterns to exclude.
   exclude: [
