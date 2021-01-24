@@ -21,6 +21,12 @@ describe('Shop', () => {
     expect(ShopPage.getCartProductsCount()).toEqual('0');
   });
 
+  it('TA-33: Empty state is shown on cart pop-up when cart is empty', () => {
+    ShopPage.open('/shop');
+    ShopPage.openCart();
+    expect(ShopPage.cartEmptyMessage.waitForDisplayed()).toBe(true);
+  });
+
   it('TA-26: User should be able to add products from "Preview" page', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 2);
