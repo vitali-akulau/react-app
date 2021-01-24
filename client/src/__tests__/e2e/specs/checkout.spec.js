@@ -9,6 +9,10 @@ const {
 const { getCartTotal, getUpdatedProducts } = require('../service/data-handlers');
 
 describe('Checkout', () => {
+  beforeEach(() => {
+    ShopPage.open('/shop');
+  });
+
   afterEach(() => {
     browser.reloadSession();
   });
@@ -18,7 +22,6 @@ describe('Checkout', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, productsToAddCount);
 
-    ShopPage.open('/shop');
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     expect(CheckoutPage.getCheckoutItems()).toHaveLength(productsToAddCount);
@@ -29,7 +32,6 @@ describe('Checkout', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, productsToAddCount);
 
-    ShopPage.open('/shop');
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     ShopPage.open('/shop');
@@ -43,7 +45,6 @@ describe('Checkout', () => {
     const targetProducts = getProductsMap(previewProducts, 2);
     const checkoutTotal = getCartTotal(targetProducts);
 
-    ShopPage.open('/shop');
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     expect(CheckoutPage.getCheckoutTotal()).toEqual(checkoutTotal);
@@ -53,7 +54,6 @@ describe('Checkout', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 2);
 
-    ShopPage.open('/shop');
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
@@ -69,7 +69,6 @@ describe('Checkout', () => {
       const updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
       const newCheckoutTotal = getCartTotal(updatedProducts);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.increaseItemCount(product.id, 1);
@@ -82,7 +81,6 @@ describe('Checkout', () => {
       const [product] = targetProducts;
       const newProductCount = product.count + 1;
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.increaseItemCount(product.id, 1);
@@ -96,7 +94,6 @@ describe('Checkout', () => {
       const updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
       const newTargetProductsCount = getTargetProductsCount(updatedProducts);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.increaseItemCount(product.id, 1);
@@ -109,7 +106,6 @@ describe('Checkout', () => {
       const [product] = targetProducts;
       const updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.increaseItemCount(product.id, 1);
@@ -129,7 +125,6 @@ describe('Checkout', () => {
       const updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
       const newCheckoutTotal = getCartTotal(updatedProducts);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.reduceItemCount(product.id, 1);
@@ -142,7 +137,6 @@ describe('Checkout', () => {
       const [product] = targetProducts;
       const newProductCount = product.count - 1;
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.reduceItemCount(product.id, 1);
@@ -156,7 +150,6 @@ describe('Checkout', () => {
       const updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
       const newTargetProductsCount = getTargetProductsCount(updatedProducts);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.reduceItemCount(product.id, 1);
@@ -169,7 +162,6 @@ describe('Checkout', () => {
       const [product] = targetProducts;
       const updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.reduceItemCount(product.id, 1);
@@ -187,7 +179,6 @@ describe('Checkout', () => {
       const targetProducts = getProductsMap(previewProducts, 2);
       const [product] = targetProducts;
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.removeItem(product.id);
@@ -202,7 +193,6 @@ describe('Checkout', () => {
       const updatedProducts = getUpdatedProducts('remove', targetProducts, product);
       const newCheckoutTotal = getCartTotal(updatedProducts);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.removeItem(product.id);
@@ -216,7 +206,6 @@ describe('Checkout', () => {
       const updatedProducts = getUpdatedProducts('remove', targetProducts, product);
       const newTargetProductsCount = getTargetProductsCount(updatedProducts);
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.removeItem(product.id);
@@ -228,7 +217,6 @@ describe('Checkout', () => {
       const targetProducts = getProductsMap(previewProducts, 2);
       const [product] = targetProducts;
 
-      ShopPage.open('/shop');
       ShopPage.addProductsToCart(targetProducts);
       ShopPage.open('/checkout');
       CheckoutPage.removeItem(product.id);
