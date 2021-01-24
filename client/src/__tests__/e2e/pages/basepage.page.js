@@ -26,6 +26,10 @@ class BasePage {
     return $('[data-test="cart-items-counter"]');
   }
 
+  get cartEmptyMessage() {
+    return $('span=Your cart is empty');
+  }
+
   open(url) {
     browser.url(url);
   }
