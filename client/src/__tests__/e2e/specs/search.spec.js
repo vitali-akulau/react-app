@@ -1,18 +1,14 @@
-const {
-  flatten, values, sample, map, filter,
-} = require('lodash');
 const Chance = require('chance');
 const Homepage = require('../pages/homepage.page');
 const SearchResultsPage = require('../pages/search-results.page');
-const getMockedState = require('../../utils/mock-state-provider');
+const { getRandomProduct } = require('../service/data-providers');
+const { filterProductsByNameSubstring, getProductNameSubstring } = require('../service/data-handlers');
 
 const chance = new Chance();
-const { shop } = getMockedState(['shop']);
-const allProducts = flatten(map(values(shop.collections), 'items'));
 
 describe('Search', () => {
   it('TA-36: User can search for products by exact product name', () => {
-    const product = sample(allProducts);
+    const product = getRandomProduct();
 
     Homepage.open('/');
     Homepage.searchForProduct(product.name);
@@ -20,9 +16,9 @@ describe('Search', () => {
   });
 
   it('TA-36.1: User can search for products by product name substring', () => {
-    const product = sample(allProducts);
-    const query = sample(product.name.split(' '));
-    const expectedProducts = filter(allProducts, (p) => p.name.includes(query));
+    const product = getRandomProduct();
+    const query = getProductNameSubstring(product.name);
+    const expectedProducts = filterProductsByNameSubstring(query);
 
     Homepage.open('/');
     Homepage.searchForProduct(query);
