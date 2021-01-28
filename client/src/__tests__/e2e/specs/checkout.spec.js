@@ -57,8 +57,7 @@ describe('Checkout', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    const iframe = StripeCheckoutPage.getStripeCheckoutFrame();
-    CheckoutPage.switchToFrame(iframe);
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     expect(StripeCheckoutPage.paymentForm.waitForDisplayed()).toBe(true);
   });
 

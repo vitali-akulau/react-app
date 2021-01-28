@@ -4,7 +4,9 @@ class StripeCheckoutPage {
   }
 
   getStripeCheckoutFrame() {
-    return $('[name="stripe_checkout_app"]');
+    const iframe = $('[name="stripe_checkout_app"]');
+    iframe.waitForDisplayed();
+    return iframe;
   }
 }
 
