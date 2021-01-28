@@ -1,10 +1,10 @@
 class StripeCheckoutPage {
-  get stripeCheckoutFrame() {
-    return $('[name="stripe_checkout_app"]');
-  }
-
   get paymentForm() {
     return $('.Modal-form');
+  }
+
+  getStripeCheckoutFrame() {
+    return $('[name="stripe_checkout_app"]');
   }
 }
 
