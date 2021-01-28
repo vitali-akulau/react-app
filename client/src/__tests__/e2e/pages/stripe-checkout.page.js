@@ -3,7 +3,7 @@ class StripeCheckoutPage {
     return $('.Modal-form');
   }
 
-  async getStripeCheckoutFrame() {
+  getStripeCheckoutFrame() {
     return $('[name="stripe_checkout_app"]');
   }
 }
