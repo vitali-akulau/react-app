@@ -2,8 +2,20 @@ const _ = require('lodash');
 const { keys } = require('../support/keys');
 
 class BasePage {
+  get header() {
+    return $('[data-test="header"]');
+  }
+
+  get shopLink() {
+    return this.header.$('a=SHOP');
+  }
+
+  get contactLink() {
+    return this.header.$('a=CONTACT');
+  }
+
   get signInButton() {
-    return $('[data-test="sign-in-button"]');
+    return this.header.$('a=SIGN IN');
   }
 
   get signOutButton() {
@@ -32,6 +44,18 @@ class BasePage {
 
   open(url) {
     browser.url(url);
+  }
+
+  openShopPage() {
+    this.shopLink.click();
+  }
+
+  openContactPage() {
+    this.contactLink.click();
+  }
+
+  openSigningPage() {
+    this.signInButton.click();
   }
 
   signOut() {

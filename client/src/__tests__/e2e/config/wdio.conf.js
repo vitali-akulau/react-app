@@ -32,6 +32,9 @@ exports.config = {
     checkout: [
       'src/__tests__/e2e/specs/checkout.spec.js',
     ],
+    homepage: [
+      'src/__tests__/e2e/specs/homepage.spec.js',
+    ],
   },
   // Patterns to exclude.
   exclude: [

@@ -25,6 +25,8 @@ const getPreviewProducts = () => (
 
 const getRandomCollectionName = (shopCollections) => _.sample(_.keys(shopCollections));
 
+const getRandomSection = (directorySections) => _.sample(directorySections);
+
 const getOverviewProducts = (collection) => shop.collections[collection].items;
 
 const getTargetProductsCount = (products) => (_.reduce(products, (current, next) => (
@@ -44,4 +46,5 @@ module.exports = {
   getOverviewProducts,
   getRandomProduct,
   getAllProducts,
+  getRandomSection,
 };
