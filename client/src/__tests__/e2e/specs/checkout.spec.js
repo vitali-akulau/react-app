@@ -50,14 +50,14 @@ describe('Checkout', () => {
     expect(CheckoutPage.getCheckoutTotal()).toEqual(checkoutTotal);
   });
 
-  it('TA-25.1: User should be able to proceed to payment', () => {
+  it('TA-25.1: User should be able to proceed to payment', async () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 2);
 
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    const iframe = StripeCheckoutPage.getStripeCheckoutFrame();
+    const iframe = await StripeCheckoutPage.getStripeCheckoutFrame();
     CheckoutPage.switchToFrame(iframe);
     expect(StripeCheckoutPage.paymentForm.waitForDisplayed()).toBe(true);
   });
