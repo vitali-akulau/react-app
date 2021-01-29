@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const moment = require('moment');
 const { MAX_ITEMS_COUNT, PREVIEW_ITEMS_NUMBER } = require('../support/constants');
 const getMockedState = require('../../utils/mock-state-provider');
 
@@ -37,6 +38,8 @@ const getAllProducts = () => _.flatten(_.map(_.values(shop.collections), 'items'
 
 const getRandomProduct = () => _.sample(getAllProducts());
 
+const getUniqueEmail = () => `user-${moment().valueOf()}@mail.com`;
+
 module.exports = {
   getProductsMap,
   getRandomCount,
@@ -47,4 +50,5 @@ module.exports = {
   getRandomProduct,
   getAllProducts,
   getRandomSection,
+  getUniqueEmail,
 };
