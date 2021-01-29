@@ -22,7 +22,7 @@ jobs:
           command: yarn install
       - run:
           name: Run client unit tests
-          command: cd client && yarn test src/__tests__/unit/**
+          command: cd client && yarn test src/__tests__/unit/** -w 1
       - run:
           name: Start app
           command: yarn dev
