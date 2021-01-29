@@ -120,6 +120,10 @@ class BasePage {
   switchToFrame(frame) {
     browser.switchToFrame(frame);
   }
+
+  getAlertMessage() {
+    browser.getAlertText();
+  }
 }
 
 module.exports = BasePage;

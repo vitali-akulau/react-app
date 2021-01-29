@@ -5,8 +5,11 @@ import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
+import { createStructuredSelector } from 'reselect';
+import { selectError } from '../../redux/user/user.selectors';
+import { ErrorContainer } from '../sign-in/sign-in.styles';
 
-export const SignUp = ({ signUpStart }) => {
+export const SignUp = ({ signUpStart, error }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
     email: '',
@@ -29,6 +32,15 @@ export const SignUp = ({ signUpStart }) => {
     if (password !== confirmPassword) {
       alert("Password doesn't match");
       return;
+    }
+
+    if (
+      (!email || email === ' ')
+      || (!displayName || displayName === ' ')
+      || (!password || password === ' ')
+      || (!confirmPassword || confirmPassword === ' ')
+    ) {
+      return null;
     }
 
     signUpStart(email, password, displayName);
@@ -83,9 +95,18 @@ export const SignUp = ({ signUpStart }) => {
           Sign Up
         </CustomButton>
       </form>
+      {
+        error
+          ? <ErrorContainer data-test="sign-up-error">{error.message}</ErrorContainer>
+          : null
+      }
     </SignUpContainer>
   );
 };
+
+export const mapStateToProps = createStructuredSelector({
+  error: selectError,
+});
 
 export const mapDispatchToProps = (dispatch) => ({
   signUpStart: (email, password, displayName) => (
@@ -93,4 +114,4 @@ export const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

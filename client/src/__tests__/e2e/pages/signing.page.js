@@ -17,6 +17,10 @@ class SigningPage extends BasePage {
     return $('[data-test="sign-in-error"]');
   }
 
+  get signUpError() {
+    return $('[data-test="sign-up-error"]');
+  }
+
   get signInWithGoogleButton() {
     return $('[data-test="google-sign-in"]');
   }
