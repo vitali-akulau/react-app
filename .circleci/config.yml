@@ -23,8 +23,6 @@ jobs:
       - run:
           name: Run client unit tests
           command: cd client && yarn test src/__tests__/unit/**
-          environment:
-            NODE_OPTIONS: --max_old_space_size=4096
       - run:
           name: Start app
           command: yarn dev
