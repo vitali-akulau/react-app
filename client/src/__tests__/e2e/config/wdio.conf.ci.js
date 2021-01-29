@@ -35,6 +35,9 @@ exports.config = {
     homepage: [
       'src/__tests__/e2e/specs/homepage.spec.js',
     ],
+    signUp: [
+      'src/__tests__/e2e/specs/sign-up.spec.js',
+    ],
   },
   // Patterns to exclude.
   exclude: [
