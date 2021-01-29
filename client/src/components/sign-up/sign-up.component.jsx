@@ -47,6 +47,7 @@ export const SignUp = ({ signUpStart }) => {
           handleChange={handleChange}
           label="name"
           required
+          data-test="sign-up-name"
         />
         <FormInput
           type="email"
@@ -55,6 +56,7 @@ export const SignUp = ({ signUpStart }) => {
           handleChange={handleChange}
           label="email"
           required
+          data-test="sign-up-email"
         />
         <FormInput
           type="password"
@@ -63,6 +65,7 @@ export const SignUp = ({ signUpStart }) => {
           handleChange={handleChange}
           label="password"
           required
+          data-test="sign-up-password"
         />
         <FormInput
           type="password"
@@ -71,8 +74,14 @@ export const SignUp = ({ signUpStart }) => {
           handleChange={handleChange}
           label="confirm password"
           required
+          data-test="sign-up-confirm-password"
         />
-        <CustomButton type="submit">Sign Up</CustomButton>
+        <CustomButton
+          type="submit"
+          data-test="sign-up-submit"
+        >
+          Sign Up
+        </CustomButton>
       </form>
     </SignUpContainer>
   );
