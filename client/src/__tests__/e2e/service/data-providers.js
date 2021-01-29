@@ -38,7 +38,13 @@ const getAllProducts = () => _.flatten(_.map(_.values(shop.collections), 'items'
 
 const getRandomProduct = () => _.sample(getAllProducts());
 
-const getUniqueEmail = () => `user-${moment().valueOf()}@mail.com`;
+const getTimestamp = () => moment().valueOf();
+
+const getUniqueName = () => `user-${getTimestamp()}`;
+
+const getUniqueEmail = () => `${getUniqueName()}@mail.com`;
+
+const getUniquePassword = () => `secret-${getTimestamp()}`;
 
 module.exports = {
   getProductsMap,
@@ -51,4 +57,6 @@ module.exports = {
   getAllProducts,
   getRandomSection,
   getUniqueEmail,
+  getUniqueName,
+  getUniquePassword,
 };
