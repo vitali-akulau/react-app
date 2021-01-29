@@ -43,7 +43,7 @@ describe('Homepage', () => {
     });
   });
 
-  describe('Footer', () => {
+  xdescribe('Footer', () => {
     describe('"Company" links', () => {
       const containerName = 'company';
       const linkText = ['Careers', 'Contact Us', 'Terms', 'Privacy', 'Accessibility Policy'];
