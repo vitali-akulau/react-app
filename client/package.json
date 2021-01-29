@@ -37,7 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "wdio:run:local": "npx wdio src/__tests__/e2e/config/wdio.conf.local.js",
-    "wdio:run:ci": "npx wdio src/__tests__/e2e/config/wdio.conf.local.js"
+    "wdio:run:ci": "npx wdio src/__tests__/e2e/config/wdio.conf.ci.js"
   },
   "eslintConfig": {
     "extends": "react-app"
