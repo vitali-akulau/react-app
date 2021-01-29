@@ -6,6 +6,10 @@ class BasePage {
     return $('[data-test="header"]');
   }
 
+  get siteLogo() {
+    return this.header.$('#site-logo');
+  }
+
   get shopLink() {
     return this.header.$('a=SHOP');
   }
@@ -58,6 +62,10 @@ class BasePage {
     this.signInButton.click();
   }
 
+  clickOnHeaderLogo() {
+    this.siteLogo.click();
+  }
+
   signOut() {
     this.signOutButton.click();
   }
@@ -79,6 +87,18 @@ class BasePage {
 
   getCartItems() {
     return $$('[data-test^=cart-item-]');
+  }
+
+  getFooterLinkContainer(name) {
+    return this.footer.$(`#${name}-container`);
+  }
+
+  getFooterLink(containerName, linkText) {
+    return this.getFooterLinkContainer(containerName).$(`a=${linkText}`);
+  }
+
+  getFooterSMMLink(containerName, url) {
+    return this.getFooterLinkContainer(containerName).$(`[href="${url}"]`);
   }
 
   searchForProduct(query) {

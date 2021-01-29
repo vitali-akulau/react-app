@@ -14,7 +14,7 @@ import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 export const Header = ({ currentUser, hidden, signOutStart }) => (
   <HeaderContainer data-test="header">
-    <LogoContainer to="/">
+    <LogoContainer to="/" id="site-logo">
       <Logo />
     </LogoContainer>
     <OptionsContainer>
