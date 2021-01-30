@@ -1,13 +1,27 @@
 import React from 'react';
-import SigningPageContainer from './signing.styles';
+import { createStructuredSelector } from 'reselect';
+import { SigningPageContainer, ErrorContainer, SigningPageFormsContainer} from './signing.styles';
 import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
+import { selectError } from '../../redux/user/user.selectors';
+import { connect } from 'react-redux';
 
-const SigningPage = () => (
+const SigningPage = ({ error }) => (
   <SigningPageContainer>
-    <SignIn />
-    <SignUp />
+    {
+      error
+        ? <ErrorContainer data-test="signing-error">{error.message}</ErrorContainer>
+        : null
+    }
+    <SigningPageFormsContainer>
+      <SignIn />
+      <SignUp />
+    </SigningPageFormsContainer>
   </SigningPageContainer>
 );
 
-export default SigningPage;
+export const mapStateToProps = createStructuredSelector({
+  error: selectError,
+});
+
+export default connect(mapStateToProps)(SigningPage);

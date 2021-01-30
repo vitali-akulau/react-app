@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { signUpStart } from '../../redux/user/user.actions';
 import { SignUpContainer, SignUpTitle } from './sign-up.styles';
-
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import { createStructuredSelector } from 'reselect';
-import { selectError } from '../../redux/user/user.selectors';
-import { ErrorContainer } from '../sign-in/sign-in.styles';
 
-export const SignUp = ({ signUpStart, error }) => {
+export const SignUp = ({ signUpStart }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
     email: '',
@@ -95,18 +91,9 @@ export const SignUp = ({ signUpStart, error }) => {
           Sign Up
         </CustomButton>
       </form>
-      {
-        error
-          ? <ErrorContainer data-test="sign-up-error">{error.message}</ErrorContainer>
-          : null
-      }
     </SignUpContainer>
   );
 };
-
-export const mapStateToProps = createStructuredSelector({
-  error: selectError,
-});
 
 export const mapDispatchToProps = (dispatch) => ({
   signUpStart: (email, password, displayName) => (
@@ -114,4 +101,4 @@ export const mapDispatchToProps = (dispatch) => ({
   ),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(null, mapDispatchToProps)(SignUp);

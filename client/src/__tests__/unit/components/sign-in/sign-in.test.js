@@ -49,14 +49,6 @@ describe('Components: Sign In', () => {
     });
   });
 
-  describe('mapStateToProps', () => {
-    it('should map state to props', () => {
-      const initialState = getMockedState(['user']);
-
-      expect(mapStateToProps(initialState)).toContainEntry(['error', initialState.user.error]);
-    });
-  });
-
   describe('mapDispatchToProps', () => {
     it('should dispatch actions', () => {
       const dispatch = jest.fn();
