@@ -1,10 +1,7 @@
-const Chance = require('chance');
 const { userCredentials } = require('../fixtures/signing');
 const SigningPage = require('../pages/signing.page');
 const { errorMessages } = require('../support/messages');
 const { getUniqueEmail, getUniqueName, getUniquePassword } = require('../service/data-providers');
-
-const chance = new Chance();
 
 describe('Sign Up', () => {
   beforeEach(() => {
