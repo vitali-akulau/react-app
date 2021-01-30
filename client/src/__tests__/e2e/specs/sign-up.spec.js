@@ -82,4 +82,23 @@ describe('Sign Up', () => {
     SigningPage.signUp(name, email, password, confirmPassword);
     expect(SigningPage.getAlertMessage()).toBe(errorMessages.passwordsDoNotMatch);
   });
+
+  it('TA-15: User unable to sign up with invalid Email', () => {
+    const name = getUniqueName();
+    const password = getUniquePassword();
+    const confirmPassword = getUniqueName();
+
+    SigningPage.signUp(name, name, password, confirmPassword);
+    expect(SigningPage.signUpEmailField.getAttribute('validationMessage'))
+      .toBe(errorMessages.emailNotContainingAt(name));
+  });
+
+  it('TA-16: User unable to sign up with invalid Password', () => {
+    const name = getUniqueName();
+    const email = getUniqueEmail();
+    const password = getUniquePassword().slice(0, 5);
+
+    SigningPage.signUp(name, email, password);
+    expect(SigningPage.signUpError).toHaveText(errorMessages.tooShortPassword);
+  });
 });
