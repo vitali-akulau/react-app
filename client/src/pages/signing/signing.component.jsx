@@ -6,7 +6,7 @@ import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
 import { selectError } from '../../redux/user/user.selectors';
 
-const SigningPage = ({ error }) => (
+export const SigningPage = ({ error }) => (
   <SigningPageContainer>
     {
       (error && error.message !== 'snapshot.data is not a function')
