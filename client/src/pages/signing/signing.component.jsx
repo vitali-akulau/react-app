@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 const SigningPage = ({ error }) => (
   <SigningPageContainer>
     {
-      error
+      (error && error.message !== 'snapshot.data is not a function')
         ? <ErrorContainer data-test="signing-error">{error.message}</ErrorContainer>
         : null
     }
