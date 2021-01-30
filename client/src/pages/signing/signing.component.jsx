@@ -1,10 +1,10 @@
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
 import { SigningPageContainer, ErrorContainer, SigningPageFormsContainer} from './signing.styles';
 import SignIn from '../../components/sign-in/sign-in.component';
 import SignUp from '../../components/sign-up/sign-up.component';
 import { selectError } from '../../redux/user/user.selectors';
-import { connect } from 'react-redux';
 
 const SigningPage = ({ error }) => (
   <SigningPageContainer>
