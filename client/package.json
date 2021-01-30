@@ -8,6 +8,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.21.0",
+    "chance": "^1.1.7",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "firebase": "^7.21.0",
@@ -35,7 +36,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "wdio:run": "npx wdio src/__tests__/e2e/config/wdio.conf.js"
+    "wdio:run:local": "npx wdio src/__tests__/e2e/config/wdio.conf.local.js",
+    "wdio:run:ci": "npx wdio src/__tests__/e2e/config/wdio.conf.ci.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -68,6 +70,7 @@
     "eslint-plugin-react-hooks": "4.0.0",
     "eslint-plugin-wdio": "^6.6.0",
     "jest-extended": "^0.11.5",
+    "moment": "^2.29.1",
     "react-scripts": "3.4.3",
     "wdio-chromedriver-service": "^6.0.4"
   },

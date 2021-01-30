@@ -1,6 +1,6 @@
 import React from 'react';
-import { CollectionPreviewContainer, CollectionPreviewTitle, PreviewContainer } from './collection-preview.styles';
 import _ from 'lodash';
+import { CollectionPreviewContainer, CollectionPreviewTitle, PreviewContainer } from './collection-preview.styles';
 import CollectionItem from '../collection-item/collection-item.component';
 
 const CollectionPreview = ({ title, items, previewItemsNumber }) => (

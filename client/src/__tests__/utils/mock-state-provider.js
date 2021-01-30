@@ -1,4 +1,4 @@
-import mockedState from './fixtures/mocked-state';
+const mockedState = require('./fixtures/mocked-state');
 
 const getMockedState = (stateProps) => {
   if (!stateProps) {
@@ -20,4 +20,4 @@ const getMockedState = (stateProps) => {
   return state;
 };
 
-export default getMockedState;
+module.exports = getMockedState;

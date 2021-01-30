@@ -13,8 +13,8 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 export const Header = ({ currentUser, hidden, signOutStart }) => (
-  <HeaderContainer>
-    <LogoContainer to="/">
+  <HeaderContainer data-test="header">
+    <LogoContainer to="/" id="site-logo">
       <Logo />
     </LogoContainer>
     <OptionsContainer>

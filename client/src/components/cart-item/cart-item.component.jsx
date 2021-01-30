@@ -6,7 +6,7 @@ const CartItem = ({
     imageUrl, name, price, quantity, id,
   },
 }) => (
-  <CartItemContainer>
+  <CartItemContainer data-test={`cart-item-${id}`}>
     <img src={imageUrl} alt="item" />
     <ItemDetailsContainer>
       <CartItemTextContainer data-test={`item-name-${id}`}>

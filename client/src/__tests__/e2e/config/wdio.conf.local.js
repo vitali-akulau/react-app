@@ -19,6 +19,26 @@ exports.config = {
   specs: [
     'src/__tests__/e2e/specs/**/*.js',
   ],
+  suites: {
+    search: [
+      'src/__tests__/e2e/specs/search.spec.js',
+    ],
+    signIn: [
+      'src/__tests__/e2e/specs/sign-in.spec.js',
+    ],
+    shop: [
+      'src/__tests__/e2e/specs/shop.spec.js',
+    ],
+    checkout: [
+      'src/__tests__/e2e/specs/checkout.spec.js',
+    ],
+    homepage: [
+      'src/__tests__/e2e/specs/homepage.spec.js',
+    ],
+    signUp: [
+      'src/__tests__/e2e/specs/sign-up.spec.js',
+    ],
+  },
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -54,7 +74,7 @@ exports.config = {
     //
     browserName: 'chrome',
     'goog:chromeOptions': {
-      args: ['--headless', '--disable-gpu', '--no-sandbox'],
+      args: ['--disable-gpu', '--no-sandbox'],
     },
     acceptInsecureCerts: true,
     // If outputDir is provided WebdriverIO can capture driver session logs

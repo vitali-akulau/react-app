@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { SignInContainer, SignInTitle, SignInButtonsContainer, ErrorContainer } from './sign-in.styles';
+import {
+  SignInContainer, SignInTitle, SignInButtonsContainer, ErrorContainer,
+} from './sign-in.styles';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
@@ -19,6 +21,10 @@ export const SignIn = ({ googleSignInStart, emailSignInStart, error }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if ((!email || email === ' ') || (!password || password === ' ')) {
+      return null;
+    }
 
     emailSignInStart(email, password);
   };

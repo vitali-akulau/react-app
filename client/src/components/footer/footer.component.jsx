@@ -15,9 +15,9 @@ import {
 } from './footer.styles';
 
 export const Footer = ({ currentUser }) => (
-  <FooterContainer>
+  <FooterContainer data-test="footer">
     <FooterColumnsContainer>
-      <LinksColumnContainer>
+      <LinksColumnContainer id="company-container">
         <h4>COMPANY</h4>
         <ul>
           <li><FooterLink to="/">Careers</FooterLink></li>
@@ -27,7 +27,7 @@ export const Footer = ({ currentUser }) => (
           <li><FooterLink to="/">Accessibility Policy</FooterLink></li>
         </ul>
       </LinksColumnContainer>
-      <LinksColumnContainer>
+      <LinksColumnContainer id="learn-more-container">
         <h4>LEARN MORE</h4>
         <ul>
           <li><FooterExternalLink href="https://reactjs.org/">React</FooterExternalLink></li>
@@ -38,7 +38,7 @@ export const Footer = ({ currentUser }) => (
           <li><FooterExternalLink href="https://jestjs.io/">Jest</FooterExternalLink></li>
         </ul>
       </LinksColumnContainer>
-      <LinksColumnContainer>
+      <LinksColumnContainer id="engagement-container">
         <ul>
           <li><FooterLink to="/"><h4>FIND A STORE</h4></FooterLink></li>
           {
@@ -50,7 +50,7 @@ export const Footer = ({ currentUser }) => (
           <li><FooterLink to="/"><h4>SEND US FEEDBACK</h4></FooterLink></li>
         </ul>
       </LinksColumnContainer>
-      <LinksColumnContainer textAlign="right" blocks={3} float="right">
+      <LinksColumnContainer textAlign="right" blocks={3} float="right" id="smm-container">
         <h4>JOIN US</h4>
         <FooterExternalLink href="https://www.instagram.com/"><InstagramLogo /></FooterExternalLink>
         <FooterExternalLink href="https://www.tiktok.com/en/"><TiktokLogo /></FooterExternalLink>

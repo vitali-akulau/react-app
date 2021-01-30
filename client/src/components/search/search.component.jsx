@@ -16,6 +16,9 @@ export const SearchBar = ({ searchProductsStart, history }) => {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
+      if (!query || query === ' ') {
+        return null;
+      }
       searchProductsStart(query);
       history.push(`/search?q=${event.target.value}`);
     }

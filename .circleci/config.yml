@@ -22,14 +22,14 @@ jobs:
           command: yarn install
       - run:
           name: Run client unit tests
-          command: cd client && yarn test src/__tests__/unit/**
+          command: cd client && yarn test src/__tests__/unit/** -w 1
       - run:
           name: Start app
           command: yarn dev
           background: true
       - run:
           name: Run E2E tests
-          command: yarn server:start && cd client && yarn wdio:run
+          command: yarn server:start && cd client && yarn wdio:run:ci -l "silent"
 workflows:
   version: 2
   build_and_test:
