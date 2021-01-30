@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Pages: Signing Page Signing Page should render without errors 1`] = `
+<SigningPageContainer>
+  <SigningPageFormsContainer>
+    <Connect(SignIn) />
+    <Connect(SignUp) />
+  </SigningPageFormsContainer>
+</SigningPageContainer>
+`;
+
 exports[`Pages: Signing Page should render without errors 1`] = `
 <SigningPageContainer>
   <Connect(SignIn) />
