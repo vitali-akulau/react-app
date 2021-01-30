@@ -122,7 +122,7 @@ class BasePage {
   }
 
   getAlertMessage() {
-    browser.getAlertText();
+    return browser.getAlertText();
   }
 }
 

@@ -77,7 +77,7 @@ describe('Sign Up', () => {
     const name = getUniqueName();
     const email = getUniqueEmail();
     const password = getUniquePassword();
-    const confirmPassword = getUniquePassword();
+    const confirmPassword = getUniqueName();
 
     SigningPage.signUp(name, email, password, confirmPassword);
     expect(SigningPage.getAlertMessage()).toBe(errorMessages.passwordsDoNotMatch);
