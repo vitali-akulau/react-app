@@ -8,10 +8,3 @@ exports[`Pages: Signing Page Signing Page should render without errors 1`] = `
   </SigningPageFormsContainer>
 </SigningPageContainer>
 `;
-
-exports[`Pages: Signing Page should render without errors 1`] = `
-<SigningPageContainer>
-  <Connect(SignIn) />
-  <Connect(SignUp) />
-</SigningPageContainer>
-`;
