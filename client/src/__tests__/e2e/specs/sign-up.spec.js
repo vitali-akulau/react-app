@@ -26,7 +26,7 @@ describe('Sign Up', () => {
     const { email, password } = userCredentials.emailSignIn.valid;
 
     SigningPage.signUp(name, email, password);
-    expect(SigningPage.signUpError).toHaveText(errorMessages.emailTaken);
+    expect(SigningPage.signingError).toHaveText(errorMessages.emailTaken);
   });
 
   it('TA-9: User unable to sign up with missing Name', () => {
@@ -96,6 +96,6 @@ describe('Sign Up', () => {
     const password = getUniquePassword().slice(0, 5);
 
     SigningPage.signUp(name, email, password);
-    expect(SigningPage.signUpError).toHaveText(errorMessages.tooShortPassword);
+    expect(SigningPage.signingError).toHaveText(errorMessages.tooShortPassword);
   });
 });

@@ -27,7 +27,7 @@ describe('Sign In', () => {
     const invalidPassword = chance.word();
 
     SigningPage.signIn(email, invalidPassword);
-    expect(SigningPage.signInError).toHaveText(errorMessages.wrongPassword);
+    expect(SigningPage.signingError).toHaveText(errorMessages.wrongPassword);
   });
 
   it('TA-3: User unable to sign in with unregistered email', () => {
@@ -35,7 +35,7 @@ describe('Sign In', () => {
     const password = chance.word();
 
     SigningPage.signIn(unregisteredEmail, password);
-    expect(SigningPage.signInError).toHaveText(errorMessages.unregisteredEmail);
+    expect(SigningPage.signingError).toHaveText(errorMessages.unregisteredEmail);
   });
 
   it('TA-4: User unable to sign in with missing email', () => {
