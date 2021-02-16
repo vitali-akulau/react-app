@@ -12,10 +12,6 @@ const {
 const { shop } = getMockedState(['shop']);
 
 describe('Shop', () => {
-  afterEach(() => {
-    browser.reloadSession();
-  });
-
   it('TA-34: Counter shows "0" when cart is empty', () => {
     ShopPage.open('/shop');
     expect(ShopPage.getCartProductsCount()).toEqual('0');

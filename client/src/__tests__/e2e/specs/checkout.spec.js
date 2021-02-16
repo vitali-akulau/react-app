@@ -13,10 +13,6 @@ describe('Checkout', () => {
     ShopPage.open('/shop');
   });
 
-  afterEach(() => {
-    browser.reloadSession();
-  });
-
   it('TA-20: Checkout items count should be equal to number of added products', () => {
     const productsToAddCount = 3;
     const previewProducts = getPreviewProducts();
