@@ -8,10 +8,6 @@ describe('Sign Up', () => {
     SigningPage.open('/signing');
   });
 
-  afterEach(() => {
-    browser.reloadSession();
-  });
-
   it('TA-8: User is able to sign up using valid data', () => {
     const name = getUniqueName();
     const email = getUniqueEmail();

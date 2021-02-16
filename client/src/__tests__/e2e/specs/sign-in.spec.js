@@ -11,10 +11,6 @@ describe('Sign In', () => {
     SigningPage.open('/signing');
   });
 
-  afterEach(() => {
-    browser.reloadSession();
-  });
-
   it('TA-1: Registered user is able to sign in using valid credentials', () => {
     const { email, password } = userCredentials.emailSignIn.valid;
 
