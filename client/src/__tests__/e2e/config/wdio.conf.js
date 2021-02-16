@@ -1,6 +1,7 @@
-const chromeLocalArgs = ['--disable-gpu', '--no-sandbox'];
-const chromeCiArgs = ['--disable-gpu', '--no-sandbox', '--headless', '--disable-dev-shm-usage'];
-const chromeArgs = (process.env.CIRCLE_CI_RUN) ? chromeCiArgs : chromeLocalArgs;
+const chromeArgs = ['--disable-gpu', '--no-sandbox'];
+if (process.env.CIRCLE_CI_RUN) {
+  chromeArgs.push('--headless');
+}
 
 exports.config = {
   runner: 'local',
