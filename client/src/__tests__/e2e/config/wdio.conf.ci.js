@@ -24,9 +24,9 @@ exports.config = {
     ],
   },
   exclude: [],
-  maxInstances: 10,
+  maxInstances: 1,
   capabilities: [{
-    maxInstances: 5,
+    maxInstances: 1,
     browserName: 'chrome',
     'goog:chromeOptions': {
       args: ['--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--headless'],
