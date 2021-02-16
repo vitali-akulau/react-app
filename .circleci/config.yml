@@ -31,9 +31,6 @@ jobs:
           command: yarn dev
           background: true
       - run:
-          name: "What was my custom environment variable?"
-          command: echo ${CIRCLE_CI_RUN}
-      - run:
           name: Run E2E tests
           command: yarn server:start && cd client && yarn wdio:run -l "silent"
 workflows:
