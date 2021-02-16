@@ -1,5 +1,7 @@
 const chromeArgs = ['--disable-gpu', '--no-sandbox'];
-if (process.env.CIRCLE_CI_RUN === true) { chromeArgs.push('--headless'); }
+if (process.env.CIRCLE_CI_RUN === true) {
+  chromeArgs.push('--headless', '--disable-dev-shm-usage');
+}
 
 exports.config = {
   runner: 'local',
