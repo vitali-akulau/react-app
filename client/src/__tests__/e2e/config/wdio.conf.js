@@ -1,4 +1,4 @@
-const chromeArgs = ['--disable-gpu', '--no-sandbox', '--headless', '--disable-dev-shm-usage'];
+const chromeArgs = ['--disable-gpu', '--no-sandbox', '--headless', '--disable-dev-shm-usage', '--whitelisted-ips'];
 
 exports.config = {
   runner: 'local',
