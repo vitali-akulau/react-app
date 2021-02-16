@@ -1,7 +1,9 @@
+const isCiRun = () => process.env.CIRCLE_CI_RUN;
+
 const chromeArgs = ['--disable-gpu', '--no-sandbox'];
-if (process.env.CIRCLE_CI_RUN) {
-  chromeArgs.push('--headless');
-}
+if (isCiRun) { chromeArgs.push('--headless'); }
+
+const logLevel = (isCiRun) ? 'silent' : 'info';
 
 exports.config = {
   runner: 'local',
@@ -38,7 +40,7 @@ exports.config = {
     },
     acceptInsecureCerts: true,
   }],
-  logLevel: 'info',
+  logLevel: logLevel,
   bail: 0,
   baseUrl: 'http://localhost:3000',
   waitforTimeout: 10000,
