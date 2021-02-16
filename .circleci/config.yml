@@ -29,7 +29,7 @@ jobs:
           background: true
       - run:
           name: Run E2E tests
-          command: yarn server:start && cd client && yarn wdio:run:ci -l "silent"
+          command: yarn server:start && cd client && CIRCLE_CI_RUN=true yarn wdio:run -l "silent"
 workflows:
   version: 2
   build_and_test:
