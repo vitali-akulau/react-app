@@ -62,10 +62,11 @@ class StripeCheckoutPage extends BasePage {
     this.countrySelect.selectByAttribute('value', countryAbbreviation);
   }
 
-  getInvalidField() {
+  getInvalidInputValue() {
     const inputWrapper = $('.is-invalid');
     inputWrapper.waitForDisplayed();
-    return inputWrapper;
+
+    return inputWrapper.$('input').getValue();
   }
 
   enterPersonalData(userData) {

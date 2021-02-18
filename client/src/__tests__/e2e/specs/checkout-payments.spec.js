@@ -63,6 +63,6 @@ describe('Checkout / Payments', () => {
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidField().waitForDisplayed()).toBe(true);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(userData.email);
   });
 });
