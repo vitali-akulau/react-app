@@ -8,7 +8,7 @@ const { collections } = shop;
 
 const getRandomCount = (minValue, maxValue) => _.sample(_.range(minValue, maxValue));
 
-const getProductsMap = (products, productsCount, minItemsCount = 1) => {
+const getProductsMap = (products, productsCount = 1, minItemsCount = 1) => {
   const productsToMap = _.sampleSize(products, productsCount);
 
   return _.map(productsToMap, (product) => (
