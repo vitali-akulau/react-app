@@ -3,6 +3,9 @@ const StripeCheckoutPage = require('../pages/stripe-checkout.page');
 const ShopPage = require('../pages/shop.page');
 const { getPreviewProducts, getProductsMap } = require('../service/data-providers');
 const { getCartTotal } = require('../service/data-handlers');
+const Address = require('../service/seeds/Address');
+const User = require('../service/seeds/User');
+const PaymentCard = require('../service/seeds/PaymentCard');
 
 describe('Checkout / Payments', () => {
   beforeEach(() => {
@@ -44,5 +47,22 @@ describe('Checkout / Payments', () => {
 
     const paymentTotal = StripeCheckoutPage.getPaymentFormTotal();
     expect(paymentTotal).toEqual(total);
+  });
+
+  it.only('TA-41: User unable to proceed if entered invalid email', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User({ email: 'asd' }),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidField().waitForDisplayed()).toBe(true);
   });
 });

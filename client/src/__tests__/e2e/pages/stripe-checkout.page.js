@@ -13,6 +13,34 @@ class StripeCheckoutPage extends BasePage {
     return $('.Header-purchaseDescription');
   }
 
+  get emailField() {
+    return $('[type="email"]');
+  }
+
+  get nameField() {
+    return $('[placeholder="Name"]');
+  }
+
+  get streetField() {
+    return $('[placeholder="Street"]');
+  }
+
+  get postalCodeField() {
+    return $('[placeholder="ZIP Code"]');
+  }
+
+  get cityField() {
+    return $('[placeholder="City"]');
+  }
+
+  get countrySelect() {
+    return $('select.Select-control');
+  }
+
+  get proceedToCardInfoButton() {
+    return $('.Section-button').$('[type="submit"]');
+  }
+
   getStripeCheckoutFrame() {
     const iframe = $('[name="stripe_checkout_app"]');
     iframe.waitForDisplayed();
@@ -28,6 +56,26 @@ class StripeCheckoutPage extends BasePage {
     this.purchaseDescriptionHeader.waitForDisplayed();
     const headerText = this.purchaseDescriptionHeader.getText();
     return Number.parseInt(headerText.match(/\d+/)[0], 10);
+  }
+
+  selectCountry(countryAbbreviation) {
+    this.countrySelect.selectByAttribute('value', countryAbbreviation);
+  }
+
+  getInvalidField() {
+    const inputWrapper = $('.is-invalid');
+    inputWrapper.waitForDisplayed();
+    return inputWrapper;
+  }
+
+  enterPersonalData(userData) {
+    this.selectCountry(userData.country);
+    this.emailField.setValue(userData.email);
+    this.nameField.setValue(userData.name);
+    this.streetField.setValue(userData.line1);
+    this.postalCodeField.setValue(userData.zip);
+    this.cityField.setValue(userData.city);
+    this.proceedToCardInfoButton.click();
   }
 }
 
