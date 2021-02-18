@@ -1,8 +1,10 @@
 const _ = require('lodash');
+const Chance = require('chance');
 const moment = require('moment');
 const { MAX_ITEMS_COUNT, PREVIEW_ITEMS_NUMBER } = require('../support/constants');
 const getMockedState = require('../../utils/mock-state-provider');
 
+const chance = new Chance();
 const { shop } = getMockedState(['shop']);
 const { collections } = shop;
 
@@ -46,6 +48,8 @@ const getUniqueEmail = () => `${getUniqueName()}@mail.com`;
 
 const getUniquePassword = () => `secret-${getTimestamp()}`;
 
+const getValidRandomPhoneNumber = () => chance.phone({ country: 'us', formatted: false });
+
 module.exports = {
   getProductsMap,
   getRandomCount,
@@ -59,4 +63,5 @@ module.exports = {
   getUniqueEmail,
   getUniqueName,
   getUniquePassword,
+  getValidRandomPhoneNumber,
 };
