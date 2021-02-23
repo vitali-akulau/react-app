@@ -41,6 +41,22 @@ class StripeCheckoutPage extends BasePage {
     return $('.Section-button').$('[type="submit"]');
   }
 
+  get cardNumberField() {
+    return $('[placeholder="Card number"]');
+  }
+
+  get cardExpirationDateField() {
+    return $('[placeholder="MM / YY"]');
+  }
+
+  get cvcField() {
+    return $('[placeholder="CVC"]');
+  }
+
+  get submitPaymentButton() {
+    return $('[type="submit"]');
+  }
+
   getStripeCheckoutFrame() {
     const iframe = $('[name="stripe_checkout_app"]');
     iframe.waitForDisplayed();
@@ -77,6 +93,18 @@ class StripeCheckoutPage extends BasePage {
     this.postalCodeField.setValue(userData.zip);
     this.cityField.setValue(userData.city);
     this.proceedToCardInfoButton.click();
+  }
+
+  enterCardData(userData) {
+    this.cardNumberField.setValue(userData.number);
+    this.cardExpirationDateField.setValue(userData.expDate);
+    this.cvcField.setValue(userData.cvv);
+    this.submitPaymentButton.click();
+  }
+
+  getPaymentOperationResultMessage() {
+    browser.waitUntil(() => browser.isAlertOpen());
+    return browser.getAlertText();
   }
 }
 

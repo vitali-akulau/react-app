@@ -49,7 +49,25 @@ describe('Checkout / Payments', () => {
     expect(paymentTotal).toEqual(total);
   });
 
-  it.only('TA-41: User unable to proceed if entered invalid email', () => {
+  it.skip('TA-45: User is able to proceed if they enter valid personal data', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getPaymentOperationResultMessage()).toBe('Payment Successful');
+  });
+
+  it('TA-44: User unable to proceed if entered invalid email', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const userData = {
@@ -64,5 +82,22 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe(userData.email);
+  });
+
+  it('TA-45: User unable to proceed if email is missing', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User({ email: ' ' }),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
   });
 });
