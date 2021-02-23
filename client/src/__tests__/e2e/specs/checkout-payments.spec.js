@@ -1,6 +1,8 @@
+const dayjs = require('dayjs');
 const CheckoutPage = require('../pages/checkout.page');
 const StripeCheckoutPage = require('../pages/stripe-checkout.page');
 const ShopPage = require('../pages/shop.page');
+const { errorMessages, notifications } = require('../support/messages');
 const { getPreviewProducts, getProductsMap } = require('../service/data-providers');
 const { getCartTotal } = require('../service/data-handlers');
 const Address = require('../service/seeds/Address');
@@ -64,7 +66,26 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    expect(StripeCheckoutPage.getPaymentOperationResultMessage()).toBe('Payment Successful');
+    expect(StripeCheckoutPage.getPaymentOperationResultMessage())
+      .toBe(notifications.successfulPayment);
+  });
+
+  it('TA-57: User is able to step back from the screen with card information', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.returnToPersonalForm();
+    expect(StripeCheckoutPage.emailField.getValue()).toBe(userData.email);
   });
 
   it('TA-44: User unable to proceed if entered invalid email', () => {
@@ -98,6 +119,133 @@ describe('Checkout / Payments', () => {
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-50: User unable to pay if card number is too short', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ number: new PaymentCard().number.slice(0, 5) }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('4242 4');
+  });
+
+  it('TA-51: User unable to pay if card number is missing', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ number: ' ' }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-52: User unable to pay with expired card', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const expDate = dayjs().subtract(1, 'day').format('MMYY');
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ expDate }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getPaymentOperationResultMessage()).toBe(errorMessages.failedPayment);
+  });
+
+  it('TA-53: User unable to pay if expiration date is invalid', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ expDate: 'CARD' }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-54: User unable to pay if expiration date is missing', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ expDate: ' ' }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-55: User unable to pay if CVV is invalid', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ cvv: 'CVV' }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-55: User unable to pay if CVV is missing', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard({ cvv: ' ' }),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
   });
 });

@@ -57,6 +57,10 @@ class StripeCheckoutPage extends BasePage {
     return $('[type="submit"]');
   }
 
+  get backButton() {
+    return $('.Header-navBack');
+  }
+
   getStripeCheckoutFrame() {
     const iframe = $('[name="stripe_checkout_app"]');
     iframe.waitForDisplayed();
@@ -105,6 +109,10 @@ class StripeCheckoutPage extends BasePage {
   getPaymentOperationResultMessage() {
     browser.waitUntil(() => browser.isAlertOpen());
     return browser.getAlertText();
+  }
+
+  returnToPersonalForm() {
+    this.backButton.click();
   }
 }
 
