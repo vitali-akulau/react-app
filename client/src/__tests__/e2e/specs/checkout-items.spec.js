@@ -1,5 +1,4 @@
 const CheckoutPage = require('../pages/checkout.page');
-const StripeCheckoutPage = require('../pages/stripe-checkout.page');
 const ShopPage = require('../pages/shop.page');
 const {
   getPreviewProducts,
