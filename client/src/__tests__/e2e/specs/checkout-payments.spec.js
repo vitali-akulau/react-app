@@ -21,7 +21,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     expect(StripeCheckoutPage.paymentForm.waitForDisplayed()).toBe(true);
   });
 
@@ -32,7 +34,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.closePaymentForm();
     StripeCheckoutPage.paymentForm.waitForDisplayed({ reverse: true });
   });
@@ -45,7 +49,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
 
     const paymentTotal = StripeCheckoutPage.getPaymentFormTotal();
     expect(paymentTotal).toEqual(total);
@@ -63,7 +69,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getPaymentOperationResultMessage())
@@ -82,7 +90,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.returnToPersonalForm();
     expect(StripeCheckoutPage.emailField.getValue()).toBe(userData.email);
@@ -100,7 +110,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe(userData.email);
   });
@@ -117,7 +129,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
   });
@@ -134,7 +148,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('4242 4');
@@ -152,7 +168,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
@@ -171,7 +189,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getPaymentOperationResultMessage()).toBe(errorMessages.failedPayment);
@@ -189,7 +209,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
@@ -207,7 +229,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
@@ -225,7 +249,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
@@ -243,7 +269,9 @@ describe('Checkout / Payments', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+
+    const stripeCheckoutFrame = StripeCheckoutPage.getStripeCheckoutFrame();
+    CheckoutPage.switchToFrame(stripeCheckoutFrame);
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
