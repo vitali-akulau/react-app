@@ -234,10 +234,13 @@ describe('Checkout / Payments', () => {
   it.skip('TA-59: User is able to pay for purchase when billing info differs from shipping one', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
+    const billingAddress = new Address();
+    billingAddress.name = new User().name;
     const userData = {
       ...new Address(),
       ...new User(),
       ...new PaymentCard(),
+      billingAddress: new Address(),
     };
 
     ShopPage.addProductsToCart(targetProducts);
@@ -247,7 +250,96 @@ describe('Checkout / Payments', () => {
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    browser.pause(100000);
-    expect(StripeCheckoutPage.getPaymentOperationResultMessage()).toBe(notifications.successfulPayment);
+    expect(StripeCheckoutPage.getPaymentOperationResultMessage())
+      .toBe(notifications.successfulPayment);
+  });
+
+  it('TA-60: User unable to proceed if missing billing Name', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const billingAddress = new Address();
+    billingAddress.name = '';
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard(),
+      billingAddress,
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.toggleAddressesCheckbox();
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-61: User unable to proceed if missing billing Street', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const billingAddress = new Address();
+    billingAddress.line1 = '';
+    billingAddress.name = new User().name;
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard(),
+      billingAddress,
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.toggleAddressesCheckbox();
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    browser.pause(10000);
+  });
+
+  it('TA-62: User unable to proceed if missing billing City', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const billingAddress = new Address();
+    billingAddress.city = '';
+    billingAddress.name = new User().name;
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard(),
+      billingAddress,
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.toggleAddressesCheckbox();
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    browser.pause(10000);
+  });
+
+  it.only('TA-63: User unable to proceed if missing billing Zip Code', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const billingAddress = new Address();
+    billingAddress.zip = '';
+    billingAddress.name = new User().name;
+    const userData = {
+      ...new Address(),
+      ...new User(),
+      ...new PaymentCard(),
+      billingAddress,
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.toggleAddressesCheckbox();
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
   });
 });
