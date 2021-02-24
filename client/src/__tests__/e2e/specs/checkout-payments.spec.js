@@ -10,6 +10,8 @@ const User = require('../service/seeds/User');
 const PaymentCard = require('../service/seeds/PaymentCard');
 
 describe('Checkout / Payments', () => {
+  const emptyValue = '';
+
   beforeEach(() => {
     ShopPage.open('/shop');
   });
@@ -108,25 +110,8 @@ describe('Checkout / Payments', () => {
   it('TA-45: User unable to proceed if email is missing', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
-    const userData = {
-      ...new Address(),
-      ...new User({ email: ' ' }),
-      ...new PaymentCard(),
-    };
-
-    ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
-    CheckoutPage.proceedToPayment();
-    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
-    StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
-  });
-
-  it('TA-46: User unable to proceed if missing name', () => {
-    const previewProducts = getPreviewProducts();
-    const targetProducts = getProductsMap(previewProducts, 1);
     const user = new User();
-    user.name = '';
+    user.email = emptyValue;
     const userData = {
       ...new Address(),
       ...user,
@@ -138,14 +123,33 @@ describe('Checkout / Payments', () => {
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
+  });
+
+  it('TA-46: User unable to proceed if missing name', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const user = new User();
+    user.name = emptyValue;
+    const userData = {
+      ...new Address(),
+      ...user,
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-47: User unable to proceed if missing address line1', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const address = new Address();
-    address.line1 = '';
+    address.line1 = emptyValue;
     const userData = {
       ...address,
       ...new User(),
@@ -157,14 +161,14 @@ describe('Checkout / Payments', () => {
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-48: User unable to proceed if missing address city', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const address = new Address();
-    address.city = '';
+    address.city = emptyValue;
     const userData = {
       ...address,
       ...new User(),
@@ -176,14 +180,14 @@ describe('Checkout / Payments', () => {
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-49: User unable to proceed if missing address zip code', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const address = new Address();
-    address.zip = '';
+    address.zip = emptyValue;
     const userData = {
       ...address,
       ...new User(),
@@ -195,7 +199,7 @@ describe('Checkout / Payments', () => {
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-50: User unable to pay if card number is too short', () => {
@@ -219,10 +223,12 @@ describe('Checkout / Payments', () => {
   it('TA-51: User unable to pay if card number is missing', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
+    const paymentCard = new PaymentCard();
+    paymentCard.number = emptyValue;
     const userData = {
       ...new Address(),
       ...new User(),
-      ...new PaymentCard({ number: ' ' }),
+      paymentCard,
     };
 
     ShopPage.addProductsToCart(targetProducts);
@@ -231,7 +237,7 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-52: User unable to pay with expired card', () => {
@@ -268,16 +274,18 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-54: User unable to pay if expiration date is missing', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
+    const paymentCard = new PaymentCard();
+    paymentCard.expDate = emptyValue;
     const userData = {
       ...new Address(),
       ...new User(),
-      ...new PaymentCard({ expDate: ' ' }),
+      ...paymentCard,
     };
 
     ShopPage.addProductsToCart(targetProducts);
@@ -286,7 +294,7 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-55: User unable to pay if CVV is invalid', () => {
@@ -304,7 +312,7 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it.skip('TA-59: User is able to pay for purchase when billing info differs from shipping one', () => {
@@ -332,7 +340,7 @@ describe('Checkout / Payments', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const billingAddress = new BillingAddress();
-    billingAddress.name = '';
+    billingAddress.name = emptyValue;
     const userData = {
       ...new Address(),
       ...new User(),
@@ -346,14 +354,14 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-61: User unable to proceed if missing billing Street', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const billingAddress = new BillingAddress();
-    billingAddress.line1 = '';
+    billingAddress.line1 = emptyValue;
     const userData = {
       ...new Address(),
       ...new User(),
@@ -367,14 +375,14 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-62: User unable to proceed if missing billing City', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const billingAddress = new BillingAddress();
-    billingAddress.city = '';
+    billingAddress.city = emptyValue;
     const userData = {
       ...new Address(),
       ...new User(),
@@ -388,14 +396,14 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 
   it('TA-63: User unable to proceed if missing billing Zip Code', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const billingAddress = new BillingAddress();
-    billingAddress.zip = '';
+    billingAddress.zip = emptyValue;
     const userData = {
       ...new Address(),
       ...new User(),
@@ -409,6 +417,6 @@ describe('Checkout / Payments', () => {
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe(emptyValue);
   });
 });
