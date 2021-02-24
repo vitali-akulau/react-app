@@ -5,7 +5,7 @@ const ShopPage = require('../pages/shop.page');
 const { errorMessages, notifications } = require('../support/messages');
 const { getPreviewProducts, getProductsMap } = require('../service/data-providers');
 const { getCartTotal } = require('../service/data-handlers');
-const Address = require('../service/seeds/Address');
+const { Address, BillingAddress } = require('../service/seeds/Address');
 const User = require('../service/seeds/User');
 const PaymentCard = require('../service/seeds/PaymentCard');
 
@@ -111,6 +111,82 @@ describe('Checkout / Payments', () => {
     const userData = {
       ...new Address(),
       ...new User({ email: ' ' }),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-46: User unable to proceed if missing name', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const user = new User();
+    user.name = '';
+    const userData = {
+      ...new Address(),
+      ...user,
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-47: User unable to proceed if missing address line1', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const address = new Address();
+    address.line1 = '';
+    const userData = {
+      ...address,
+      ...new User(),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it('TA-48: User unable to proceed if missing address city', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const address = new Address();
+    address.city = '';
+    const userData = {
+      ...address,
+      ...new User(),
+      ...new PaymentCard(),
+    };
+
+    ShopPage.addProductsToCart(targetProducts);
+    ShopPage.open('/checkout');
+    CheckoutPage.proceedToPayment();
+    CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.enterPersonalData(userData);
+    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+  });
+
+  it.only('TA-49: User unable to proceed if missing address zip code', () => {
+    const previewProducts = getPreviewProducts();
+    const targetProducts = getProductsMap(previewProducts, 1);
+    const address = new Address();
+    address.zip = '';
+    const userData = {
+      ...address,
+      ...new User(),
       ...new PaymentCard(),
     };
 
@@ -234,13 +310,11 @@ describe('Checkout / Payments', () => {
   it.skip('TA-59: User is able to pay for purchase when billing info differs from shipping one', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
-    const billingAddress = new Address();
-    billingAddress.name = new User().name;
     const userData = {
       ...new Address(),
       ...new User(),
       ...new PaymentCard(),
-      billingAddress: new Address(),
+      billingAddress: new BillingAddress(),
     };
 
     ShopPage.addProductsToCart(targetProducts);
@@ -257,7 +331,7 @@ describe('Checkout / Payments', () => {
   it('TA-60: User unable to proceed if missing billing Name', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
-    const billingAddress = new Address();
+    const billingAddress = new BillingAddress();
     billingAddress.name = '';
     const userData = {
       ...new Address(),
@@ -278,9 +352,8 @@ describe('Checkout / Payments', () => {
   it('TA-61: User unable to proceed if missing billing Street', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
-    const billingAddress = new Address();
+    const billingAddress = new BillingAddress();
     billingAddress.line1 = '';
-    billingAddress.name = new User().name;
     const userData = {
       ...new Address(),
       ...new User(),
@@ -295,15 +368,13 @@ describe('Checkout / Payments', () => {
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
-    browser.pause(10000);
   });
 
   it('TA-62: User unable to proceed if missing billing City', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
-    const billingAddress = new Address();
+    const billingAddress = new BillingAddress();
     billingAddress.city = '';
-    billingAddress.name = new User().name;
     const userData = {
       ...new Address(),
       ...new User(),
@@ -318,15 +389,13 @@ describe('Checkout / Payments', () => {
     StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
-    browser.pause(10000);
   });
 
-  it.only('TA-63: User unable to proceed if missing billing Zip Code', () => {
+  it('TA-63: User unable to proceed if missing billing Zip Code', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
-    const billingAddress = new Address();
+    const billingAddress = new BillingAddress();
     billingAddress.zip = '';
-    billingAddress.name = new User().name;
     const userData = {
       ...new Address(),
       ...new User(),

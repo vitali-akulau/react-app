@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const validAddresses = require('../../fixtures/valid-addresses');
 const { getValidRandomPhoneNumber } = require('../data-providers');
+const { getUniqueName } = require('../data-providers');
 
 class Address {
   constructor({
@@ -17,4 +18,11 @@ class Address {
   }
 }
 
-module.exports = Address;
+class BillingAddress extends Address {
+  constructor({ name, ...otherProps } = {}) {
+    super(otherProps);
+    this.name = name || getUniqueName();
+  }
+}
+
+module.exports = { Address, BillingAddress };
