@@ -95,7 +95,7 @@ class StripeCheckoutPage extends BasePage {
 
   getStripeCheckoutFrame() {
     const iframe = $('[name="stripe_checkout_app"]');
-    iframe.waitForDisplayed();
+    iframe.waitForExist();
     return iframe;
   }
 
