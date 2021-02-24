@@ -231,21 +231,23 @@ describe('Checkout / Payments', () => {
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
   });
 
-  it('TA-55: User unable to pay if CVV is missing', () => {
+  it.skip('TA-59: User is able to pay for purchase when billing info differs from shipping one', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const userData = {
       ...new Address(),
       ...new User(),
-      ...new PaymentCard({ cvv: ' ' }),
+      ...new PaymentCard(),
     };
 
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
+    StripeCheckoutPage.toggleAddressesCheckbox();
     StripeCheckoutPage.enterPersonalData(userData);
     StripeCheckoutPage.enterCardData(userData);
-    expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
+    browser.pause(100000);
+    expect(StripeCheckoutPage.getPaymentOperationResultMessage()).toBe(notifications.successfulPayment);
   });
 });

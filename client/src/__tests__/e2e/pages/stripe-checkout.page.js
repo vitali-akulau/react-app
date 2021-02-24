@@ -61,6 +61,10 @@ class StripeCheckoutPage extends BasePage {
     return $('.Header-navBack');
   }
 
+  get sameShippingAndBillingCheckbox() {
+    return $('label=Same billing & shipping info');
+  }
+
   getStripeCheckoutFrame() {
     const iframe = $('[name="stripe_checkout_app"]');
     iframe.waitForDisplayed();
@@ -113,6 +117,11 @@ class StripeCheckoutPage extends BasePage {
 
   returnToPersonalForm() {
     this.backButton.click();
+  }
+
+  toggleAddressesCheckbox() {
+    this.sameShippingAndBillingCheckbox.click();
+    $('.SegmentedControl-Item=Billing').waitForDisplayed();
   }
 }
 
