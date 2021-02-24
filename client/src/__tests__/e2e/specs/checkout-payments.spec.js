@@ -179,7 +179,7 @@ describe('Checkout / Payments', () => {
     expect(StripeCheckoutPage.getInvalidInputValue()).toBe('');
   });
 
-  it.only('TA-49: User unable to proceed if missing address zip code', () => {
+  it('TA-49: User unable to proceed if missing address zip code', () => {
     const previewProducts = getPreviewProducts();
     const targetProducts = getProductsMap(previewProducts, 1);
     const address = new Address();
