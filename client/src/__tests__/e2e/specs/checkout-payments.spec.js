@@ -228,7 +228,7 @@ describe('Checkout / Payments', () => {
     const userData = {
       ...new Address(),
       ...new User(),
-      paymentCard,
+      ...paymentCard,
     };
 
     ShopPage.addProductsToCart(targetProducts);
