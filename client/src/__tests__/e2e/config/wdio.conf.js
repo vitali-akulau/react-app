@@ -50,7 +50,7 @@ exports.config = {
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    timeout: 60000,
+    timeout: 600000,
   },
   /**
      * Gets executed once before all workers get launched.
@@ -121,7 +121,13 @@ exports.config = {
   /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-  afterTest: function () {
+  afterTest: function (test, context, { error, result, duration, passed, retries }) {
+    // if (!passed) {
+    //   browser.debug();
+    // } else {
+    //   browser.reloadSession();
+    // }
+
     browser.reloadSession();
   },
   /**
