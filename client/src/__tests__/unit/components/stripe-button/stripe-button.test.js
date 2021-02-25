@@ -26,10 +26,6 @@ describe('Components: Stripe Button', () => {
     it('should render cart total', () => {
       expect(wrapper.prop('description')).toEqual(`Your total price is $${cartTotal}`);
     });
-
-    it('should render cart total', () => {
-      expect(wrapper.prop('image')).toEqual('https://sendeyo.com/up/d/f3eb2117da');
-    });
   });
 
   describe('"onToken" handler', () => {
