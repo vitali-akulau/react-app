@@ -27,7 +27,6 @@ const StripeCheckoutButton = ({ price }) => {
     <StripeCheckout
       label="Pay Now"
       name="React App Payments"
-      image="https://sendeyo.com/up/d/f3eb2117da"
       billingAddress
       shippingAddress
       description={`Your total price is $${price}`}
