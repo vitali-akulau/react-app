@@ -13,12 +13,17 @@ class ShopPage extends BasePage {
     return productCard;
   }
 
+  getAddToCartButton(id) {
+    return this.getProductCardById(id).$('button=Add to Cart');
+  }
+
   addProductsToCart(products) {
     products.forEach((product) => {
       const { id, count } = product;
       this.getProductCardById(id).moveTo();
       times(count, () => {
-        this.getProductCardById(id).$('button=Add to Cart').click();
+        this.getAddToCartButton(id).moveTo();
+        this.getAddToCartButton(id).click();
       });
     });
   }
