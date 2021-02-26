@@ -1,4 +1,4 @@
-const chromeArgs = ['--disable-gpu', '--no-sandbox'];
+const chromeArgs = ['--disable-gpu', '--no-sandbox', '--headless'];
 if (process.env.CIRCLE_CI_RUN) {
   chromeArgs.push('--headless');
 }
@@ -50,7 +50,7 @@ exports.config = {
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    timeout: 600000,
+    timeout: 60000,
   },
   /**
      * Gets executed once before all workers get launched.
