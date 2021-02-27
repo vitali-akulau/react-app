@@ -16,6 +16,6 @@ function waitForElement(selector) {
       subtree: true,
     });
   });
-};
+}
 
 module.exports = { waitForElement };

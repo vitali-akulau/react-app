@@ -66,10 +66,6 @@ class StripeCheckoutPage extends BasePage {
     return this.billingAddressForm.$('select.Select-control');
   }
 
-  get proceedToCardInfoButton() {
-    return $('.Section-button').$('[type="submit"]');
-  }
-
   get cardNumberField() {
     return $('[placeholder="Card number"]');
   }
@@ -80,10 +76,6 @@ class StripeCheckoutPage extends BasePage {
 
   get cvcField() {
     return $('[placeholder="CVC"]');
-  }
-
-  get submitPaymentButton() {
-    return $('[type="submit"]');
   }
 
   get backButton() {
@@ -145,14 +137,14 @@ class StripeCheckoutPage extends BasePage {
       this.billingAddressPostalCodeField.setValue(userData.billingAddress.zip);
       this.billingAddressCityField.setValue(userData.billingAddress.city);
     }
-    this.proceedToCardInfoButton.click();
+    this.submitWithEnterKey();
   }
 
   enterCardData(userData) {
     this.cardNumberField.setValue(userData.number);
     this.cardExpirationDateField.setValue(userData.expDate);
     this.cvcField.setValue(userData.cvv);
-    this.submitPaymentButton.click();
+    this.submitWithEnterKey();
   }
 
   getPaymentOperationResultMessage() {
