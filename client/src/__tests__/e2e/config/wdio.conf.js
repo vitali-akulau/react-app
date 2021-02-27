@@ -1,4 +1,4 @@
-const chromeArgs = ['--disable-gpu', '--no-sandbox', '--headless'];
+const chromeArgs = ['--disable-gpu', '--no-sandbox'];
 if (process.env.CIRCLE_CI_RUN) {
   chromeArgs.push('--headless');
 }
