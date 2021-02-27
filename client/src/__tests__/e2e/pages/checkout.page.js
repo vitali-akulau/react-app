@@ -58,6 +58,7 @@ class CheckoutPage extends BasePage {
   proceedToPayment() {
     this.stripeCheckoutButton.waitForDisplayed();
     this.stripeCheckoutButton.click();
+    // browser.pause(5000);
   }
 }
 

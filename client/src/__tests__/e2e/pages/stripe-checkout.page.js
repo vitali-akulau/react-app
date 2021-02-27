@@ -1,6 +1,11 @@
 const BasePage = require('./basepage.page');
+const { waitForElement } = require('../service/page-interactors');
 
 class StripeCheckoutPage extends BasePage {
+  get stripeCheckoutIframe() {
+    return $('[name="stripe_checkout_app"]');
+  }
+
   get paymentForm() {
     return $('.Modal-form');
   }
@@ -94,9 +99,8 @@ class StripeCheckoutPage extends BasePage {
   }
 
   getStripeCheckoutFrame() {
-    const iframe = $('[name="stripe_checkout_app"]');
-    iframe.waitForExist();
-    return iframe;
+    browser.execute(waitForElement, '[name="stripe_checkout_app"]');
+    return this.stripeCheckoutIframe;
   }
 
   closePaymentForm() {
