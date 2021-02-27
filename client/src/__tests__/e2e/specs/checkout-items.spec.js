@@ -1,5 +1,4 @@
 const CheckoutPage = require('../pages/checkout.page');
-const StripeCheckoutPage = require('../pages/stripe-checkout.page');
 const ShopPage = require('../pages/shop.page');
 const {
   getPreviewProducts,
@@ -8,7 +7,7 @@ const {
 } = require('../service/data-providers');
 const { getCartTotal, getUpdatedProducts } = require('../service/data-handlers');
 
-describe('Checkout', () => {
+describe('Checkout / Items', () => {
   beforeEach(() => {
     ShopPage.open('/shop');
   });
@@ -44,18 +43,6 @@ describe('Checkout', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.open('/checkout');
     expect(CheckoutPage.getCheckoutTotal()).toEqual(checkoutTotal);
-  });
-
-  it('TA-25.1: User should be able to proceed to payment', () => {
-    const previewProducts = getPreviewProducts();
-    const targetProducts = getProductsMap(previewProducts, 2);
-
-    ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
-    expect(CheckoutPage.stripeCheckoutButton.waitForDisplayed()).toBe(true);
-    // CheckoutPage.proceedToPayment();
-    // CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
-    // expect(StripeCheckoutPage.paymentForm.waitForDisplayed()).toBe(true);
   });
 
   describe('When a user increases items count', () => {

@@ -103,7 +103,7 @@ class BasePage {
 
   searchForProduct(query) {
     this.searchBar.setValue(query);
-    browser.keys(keys.Enter);
+    this.submitWithEnterKey();
   }
 
   switchToWindow(windowGUID) {
@@ -123,6 +123,10 @@ class BasePage {
 
   getAlertMessage() {
     return browser.getAlertText();
+  }
+
+  submitWithEnterKey() {
+    browser.keys(keys.Enter);
   }
 }
 

@@ -19,7 +19,8 @@ exports.config = {
       'src/__tests__/e2e/specs/shop.spec.js',
     ],
     checkout: [
-      'src/__tests__/e2e/specs/checkout.spec.js',
+      'src/__tests__/e2e/specs/checkout-items.spec.js',
+      'src/__tests__/e2e/specs/checkout-payments.spec.js',
     ],
     homepage: [
       'src/__tests__/e2e/specs/homepage.spec.js',
@@ -120,7 +121,13 @@ exports.config = {
   /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-  afterTest: function () {
+  afterTest: function (test, context, { error, result, duration, passed, retries }) {
+    // if (!passed) {
+    //   browser.debug();
+    // } else {
+    //   browser.reloadSession();
+    // }
+
     browser.reloadSession();
   },
   /**

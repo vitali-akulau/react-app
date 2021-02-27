@@ -6,6 +6,11 @@ const errorMessages = {
   passwordsDoNotMatch: "Password doesn't match",
   tooShortPassword: 'Password should be at least 6 characters',
   emailNotContainingAt: (email) => `Please include an '@' in the email address. '${email}' is missing an '@'.`,
+  failedPayment: 'Charge Error: Please check used payment card',
 };
 
-module.exports = { errorMessages };
+const notifications = {
+  successfulPayment: 'Payment Successful',
+};
+
+module.exports = { errorMessages, notifications };
