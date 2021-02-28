@@ -1,11 +1,6 @@
 const ShopPage = require('../pages/shop.page');
-const {
-  getCollectionProducts,
-  getProductsMap,
-  getTargetProductsCount,
-  getRandomCollection,
-  getRandomProduct,
-} = require('../service/data-providers');
+const { getCollectionProducts, getRandomCollection, getRandomProduct } = require('../service/data-providers');
+const { getProductsMap, getTargetProductsCount } = require('../service/data-handlers');
 
 describe('Shop', () => {
   const productsToAddCount = 2;

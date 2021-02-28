@@ -1,12 +1,12 @@
 const CheckoutPage = require('../pages/checkout.page');
 const ShopPage = require('../pages/shop.page');
+const { getCollectionProducts, getRandomCollection } = require('../service/data-providers');
 const {
-  getCollectionProducts,
+  getCartTotal,
+  getUpdatedProducts,
   getProductsMap,
   getTargetProductsCount,
-  getRandomCollection,
-} = require('../service/data-providers');
-const { getCartTotal, getUpdatedProducts } = require('../service/data-handlers');
+} = require('../service/data-handlers');
 
 describe('Checkout / Items', () => {
   let targetProducts;
