@@ -6,7 +6,6 @@ const getMockedState = require('../../utils/mock-state-provider');
 
 const chance = new Chance();
 const { shop } = getMockedState(['shop']);
-const { collections } = shop;
 
 const getRandomCount = (minValue, maxValue) => _.sample(_.range(minValue, maxValue));
 
@@ -21,16 +20,15 @@ const getProductsMap = (products, productsCount = 1, minItemsCount = 1) => {
   ));
 };
 
-const getPreviewProducts = () => (
-  _.flatten(_.map(collections, (collection) => (
-    _.take(collection.items, PREVIEW_ITEMS_NUMBER)
-  ))));
+const getCollectionProducts = (collection, isPreview) => (
+  (isPreview)
+    ? _.take(collection.items, PREVIEW_ITEMS_NUMBER)
+    : collection.items
+);
 
-const getRandomCollectionName = (shopCollections) => _.sample(_.keys(shopCollections));
+const getRandomCollection = () => _.sample(_.values(shop.collections));
 
 const getRandomSection = (directorySections) => _.sample(directorySections);
-
-const getOverviewProducts = (collection) => shop.collections[collection].items;
 
 const getTargetProductsCount = (products) => (_.reduce(products, (current, next) => (
   current + next.count
@@ -53,10 +51,9 @@ const getValidRandomPhoneNumber = () => chance.phone({ country: 'us', formatted:
 module.exports = {
   getProductsMap,
   getRandomCount,
-  getPreviewProducts,
+  getCollectionProducts,
   getTargetProductsCount,
-  getRandomCollectionName,
-  getOverviewProducts,
+  getRandomCollection,
   getRandomProduct,
   getAllProducts,
   getRandomSection,
