@@ -3,6 +3,7 @@ const Homepage = require('../pages/homepage.page');
 const SearchResultsPage = require('../pages/search-results.page');
 const { getRandomProduct } = require('../service/data-providers');
 const { filterProductsByNameSubstring, getProductNameSubstring } = require('../service/data-handlers');
+const { search: searchPath } = require('../support/relative-urls');
 
 const chance = new Chance();
 
@@ -35,7 +36,9 @@ describe('Search', () => {
   });
 
   it('TA-38.1: User should not be able to submit empty query', () => {
-    Homepage.searchForProduct('');
-    expect(browser.url).not.toContain('search?q');
+    const emptyQuery = '';
+
+    Homepage.searchForProduct(emptyQuery);
+    expect(browser.url).not.toContain(searchPath(emptyQuery));
   });
 });

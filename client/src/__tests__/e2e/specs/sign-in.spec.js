@@ -3,6 +3,7 @@ const { userCredentials } = require('../fixtures/signing');
 const SigningPage = require('../pages/signing.page');
 const GoogleSignInPage = require('../pages/google-sign-in.page');
 const { errorMessages } = require('../support/messages');
+const { signing } = require('../support/relative-urls');
 
 const chance = new Chance();
 
@@ -10,7 +11,7 @@ describe('Sign In', () => {
   const { email: validEmail, password: validPassword } = userCredentials.emailSignIn.valid;
 
   beforeEach(() => {
-    SigningPage.open('/signing');
+    SigningPage.open(signing);
   });
 
   it('TA-1: Registered user is able to sign in using valid credentials', () => {

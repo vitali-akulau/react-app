@@ -7,6 +7,7 @@ const {
   getProductsMap,
   getTargetProductsCount,
 } = require('../service/data-handlers');
+const { shop, checkout } = require('../support/relative-urls');
 
 describe('Checkout / Items', () => {
   let targetProducts;
@@ -19,21 +20,21 @@ describe('Checkout / Items', () => {
   beforeEach(() => {
     targetProducts = getProductsMap(previewProducts, productsToAddCount);
 
-    ShopPage.open('/shop');
+    ShopPage.open(shop);
   });
 
   it('TA-20: Checkout items count should be equal to number of added products', () => {
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     expect(CheckoutPage.getCheckoutItems()).toHaveLength(productsToAddCount);
   });
 
   it('TA-24.1: New item rows should not be added if user add same products', () => {
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
-    ShopPage.open('/shop');
+    ShopPage.open(checkout);
+    ShopPage.open(shop);
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     expect(CheckoutPage.getCheckoutItems()).toHaveLength(productsToAddCount);
   });
 
@@ -41,7 +42,7 @@ describe('Checkout / Items', () => {
     const checkoutTotal = getCartTotal(targetProducts);
 
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     expect(CheckoutPage.getCheckoutTotal()).toEqual(checkoutTotal);
   });
 
@@ -52,7 +53,7 @@ describe('Checkout / Items', () => {
       updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
 
       ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
+      ShopPage.open(checkout);
       CheckoutPage.increaseItemCount(product.id, 1);
     });
 
@@ -90,7 +91,7 @@ describe('Checkout / Items', () => {
       updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
 
       ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
+      ShopPage.open(checkout);
       CheckoutPage.reduceItemCount(product.id, 1);
     });
 
@@ -128,7 +129,7 @@ describe('Checkout / Items', () => {
       updatedProducts = getUpdatedProducts('remove', targetProducts, product);
 
       ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
+      ShopPage.open(checkout);
       CheckoutPage.removeItem(product.id, 1);
     });
 

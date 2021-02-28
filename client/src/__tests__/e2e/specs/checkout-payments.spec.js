@@ -8,6 +8,7 @@ const { getCartTotal, getProductsMap } = require('../service/data-handlers');
 const { Address, BillingAddress } = require('../service/seeds/Address');
 const User = require('../service/seeds/User');
 const PaymentCard = require('../service/seeds/PaymentCard');
+const { shop, checkout } = require('../support/relative-urls');
 
 describe('Checkout / Payments', () => {
   let userPaymentData;
@@ -23,9 +24,9 @@ describe('Checkout / Payments', () => {
       ...new PaymentCard(),
     };
 
-    ShopPage.open('/shop');
+    ShopPage.open(shop);
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     CheckoutPage.proceedToPayment();
     CheckoutPage.switchToFrame(StripeCheckoutPage.getStripeCheckoutFrame());
   });

@@ -3,6 +3,7 @@ const SigningPage = require('../pages/signing.page');
 const { errorMessages } = require('../support/messages');
 const User = require('../service/seeds/User');
 const { getUniqueName } = require('../service/data-providers');
+const { signing } = require('../support/relative-urls');
 
 describe('Sign Up', () => {
   let credentials;
@@ -11,7 +12,7 @@ describe('Sign Up', () => {
   beforeEach(() => {
     credentials = new User();
 
-    SigningPage.open('/signing');
+    SigningPage.open(signing);
   });
 
   it('TA-8: User is able to sign up using valid data', () => {

@@ -1,6 +1,7 @@
 const ShopPage = require('../pages/shop.page');
 const { getCollectionProducts, getRandomCollection, getRandomProduct } = require('../service/data-providers');
 const { getProductsMap, getTargetProductsCount } = require('../service/data-handlers');
+const { shop: shopPath, checkout: checkoutPath } = require('../support/relative-urls');
 
 describe('Shop', () => {
   const productsToAddCount = 2;
@@ -9,7 +10,7 @@ describe('Shop', () => {
   const previewTargetProducts = getProductsMap(previewProducts, productsToAddCount);
 
   beforeEach(() => {
-    ShopPage.open('/shop');
+    ShopPage.open(shopPath);
   });
 
   it('TA-34: Counter shows "0" when cart is empty', () => {
@@ -78,6 +79,6 @@ describe('Shop', () => {
     ShopPage.addProductsToCart(targetProducts);
     ShopPage.openCart();
     ShopPage.goToCheckout();
-    expect(browser.getUrl()).toContain('/checkout');
+    expect(browser.getUrl()).toContain(checkoutPath);
   });
 });
