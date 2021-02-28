@@ -1,7 +1,7 @@
 const ShopPage = require('../pages/shop.page');
 const { getCollectionProducts, getRandomCollection, getRandomProduct } = require('../service/data-providers');
 const { getProductsMap, getTargetProductsCount } = require('../service/data-handlers');
-const { shop: shopPath, checkout: checkoutPath } = require('../support/relative-urls');
+const { shop: shopPath, checkout: checkoutPath, collection } = require('../support/relative-urls');
 
 describe('Shop', () => {
   const productsToAddCount = 2;
@@ -34,7 +34,7 @@ describe('Shop', () => {
     const targetProducts = getProductsMap(overviewProducts, productsToAddCount);
     const targetProductsCount = getTargetProductsCount(targetProducts);
 
-    ShopPage.open(`/shop/${randomCollection.routeName}`);
+    ShopPage.open(collection(randomCollection.routeName));
     ShopPage.addProductsToCart(targetProducts);
     expect(ShopPage.getCartProductsCount()).toEqual(targetProductsCount);
   });
