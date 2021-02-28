@@ -71,7 +71,7 @@ class SigningPage extends BasePage {
     this.submitSignInButton.click();
   }
 
-  signUp(name, email, password, confirmPassword) {
+  signUp({ name, email, password, confirmPassword }) {
     this.enterSignUpName(name);
     this.enterSignUpEmail(email);
     this.enterSignUpPassword(password);

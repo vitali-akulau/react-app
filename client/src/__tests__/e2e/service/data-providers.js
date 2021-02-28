@@ -1,40 +1,23 @@
 const _ = require('lodash');
 const Chance = require('chance');
 const moment = require('moment');
-const { MAX_ITEMS_COUNT, PREVIEW_ITEMS_NUMBER } = require('../support/constants');
+const { PREVIEW_ITEMS_NUMBER } = require('../support/constants');
 const getMockedState = require('../../utils/mock-state-provider');
 
 const chance = new Chance();
 const { shop } = getMockedState(['shop']);
-const { collections } = shop;
 
 const getRandomCount = (minValue, maxValue) => _.sample(_.range(minValue, maxValue));
 
-const getProductsMap = (products, productsCount = 1, minItemsCount = 1) => {
-  const productsToMap = _.sampleSize(products, productsCount);
+const getCollectionProducts = (collection, isPreview) => (
+  (isPreview)
+    ? _.take(collection.items, PREVIEW_ITEMS_NUMBER)
+    : collection.items
+);
 
-  return _.map(productsToMap, (product) => (
-    {
-      ...product,
-      count: getRandomCount(minItemsCount, MAX_ITEMS_COUNT),
-    }
-  ));
-};
-
-const getPreviewProducts = () => (
-  _.flatten(_.map(collections, (collection) => (
-    _.take(collection.items, PREVIEW_ITEMS_NUMBER)
-  ))));
-
-const getRandomCollectionName = (shopCollections) => _.sample(_.keys(shopCollections));
+const getRandomCollection = () => _.sample(_.values(shop.collections));
 
 const getRandomSection = (directorySections) => _.sample(directorySections);
-
-const getOverviewProducts = (collection) => shop.collections[collection].items;
-
-const getTargetProductsCount = (products) => (_.reduce(products, (current, next) => (
-  current + next.count
-), 0)).toString(10);
 
 const getAllProducts = () => _.flatten(_.map(_.values(shop.collections), 'items'));
 
@@ -51,12 +34,9 @@ const getUniquePassword = () => `secret-${getTimestamp()}`;
 const getValidRandomPhoneNumber = () => chance.phone({ country: 'us', formatted: false });
 
 module.exports = {
-  getProductsMap,
   getRandomCount,
-  getPreviewProducts,
-  getTargetProductsCount,
-  getRandomCollectionName,
-  getOverviewProducts,
+  getCollectionProducts,
+  getRandomCollection,
   getRandomProduct,
   getAllProducts,
   getRandomSection,
