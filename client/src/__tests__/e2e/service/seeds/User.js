@@ -1,9 +1,10 @@
-const { getUniqueEmail, getUniqueName } = require('../data-providers');
+const { getUniqueEmail, getUniqueName, getUniquePassword } = require('../data-providers');
 
 class User {
-  constructor({ email, name } = {}) {
+  constructor({ email, name, password } = {}) {
     this.name = name || getUniqueName();
     this.email = email || getUniqueEmail();
+    this.password = password || getUniquePassword();
   }
 }
 
