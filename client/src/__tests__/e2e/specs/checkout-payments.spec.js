@@ -3,7 +3,7 @@ const CheckoutPage = require('../pages/checkout.page');
 const StripeCheckoutPage = require('../pages/stripe-checkout.page');
 const ShopPage = require('../pages/shop.page');
 const { errorMessages, notifications } = require('../support/messages');
-const { getPreviewProducts, getProductsMap } = require('../service/data-providers');
+const { getRandomCollection, getCollectionProducts, getProductsMap } = require('../service/data-providers');
 const { getCartTotal } = require('../service/data-handlers');
 const { Address, BillingAddress } = require('../service/seeds/Address');
 const User = require('../service/seeds/User');
@@ -12,7 +12,8 @@ const PaymentCard = require('../service/seeds/PaymentCard');
 describe('Checkout / Payments', () => {
   let userPaymentData;
   const emptyValue = '';
-  const previewProducts = getPreviewProducts();
+  const collection = getRandomCollection();
+  const previewProducts = getCollectionProducts(collection, true);
   const targetProducts = getProductsMap(previewProducts, 1);
 
   beforeEach(() => {
