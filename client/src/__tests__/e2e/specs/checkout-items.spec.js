@@ -1,98 +1,81 @@
 const CheckoutPage = require('../pages/checkout.page');
 const ShopPage = require('../pages/shop.page');
+const { getCollectionProducts, getRandomCollection } = require('../service/data-providers');
 const {
-  getPreviewProducts,
+  getCartTotal,
+  getUpdatedProducts,
   getProductsMap,
   getTargetProductsCount,
-} = require('../service/data-providers');
-const { getCartTotal, getUpdatedProducts } = require('../service/data-handlers');
+} = require('../service/data-handlers');
+const { shop, checkout } = require('../support/relative-urls');
 
 describe('Checkout / Items', () => {
+  let targetProducts;
+  let product;
+  let updatedProducts;
+  const productsToAddCount = 3;
+  const collection = getRandomCollection();
+  const previewProducts = getCollectionProducts(collection, true);
+
   beforeEach(() => {
-    ShopPage.open('/shop');
+    targetProducts = getProductsMap(previewProducts, productsToAddCount);
+
+    ShopPage.open(shop);
   });
 
   it('TA-20: Checkout items count should be equal to number of added products', () => {
-    const productsToAddCount = 3;
-    const previewProducts = getPreviewProducts();
-    const targetProducts = getProductsMap(previewProducts, productsToAddCount);
-
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     expect(CheckoutPage.getCheckoutItems()).toHaveLength(productsToAddCount);
   });
 
   it('TA-24.1: New item rows should not be added if user add same products', () => {
-    const productsToAddCount = 3;
-    const previewProducts = getPreviewProducts();
-    const targetProducts = getProductsMap(previewProducts, productsToAddCount);
-
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
-    ShopPage.open('/shop');
+    ShopPage.open(checkout);
+    ShopPage.open(shop);
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     expect(CheckoutPage.getCheckoutItems()).toHaveLength(productsToAddCount);
   });
 
   it('TA-21: Cart total should be correct', () => {
-    const previewProducts = getPreviewProducts();
-    const targetProducts = getProductsMap(previewProducts, 2);
     const checkoutTotal = getCartTotal(targetProducts);
 
     ShopPage.addProductsToCart(targetProducts);
-    ShopPage.open('/checkout');
+    ShopPage.open(checkout);
     expect(CheckoutPage.getCheckoutTotal()).toEqual(checkoutTotal);
   });
 
   describe('When a user increases items count', () => {
-    it('TA-22: then checkout total should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
-      const newCheckoutTotal = getCartTotal(updatedProducts);
+    beforeEach(() => {
+      targetProducts = getProductsMap(previewProducts, productsToAddCount);
+      [product] = targetProducts;
+      updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
 
       ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
+      ShopPage.open(checkout);
       CheckoutPage.increaseItemCount(product.id, 1);
+    });
+
+    it('TA-22: then checkout total should be updated', () => {
+      const newCheckoutTotal = getCartTotal(updatedProducts);
+
       expect(CheckoutPage.getCheckoutTotal()).toEqual(newCheckoutTotal);
     });
 
     it('then checkout item row count should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
       const newProductCount = product.count + 1;
 
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.increaseItemCount(product.id, 1);
       expect(CheckoutPage.getCheckoutItemCounterCount(product.id)).toEqual(newProductCount);
     });
 
     it('TA-31: then cart items count should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
       const newTargetProductsCount = getTargetProductsCount(updatedProducts);
 
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.increaseItemCount(product.id, 1);
       expect(CheckoutPage.getCartProductsCount()).toEqual(newTargetProductsCount);
     });
 
     it('then cart items should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('increase', targetProducts, product, 1);
-
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.increaseItemCount(product.id, 1);
       CheckoutPage.openCart();
       updatedProducts.forEach((updatedProduct) => {
         const productTotal = `${updatedProduct.count}x${updatedProduct.price}`;
@@ -102,53 +85,35 @@ describe('Checkout / Items', () => {
   });
 
   describe('When a user reduces items count', () => {
-    it('TA-23: then checkout total should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
-      const newCheckoutTotal = getCartTotal(updatedProducts);
+    beforeEach(() => {
+      targetProducts = getProductsMap(previewProducts, productsToAddCount, 2);
+      [product] = targetProducts;
+      updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
 
       ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
+      ShopPage.open(checkout);
       CheckoutPage.reduceItemCount(product.id, 1);
+    });
+
+    it('TA-23: then checkout total should be updated', () => {
+      const newCheckoutTotal = getCartTotal(updatedProducts);
+
       expect(CheckoutPage.getCheckoutTotal()).toEqual(newCheckoutTotal);
     });
 
     it('then checkout item row count should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2, 2);
-      const [product] = targetProducts;
       const newProductCount = product.count - 1;
 
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.reduceItemCount(product.id, 1);
       expect(CheckoutPage.getCheckoutItemCounterCount(product.id)).toEqual(newProductCount);
     });
 
     it('TA-32: then cart items count should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
       const newTargetProductsCount = getTargetProductsCount(updatedProducts);
 
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.reduceItemCount(product.id, 1);
       expect(CheckoutPage.getCartProductsCount()).toEqual(newTargetProductsCount);
     });
 
     it('then cart items should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('reduce', targetProducts, product, 1);
-
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.reduceItemCount(product.id, 1);
       CheckoutPage.openCart();
       updatedProducts.forEach((updatedProduct) => {
         const productTotal = `${updatedProduct.count}x${updatedProduct.price}`;
@@ -158,52 +123,34 @@ describe('Checkout / Items', () => {
   });
 
   describe('When a user removes items', () => {
-    it('then item should be removed from checkout page', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
+    beforeEach(() => {
+      targetProducts = getProductsMap(previewProducts, productsToAddCount);
+      [product] = targetProducts;
+      updatedProducts = getUpdatedProducts('remove', targetProducts, product);
 
       ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.removeItem(product.id);
+      ShopPage.open(checkout);
+      CheckoutPage.removeItem(product.id, 1);
+    });
+
+    it('then item should be removed from checkout page', () => {
       expect(CheckoutPage.getCheckoutItem(product.id).waitForDisplayed({ reverse: true }))
         .toBe(true);
     });
 
     it('TA-24: then checkout total should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('remove', targetProducts, product);
       const newCheckoutTotal = getCartTotal(updatedProducts);
 
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.removeItem(product.id);
       expect(CheckoutPage.getCheckoutTotal()).toEqual(newCheckoutTotal);
     });
 
     it('TA-27: then cart items count should be updated', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
-      const updatedProducts = getUpdatedProducts('remove', targetProducts, product);
       const newTargetProductsCount = getTargetProductsCount(updatedProducts);
 
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.removeItem(product.id);
       expect(CheckoutPage.getCartProductsCount()).toEqual(newTargetProductsCount);
     });
 
     it('TA-30: then products should be removed from cart pop-up', () => {
-      const previewProducts = getPreviewProducts();
-      const targetProducts = getProductsMap(previewProducts, 2);
-      const [product] = targetProducts;
-
-      ShopPage.addProductsToCart(targetProducts);
-      ShopPage.open('/checkout');
-      CheckoutPage.removeItem(product.id);
       CheckoutPage.openCart();
       expect(CheckoutPage.getCartItems()).toHaveLength(targetProducts.length - 1);
     });

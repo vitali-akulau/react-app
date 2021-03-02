@@ -1,62 +1,61 @@
 const { userCredentials } = require('../fixtures/signing');
 const SigningPage = require('../pages/signing.page');
 const { errorMessages } = require('../support/messages');
-const { getUniqueEmail, getUniqueName, getUniquePassword } = require('../service/data-providers');
+const User = require('../service/seeds/User');
+const { getUniqueName } = require('../service/data-providers');
+const { signing } = require('../support/relative-urls');
 
 describe('Sign Up', () => {
+  let credentials;
+  const emptyValue = '';
+
   beforeEach(() => {
-    SigningPage.open('/signing');
+    credentials = new User();
+
+    SigningPage.open(signing);
   });
 
   it('TA-8: User is able to sign up using valid data', () => {
-    const name = getUniqueName();
-    const email = getUniqueEmail();
-    const password = getUniquePassword();
-
-    SigningPage.signUp(name, email, password);
+    SigningPage.signUp(credentials);
     expect(SigningPage.signOutButton.waitForDisplayed()).toBe(true);
   });
 
   it('TA-8.1: User is unable to sign up with already registered email', () => {
-    const name = getUniqueName();
-    const { email, password } = userCredentials.emailSignIn.valid;
+    const registeredUserCredentials = {
+      ...credentials,
+      ...userCredentials.emailSignIn.valid,
+    };
 
-    SigningPage.signUp(name, email, password);
+    SigningPage.signUp(registeredUserCredentials);
     expect(SigningPage.signingError).toHaveText(errorMessages.emailTaken);
   });
 
   it('TA-9: User unable to sign up with missing Name', () => {
-    const email = getUniqueEmail();
-    const password = getUniquePassword();
+    credentials.name = emptyValue;
 
-    SigningPage.signUp('', email, password);
+    SigningPage.signUp(credentials);
     expect(SigningPage.signUpNameField.getAttribute('validationMessage'))
       .toBe(errorMessages.emptyRequiredField);
   });
 
   it('TA-10: User unable to sign up with missing Email', () => {
-    const name = getUniqueName();
-    const password = getUniquePassword();
+    credentials.email = emptyValue;
 
-    SigningPage.signUp(name, '', password);
+    SigningPage.signUp(credentials);
     expect(SigningPage.signUpEmailField.getAttribute('validationMessage'))
       .toBe(errorMessages.emptyRequiredField);
   });
 
   it('TA-11: User unable to sign up with missing Password', () => {
-    const name = getUniqueName();
-    const email = getUniqueEmail();
-    const password = getUniquePassword();
+    credentials.password = emptyValue;
 
-    SigningPage.signUp(name, email, '', password);
+    SigningPage.signUp(credentials);
     expect(SigningPage.signUpPasswordField.getAttribute('validationMessage'))
       .toBe(errorMessages.emptyRequiredField);
   });
 
   it('TA-12: User unable to sign up with missing Confirm Password', () => {
-    const name = getUniqueName();
-    const email = getUniqueEmail();
-    const password = getUniquePassword();
+    const { name, email, password } = credentials;
 
     SigningPage.enterSignUpName(name);
     SigningPage.enterSignUpEmail(email);
@@ -67,31 +66,24 @@ describe('Sign Up', () => {
   });
 
   it("TA-13: User unable to sign up if Confirm Password doesn't match Password", () => {
-    const name = getUniqueName();
-    const email = getUniqueEmail();
-    const password = getUniquePassword();
-    const confirmPassword = getUniqueName();
+    credentials.confirmPassword = getUniqueName();
 
-    SigningPage.signUp(name, email, password, confirmPassword);
+    SigningPage.signUp(credentials);
     expect(SigningPage.getAlertMessage()).toBe(errorMessages.passwordsDoNotMatch);
   });
 
   it('TA-15: User unable to sign up with invalid Email', () => {
-    const name = getUniqueName();
-    const password = getUniquePassword();
-    const confirmPassword = getUniqueName();
+    credentials.email = getUniqueName();
 
-    SigningPage.signUp(name, name, password, confirmPassword);
+    SigningPage.signUp(credentials);
     expect(SigningPage.signUpEmailField.getAttribute('validationMessage'))
-      .toBe(errorMessages.emailNotContainingAt(name));
+      .toBe(errorMessages.emailNotContainingAt(credentials.email));
   });
 
-  it('TA-16: User unable to sign up with invalid Password', () => {
-    const name = getUniqueName();
-    const email = getUniqueEmail();
-    const password = getUniquePassword().slice(0, 5);
+  it('TA-16: User unable to sign up with too short Password', () => {
+    credentials.password = getUniqueName().slice(0, 5);
 
-    SigningPage.signUp(name, email, password);
+    SigningPage.signUp(credentials);
     expect(SigningPage.signingError).toHaveText(errorMessages.tooShortPassword);
   });
 });

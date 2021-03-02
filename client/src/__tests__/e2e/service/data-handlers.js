@@ -1,5 +1,6 @@
 const _ = require('lodash');
-const { getAllProducts } = require('./data-providers');
+const { getAllProducts, getRandomCount } = require('./data-providers');
+const { MAX_ITEMS_COUNT } = require('../support/constants');
 
 const filterProductsByNameSubstring = (substring) => (
   _.filter(getAllProducts(), (p) => p.name.includes(substring))
@@ -35,9 +36,26 @@ const getUpdatedProducts = (operation, products, product, count) => {
   }
 };
 
+const getProductsMap = (products, productsCount = 1, minItemsCount = 1) => {
+  const productsToMap = _.sampleSize(products, productsCount);
+
+  return _.map(productsToMap, (product) => (
+    {
+      ...product,
+      count: getRandomCount(minItemsCount, MAX_ITEMS_COUNT),
+    }
+  ));
+};
+
+const getTargetProductsCount = (products) => (_.reduce(products, (current, next) => (
+  current + next.count
+), 0)).toString(10);
+
 module.exports = {
   filterProductsByNameSubstring,
   getProductNameSubstring,
   getCartTotal,
   getUpdatedProducts,
+  getProductsMap,
+  getTargetProductsCount,
 };
