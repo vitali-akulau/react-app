@@ -97,10 +97,6 @@ class BasePage {
     return this.getFooterLinkContainer(containerName).$(`a=${linkText}`);
   }
 
-  getFooterSMMLink(containerName, url) {
-    return this.getFooterLinkContainer(containerName).$(`[href="${url}"]`);
-  }
-
   searchForProduct(query) {
     this.searchBar.setValue(query);
     this.submitWithEnterKey();
@@ -127,6 +123,18 @@ class BasePage {
 
   submitWithEnterKey() {
     browser.keys(keys.Enter);
+  }
+
+  waitForAnimation(element) {
+    element.waitForDisplayed();
+    browser.waitUntil(() => {
+      const oldX = element.getLocation('x');
+      const oldY = element.getLocation('y');
+      browser.pause(200);
+      const newX = element.getLocation('x');
+      const newY = element.getLocation('y');
+      return oldX === newX && oldY === newY;
+    });
   }
 }
 

@@ -91,7 +91,11 @@ class StripeCheckoutPage extends BasePage {
   }
 
   get submitPaymentButton() {
-    return $('span*=Pay Now');
+    return $(`span*=Pay Now $`);
+  }
+
+  get modalAnimationWrapper() {
+    return $('.Modal-animationWrapper');
   }
 
   getStripeCheckoutFrame() {
@@ -100,15 +104,7 @@ class StripeCheckoutPage extends BasePage {
   }
 
   closePaymentForm() {
-    this.closePaymentFormButton.waitForDisplayed();
-    browser.waitUntil(() => {
-      const oldX = this.closePaymentFormButton.getLocation('x');
-      const oldY = this.closePaymentFormButton.getLocation('y');
-      browser.pause(100);
-      const newX = this.closePaymentFormButton.getLocation('x');
-      const newY = this.closePaymentFormButton.getLocation('y');
-      return oldX === newX && oldY === newY;
-    });
+    this.waitForAnimation(this.modalAnimationWrapper);
     this.closePaymentFormButton.click();
   }
 
@@ -153,15 +149,7 @@ class StripeCheckoutPage extends BasePage {
   }
 
   enterCardData(userData) {
-    browser.waitUntil(() => {
-      this.submitPaymentButton.waitForDisplayed();
-      const oldX = this.submitPaymentButton.getLocation('x');
-      const oldY = this.submitPaymentButton.getLocation('y');
-      browser.pause(100);
-      const newX = this.submitPaymentButton.getLocation('x');
-      const newY = this.submitPaymentButton.getLocation('y');
-      return oldX === newX && oldY === newY;
-    });
+    this.waitForAnimation(this.submitPaymentButton);
     this.cardNumberField.setValue(userData.number);
     this.cardExpirationDateField.setValue(userData.expDate);
     this.cvcField.setValue(userData.cvv);
@@ -180,7 +168,7 @@ class StripeCheckoutPage extends BasePage {
   toggleAddressesCheckbox() {
     this.sameShippingAndBillingCheckbox.waitForDisplayed();
     this.sameShippingAndBillingCheckbox.click();
-    this.billingAddressButton.waitForDisplayed();
+    this.billingAddressButton.waitForClickable();
   }
 }
 

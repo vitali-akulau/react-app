@@ -1,4 +1,9 @@
-const chromeArgs = ['--disable-gpu', '--no-sandbox'];
+const chromeArgs = [
+  '--disable-gpu',
+  '--no-sandbox',
+  '--window-size=1920,1080',
+];
+
 if (process.env.CIRCLE_CI_RUN) {
   chromeArgs.push(
     '--headless',
@@ -22,7 +27,6 @@ exports.config = {
       'src/__tests__/e2e/specs/shop.spec.js',
     ],
     checkout: [
-      'src/__tests__/e2e/specs/checkout-items.spec.js',
       'src/__tests__/e2e/specs/checkout-payments.spec.js',
     ],
     homepage: [
@@ -53,7 +57,7 @@ exports.config = {
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    timeout: 60000,
+    timeout: 30000,
   },
   /**
      * Gets executed once before all workers get launched.
@@ -126,7 +130,7 @@ exports.config = {
      */
   afterTest: function (test, context, { error, result, duration, passed, retries }) {
     // if (!passed) {
-    //   browser.debug();
+    //   browser.saveScreenshot('./scr.png');
     // } else {
     //   browser.reloadSession();
     // }
