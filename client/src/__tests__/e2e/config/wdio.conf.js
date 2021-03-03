@@ -132,6 +132,7 @@ exports.config = {
   afterTest: function (test, context, { error, result, duration, passed, retries }) {
     // if (!passed) {
     //   browser.saveScreenshot('./scr.png');
+    //   // browser.debug();
     // } else {
     //   browser.reloadSession();
     // }

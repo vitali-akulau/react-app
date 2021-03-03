@@ -1,4 +1,5 @@
 const Chance = require('chance');
+const { assert } = require('chai');
 const Homepage = require('../pages/homepage.page');
 const SearchResultsPage = require('../pages/search-results.page');
 const { getRandomProduct } = require('../service/data-providers');
@@ -24,8 +25,10 @@ describe('Search', () => {
     const expectedProducts = filterProductsByNameSubstring(query);
 
     Homepage.searchForProduct(query);
-    expect(SearchResultsPage.getAllFoundProducts(expectedProducts.length))
-      .toHaveTextContaining(query);
+    const foundProducts = SearchResultsPage.getAllFoundProducts(expectedProducts.length);
+    foundProducts.forEach((productCard) => {
+      assert(productCard.getText(), new RegExp(`${query}`, 'i'));
+    });
   });
 
   it('TA-37: Empty SERP is displayed when user submits invalid search query', () => {

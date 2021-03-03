@@ -2,9 +2,11 @@ const _ = require('lodash');
 const { getAllProducts, getRandomCount } = require('./data-providers');
 const { MAX_ITEMS_COUNT } = require('../support/constants');
 
-const filterProductsByNameSubstring = (substring) => (
-  _.filter(getAllProducts(), (p) => p.name.includes(substring))
-);
+const filterProductsByNameSubstring = (substring) => {
+  const regExp = new RegExp(`${substring}`, 'i');
+
+  return _.filter(getAllProducts(), (p) => regExp.test(p.name));
+};
 
 const getProductNameSubstring = (name) => _.sample(name.split(' '));
 
