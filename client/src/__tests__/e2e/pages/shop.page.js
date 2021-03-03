@@ -9,6 +9,7 @@ class ShopPage extends BasePage {
   getProductCardById(id) {
     const productCard = $(`[data-test=item-container-${id}]`);
 
+    productCard.waitForExist();
     productCard.scrollIntoView();
     return productCard;
   }
@@ -20,6 +21,7 @@ class ShopPage extends BasePage {
   addProductsToCart(products) {
     products.forEach((product) => {
       const { id, count } = product;
+
       this.getProductCardById(id).moveTo();
       times(count, () => {
         this.getAddToCartButton(id).moveTo();

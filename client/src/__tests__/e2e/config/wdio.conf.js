@@ -1,6 +1,14 @@
-const chromeArgs = ['--disable-gpu', '--no-sandbox'];
+const chromeArgs = [
+  '--disable-gpu',
+  '--no-sandbox',
+  '--window-size=1920,1080',
+];
+
 if (process.env.CIRCLE_CI_RUN) {
-  chromeArgs.push('--headless');
+  chromeArgs.push(
+    '--headless',
+    '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36',
+  );
 }
 
 exports.config = {
@@ -19,8 +27,8 @@ exports.config = {
       'src/__tests__/e2e/specs/shop.spec.js',
     ],
     checkout: [
-      'src/__tests__/e2e/specs/checkout-items.spec.js',
       'src/__tests__/e2e/specs/checkout-payments.spec.js',
+      'src/__tests__/e2e/specs/checkout-items.spec.js',
     ],
     homepage: [
       'src/__tests__/e2e/specs/homepage.spec.js',
@@ -50,7 +58,7 @@ exports.config = {
   reporters: ['spec'],
   mochaOpts: {
     ui: 'bdd',
-    timeout: 60000,
+    timeout: 30000,
   },
   /**
      * Gets executed once before all workers get launched.
@@ -123,7 +131,8 @@ exports.config = {
      */
   afterTest: function (test, context, { error, result, duration, passed, retries }) {
     // if (!passed) {
-    //   browser.debug();
+    //   browser.saveScreenshot('./scr.png');
+    //   // browser.debug();
     // } else {
     //   browser.reloadSession();
     // }
