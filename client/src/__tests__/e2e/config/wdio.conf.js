@@ -28,6 +28,7 @@ exports.config = {
     ],
     checkout: [
       'src/__tests__/e2e/specs/checkout-payments.spec.js',
+      'src/__tests__/e2e/specs/checkout-items.spec.js',
     ],
     homepage: [
       'src/__tests__/e2e/specs/homepage.spec.js',
