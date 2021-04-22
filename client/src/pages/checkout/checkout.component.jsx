@@ -35,7 +35,7 @@ export const CheckoutPage = ({ cartItems, total }) => (
     {
       cartItems.map((item) => <CheckoutCartItem key={item.id} cartItem={item} />)
     }
-    <CheckoutTotal data-test="checkout-total">{`Total: $${total}`}</CheckoutTotal>
+    <CheckoutTotal data-test="checkout-total">{`Total: $${total + 2}`}</CheckoutTotal>
     <TestWarningContainer>
       Your payment cards are
       <a href="https://stripe.com/docs/testing"> Stripe testing payment cards!</a>
