@@ -62,7 +62,7 @@ export const SignIn = ({ googleSignInStart, emailSignInStart }) => {
             isGoogleSignIn
             data-test="google-sign-in"
           >
-            Sign In with Google
+            Sign In with Facebook
           </CustomButton>
         </SignInButtonsContainer>
       </form>
