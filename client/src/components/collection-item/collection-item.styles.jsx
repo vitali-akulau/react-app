@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-const getBackgroundImage = ({ imageUrl }) => `background-image: url(${imageUrl});`;
+const getBackgroundImage = ({ imageUrl }) => (
+  (imageUrl.includes('jack'))
+    ? 'background: white'
+    : `background-image: url(${imageUrl});`
+);
 
 export const CollectionItemContainer = styled.div`
   width: 100%;
