@@ -18,7 +18,7 @@ export const SearchResultsPage = ({ isLoading, products }) => (
             </EmptyResultsContainer>
           ) : (
             <CollectionPreview
-              items={products}
+              items={products.flatMap((item) => [item, item])}
               previewItemsNumber={products.length}
             />
           )
