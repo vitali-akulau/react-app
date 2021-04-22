@@ -50,7 +50,7 @@ export const Footer = ({ currentUser }) => (
           <li><FooterLink to="/"><h4>SEND US FEEDBACK</h4></FooterLink></li>
         </ul>
       </LinksColumnContainer>
-      <LinksColumnContainer textAlign="right" blocks={3} float="right" id="smm-container">
+      <LinksColumnContainer textAlign="right" blocks={3} float="right" id="smm-container" margin={35}>
         <h4>JOIN US</h4>
         <FooterExternalLink href="https://www.instagram.com/"><InstagramLogo /></FooterExternalLink>
         <FooterExternalLink href="https://www.tiktok.com/en/"><TiktokLogo /></FooterExternalLink>

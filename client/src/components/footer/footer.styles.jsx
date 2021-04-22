@@ -27,6 +27,7 @@ FooterColumnsContainer.displayName = 'FooterColumnsContainer';
 
 export const LinksColumnContainer = styled.div`
   width: ${({ blocks }) => `${blocks ? parseInt(blocks, 10) * 16 : 16}%`};
+  margin-right: ${({ margin }) => `${margin}px`};
   display: inline-block;
   text-align: ${({ textAlign }) => textAlign};
   display: inline-block;
