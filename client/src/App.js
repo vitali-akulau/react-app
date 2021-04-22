@@ -36,7 +36,7 @@ const App = ({ checkUserSession, currentUser }) => {
             <Route
               exact
               path="/signing"
-              render={() => (currentUser ? (<Redirect to="/" />) : (<SigningPage />))}
+              render={() => (currentUser ? (<Redirect to="/shop" />) : (<SigningPage />))}
             />
             <Route exact path="/checkout" component={CheckoutPage} />
             <Route path="/search" component={SearchResultsPage} />

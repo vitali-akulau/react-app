@@ -28,6 +28,6 @@ export const MenuItem = ({
       </ContentContainer>
     </MenuItemContainer>
   );
-}
+};
 
 export default withRouter(MenuItem);
