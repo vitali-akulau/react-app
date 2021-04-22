@@ -11,17 +11,23 @@ import {
 
 export const MenuItem = ({
   title, imageUrl, size, history, linkUrl, match,
-}) => (
-  <MenuItemContainer
-    size={size}
-    onClick={() => history.push(`${match.url}${linkUrl}`)}
-  >
-    <BackgroundImageContainer imageUrl={imageUrl} />
-    <ContentContainer>
-      <ContentTitle>{title.toUpperCase()}</ContentTitle>
-      <ContentSubtitle>SHOP NOW</ContentSubtitle>
-    </ContentContainer>
-  </MenuItemContainer>
-);
+}) => {
+  const makeSniсkers = (title) => (
+    (title.toUpperCase() === 'SNEAKERS') ? 'SNICKERS' : title.toUpperCase()
+  );
+
+  return (
+    <MenuItemContainer
+      size={size}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
+      <BackgroundImageContainer imageUrl={imageUrl}/>
+      <ContentContainer>
+        <ContentTitle>{makeSniсkers(title)}</ContentTitle>
+        <ContentSubtitle>SHOP NOW</ContentSubtitle>
+      </ContentContainer>
+    </MenuItemContainer>
+  );
+}
 
 export default withRouter(MenuItem);
