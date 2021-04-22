@@ -23,10 +23,10 @@ export const CheckoutPage = ({ cartItems, total }) => (
         <span>Description</span>
       </CheckoutHeaderBlockContainer>
       <CheckoutHeaderBlockContainer>
-        <span>Quantity</span>
+        <span>Price</span>
       </CheckoutHeaderBlockContainer>
       <CheckoutHeaderBlockContainer>
-        <span>Price</span>
+        <span>Quantity</span>
       </CheckoutHeaderBlockContainer>
       <CheckoutHeaderBlockContainer>
         <span>Remove</span>
