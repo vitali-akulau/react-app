@@ -56,6 +56,7 @@ export const SignUp = ({ signUpStart }) => {
           label="name"
           required
           data-test="sign-up-name"
+          maxLength="50"
         />
         <FormInput
           type="email"
@@ -65,6 +66,7 @@ export const SignUp = ({ signUpStart }) => {
           label="email"
           required
           data-test="sign-up-email"
+          maxLength="256"
         />
         <FormInput
           type="password"
@@ -74,6 +76,7 @@ export const SignUp = ({ signUpStart }) => {
           label="password"
           required
           data-test="sign-up-password"
+          maxLength="16"
         />
         <FormInput
           type="password"
@@ -83,6 +86,7 @@ export const SignUp = ({ signUpStart }) => {
           label="confirm password"
           required
           data-test="sign-up-confirm-password"
+          maxLength="16"
         />
         <CustomButton
           type="submit"
