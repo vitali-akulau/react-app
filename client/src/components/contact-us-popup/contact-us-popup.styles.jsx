@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const ContactUsPopupContainer = styled.div`
-  background-color: white;
+  background-color: cadetblue;
   border: 1px solid #111111;
   width: 500px;
-  height: 600px;
+  height: 630px;
   position: absolute;
   z-index: 1;
   left: 50%;
@@ -15,8 +15,14 @@ export const ContactUsPopupContainer = styled.div`
 
 ContactUsPopupContainer.displayName = 'ContactUsPopupContainer';
 
-export const ContactUsFormContainer = styled.div`
+export const ContactUsFormWrapper = styled.div`
   margin: 30px;
+`;
+
+export const ContactUsFormContainer = styled.div`
+  background-color: white;
+  margin: 30px;
+  border: 1px solid #111111;
 `;
 
 export const ContactUsTitle = styled.h2`
