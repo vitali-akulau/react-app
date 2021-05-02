@@ -4017,10 +4017,10 @@ chrome-trace-event@^1.0.2:
   dependencies:
     tslib "^1.9.0"
 
-chromedriver@^88.0.0:
-  version "88.0.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-88.0.0.tgz#6833fffd516db23c811eeafa1ee1069b5a12fd2f"
-  integrity sha512-EE8rXh7mikxk3VWKjUsz0KCUX8d3HkQ4HgMNJhWrWjzju12dKPPVHO9MY+YaAI5ryXrXGNf0Y4HcNKgW36P/CA==
+chromedriver@^90.0.0:
+  version "90.0.0"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-90.0.0.tgz#1b18960a31a12884981bdc270b43c4356ce7a65a"
+  integrity sha512-k+GMmNb7cmuCCctQvUIeNxDGSq8DJauO+UKQS2qLT8aA36CPEcv8rpFepf6lRkNaIlfwdCUt/0B5bZDw3wY2yw==
   dependencies:
     "@testim/chrome-version" "^1.0.7"
     axios "^0.21.1"
@@ -11101,7 +11101,7 @@ prop-types-exact@^1.2.0:
     object.assign "^4.1.0"
     reflect.ownkeys "^0.2.0"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.6, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -11376,6 +11376,13 @@ react-error-overlay@^6.0.7:
   version "6.0.8"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.8.tgz#474ed11d04fc6bda3af643447d85e9127ed6b5de"
   integrity sha512-HvPuUQnLp5H7TouGq3kzBeioJmXms1wHy9EGjz2OURWBp4qZO6AfGEcnxts1D/CbwPLRAgTMPCEgYhA3sEM4vw==
+
+react-fontawesome@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-fontawesome/-/react-fontawesome-1.7.1.tgz#f74f5a338fef3ee3b379820109c1cba47290f035"
+  integrity sha512-kottReWW1I9Uupub6A5YX4VK7qfpFnEjAcm5zB4Aepst7iofONT27GJYdTcRsj7q5uQu9PXBL7GsxAFKANNUVg==
+  dependencies:
+    prop-types "^15.5.6"
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.13.1"
