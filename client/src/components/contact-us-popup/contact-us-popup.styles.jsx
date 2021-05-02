@@ -1,16 +1,23 @@
 import styled from 'styled-components';
 
+export const ContactUsPopupWrapper = styled.div`
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  backdrop-filter: blur(15px);
+  position: fixed;
+  z-index: 1;
+`;
+
 export const ContactUsPopupContainer = styled.div`
   background-color: cadetblue;
   border: 1px solid #111111;
-  width: 500px;
-  height: 630px;
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 50%;
-  margin-left: -250px;
-  margin-top: -300px;
+  width: 30%;
+  position: fixed;
+  z-index: 2;
+  left: 33%;
+  top: 15%;
 `;
 
 ContactUsPopupContainer.displayName = 'ContactUsPopupContainer';
@@ -30,3 +37,19 @@ export const ContactUsTitle = styled.h2`
 `;
 
 ContactUsFormContainer.displayName = 'ContactUsFormContainer';
+
+export const ContactUsButtonsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1520px) {
+    display: block;
+    
+    & button {
+      width: 100%;
+      margin-top: 5px;
+    }
+  }
+`;
+
+ContactUsButtonsContainer.displayName = 'ContactUsButtonsContainer';
