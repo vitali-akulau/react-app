@@ -1,37 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FontAwesome from 'react-fontawesome';
+import {
+  DropdownWrapper,
+  DropdownHeaderButton,
+  DropdownListContainer,
+  DropdownOptionButton,
+} from './form-dropdown.styles';
 
-export const FormDropdown = ({ title, options, isListOpen }) => (
-  <div className="dd-wrapper">
-    <button
-      type="button"
-      className="dd-header"
-    >
-      <div className="dd-header-title">{title}</div>
-      {
-        isListOpen
-          ? <div name="angle-up" size="2x" />
-          : <div name="angle-down" size="2x" />
-      }
-    </button>
-    {isListOpen && (
-      <div
-        role="list"
-        className="dd-list"
+export const FormDropdown = ({ dropdownTitle, options }) => {
+  const [listState, toggleList] = useState({ listTitle: dropdownTitle, isListOpen: false });
+  const { listTitle, isListOpen } = listState;
+
+  const selectItem = (item) => {
+    const { title } = item;
+
+    toggleList({ ...listState, listTitle: title, isListOpen: !isListOpen });
+  };
+
+  return (
+    <DropdownWrapper>
+      <DropdownHeaderButton
+        type="button"
+        className="dd-header"
+        onClick={() => toggleList({ ...listState, isListOpen: !isListOpen })}
       >
+        <div className="dd-header-title">{listTitle}</div>
         {
-          options.map((item) => (
-            <button
-              type="button"
-              className="dd-list-item"
-              key={item.id}
-            >
-              {item.title}
-              {' '}
-              {item.selected && <div name="check" />}
-            </button>
-          ))
+          isListOpen
+            ? <FontAwesome name="angle-up" size="2x" />
+            : <FontAwesome name="angle-down" size="2x" />
         }
-      </div>
-    )}
-  </div>
-);
+      </DropdownHeaderButton>
+      {isListOpen && (
+        <DropdownListContainer role="list">
+          {
+            options.map((item) => (
+              <DropdownOptionButton
+                type="button"
+                key={item.id}
+                onClick={() => selectItem(item)}
+              >
+                {item.title}
+                {' '}
+                {item.selected && <FontAwesome name="check" />}
+              </DropdownOptionButton>
+            ))
+          }
+        </DropdownListContainer>
+      )}
+    </DropdownWrapper>
+  );
+};

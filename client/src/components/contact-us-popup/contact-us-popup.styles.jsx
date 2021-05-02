@@ -34,6 +34,7 @@ export const ContactUsFormContainer = styled.div`
 
 export const ContactUsTitle = styled.h2`
   margin: 10px 0;
+  color: #008800;
 `;
 
 ContactUsFormContainer.displayName = 'ContactUsFormContainer';

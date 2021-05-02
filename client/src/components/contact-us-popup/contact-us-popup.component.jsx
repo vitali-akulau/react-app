@@ -109,69 +109,66 @@ export const ContactUsPopup = ({ toggleContactUsPopup }) => {
 
   return (
     <ContactUsPopupWrapper>
+      <ContactUsPopupContainer>
+        <ContactUsFormContainer>
+          <ContactUsFormWrapper>
+            <ContactUsTitle>CUSTOMER FEEDBACK FORM</ContactUsTitle>
 
-
-    <ContactUsPopupContainer>
-      <ContactUsFormContainer>
-        <ContactUsFormWrapper>
-          <ContactUsTitle>This is where you can leave your feedback</ContactUsTitle>
-          <span>Any...</span>
-
-          <form onSubmit={handleSubmit}>
-            <FormInput
-              name="email"
-              type="email"
-              label="email"
-              value={email}
-              handleChange={handleChange}
-              required
-              data-test="feedback-email"
-            />
-            <FormInput
-              name="phone"
-              type="tel"
-              label="phone"
-              value={phone}
-              handleChange={handleChange}
-              required
-              data-test="feedback-phone"
-            />
-            <FormDropdown
-              dropdownTitle="Select Your Location"
-              options={locationOptions}
-            />
-            <FormDropdown
-              dropdownTitle="Reasons"
-              options={surveyOptions}
-            />
-            <FormTextarea
-              name="message"
-              label="message"
-              value={message}
-              rows="5"
-              handleChange={handleChange}
-              required
-              data-test="feedback-message"
-            />
-            <ContactUsButtonsContainer>
-              <CustomButton
-                type="submit"
-                data-test="submit-feedback"
-              >
-                Submit
-              </CustomButton>
-              <CustomButton
-                type="button"
-                data-test="cancel-feedback"
-                onClick={toggleContactUsPopup}
-              >
-                Cancel
-              </CustomButton>
-            </ContactUsButtonsContainer>
-          </form>
-        </ContactUsFormWrapper>
-      </ContactUsFormContainer>
-    </ContactUsPopupContainer>
+            <form onSubmit={handleSubmit}>
+              <FormInput
+                name="email"
+                type="email"
+                label="email"
+                value={email}
+                handleChange={handleChange}
+                required
+                data-test="feedback-email"
+              />
+              <FormInput
+                name="phone"
+                type="tel"
+                label="phone"
+                value={phone}
+                handleChange={handleChange}
+                required
+                data-test="feedback-phone"
+              />
+              <FormDropdown
+                dropdownTitle="Select Your Location"
+                options={locationOptions}
+              />
+              <FormDropdown
+                dropdownTitle="Reasons"
+                options={surveyOptions}
+              />
+              <FormTextarea
+                name="message"
+                label="message"
+                value={message}
+                rows="5"
+                handleChange={handleChange}
+                required
+                data-test="feedback-message"
+              />
+              <ContactUsButtonsContainer>
+                <CustomButton
+                  type="submit"
+                  data-test="submit-feedback"
+                >
+                  Submit
+                </CustomButton>
+                <CustomButton
+                  type="button"
+                  data-test="cancel-feedback"
+                  onClick={toggleContactUsPopup}
+                >
+                  Cancel
+                </CustomButton>
+              </ContactUsButtonsContainer>
+            </form>
+          </ContactUsFormWrapper>
+        </ContactUsFormContainer>
+      </ContactUsPopupContainer>
     </ContactUsPopupWrapper>
   );
 };
