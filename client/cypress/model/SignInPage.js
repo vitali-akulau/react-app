@@ -1,9 +1,8 @@
 class SignInPage {
   // Sign in form elements
-  signInBase = "div [data-test='header'] + div > div > div:first-child > form > div > input";
-  signInEmailField = this.signInBase + "[type='email']";
-  signInPasswordField = this.signInBase + "[type='password']";
-  signInSignInButton = "button[data-test='sign-in-submit']";
+  signInEmailField = "[data-test='sign-in-email']";
+  signInPasswordField = "[data-test='sign-in-password']";
+  signInSignInButton = "[data-test='sign-in-submit']";
 
 
   fillSignInForm(email, password){
