@@ -11,7 +11,7 @@ class SignInPage {
     return this;
   }
 
-  insertField (element, value){
+  insertField(element, value){
     cy.get(element)
       .clear()
       .type(value);
