@@ -4,4 +4,5 @@ const validUser = {
   password: '123456',
   confirmPassword: '123456',
 };
+
 export default validUser;

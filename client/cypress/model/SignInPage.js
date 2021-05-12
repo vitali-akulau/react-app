@@ -21,4 +21,5 @@ class SignInPage {
     cy.get(this.signInSignInButton).click();
   }
 }
+
 export default new SignInPage();
