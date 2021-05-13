@@ -2,12 +2,29 @@ class SignInPage {
   // Sign in form elements
   signInEmailField = "[data-test='sign-in-email']";
   signInPasswordField = "[data-test='sign-in-password']";
-  signInSignInButton = "[data-test='sign-in-submit']";
+  signInButton = "[data-test='sign-in-submit']";
+
+  // Sign in form elements
+  signUpNameField = "[data-test='sign-up-name']";
+  signUpEmailField = "[data-test='sign-up-email']";
+  signUpPasswordField = "[data-test='sign-up-password']";
+  signUpConfirmPasswordField = "[data-test='sign-up-confirm-password']";
+  signUpButton = "[data-test='sign-up-submit']";
+
+  warningNotification = "[data-test='signing-error']";
 
 
   fillSignInForm(email, password){
     this.insertField(this.signInEmailField, email);
     this.insertField(this.signInPasswordField, password);
+    return this;
+  }
+
+  fillSignUpForm(name, email, password, confirmPassword){
+    this.insertField(this.signUpNameField, name);
+    this.insertField(this.signUpEmailField, email);
+    this.insertField(this.signUpPasswordField, password);
+    this.insertField(this.signUpConfirmPasswordField, confirmPassword);
     return this;
   }
 
@@ -18,7 +35,11 @@ class SignInPage {
   }
 
   clickSignInButton(){
-    cy.get(this.signInSignInButton).click();
+    cy.get(this.signInButton).click();
+  }
+
+  clickSignUpButton(){
+    cy.get(this.signUpButton).click();
   }
 }
 
