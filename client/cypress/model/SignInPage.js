@@ -1,3 +1,5 @@
+import signing from '../waiters/waiters';
+
 class SignInPage {
   // Sign in form elements
   signInEmailField = "[data-test='sign-in-email']";
@@ -30,8 +32,10 @@ class SignInPage {
 
   insertField(element, value){
     cy.get(element)
-      .clear()
-      .type(value);
+      .clear().then(e => {
+        if (value !== '')
+          cy.wrap(e).type(value)
+      });
   }
 
   clickSignInButton(){
@@ -40,6 +44,7 @@ class SignInPage {
 
   clickSignUpButton(){
     cy.get(this.signUpButton).click();
+    cy.wait('@getSigning');
   }
 }
 
