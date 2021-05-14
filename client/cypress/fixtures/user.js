@@ -1,14 +1,16 @@
-class User {
-  constructor(name, email, password, confirmPassword) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.confirmPassword = confirmPassword;
-  }
+const user = {
+  name: 'user',
+  emptyName: '',
+  email: 'test@test.com',
+  newEmail: `test.user@test${Date.now()}.com`,
+  wrongEmail: 'email.com',
+  emptyEmail: '',
+  password: 123456,
+  wrongPassword: '-',
+  emptyPassword: '',
+  confirmPassword: 123456,
+  emptyConfirmPassword: '',
+  differentConfirmPassword: 12345,
+};
 
-  createUser(name, email, password, confirmPassword) {
-    return new User(name, email, password, confirmPassword);
-  }
-}
-
-export default new User();
+export default user;
