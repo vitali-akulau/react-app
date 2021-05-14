@@ -1,5 +1,3 @@
-import signing from '../waiters/waiters';
-
 class SignInPage {
   // Sign in form elements
   signInEmailField = "[data-test='sign-in-email']";
@@ -44,7 +42,6 @@ class SignInPage {
 
   clickSignUpButton(){
     cy.get(this.signUpButton).click();
-    cy.wait('@getSigning');
   }
 }
 
