@@ -11,7 +11,6 @@ describe('Sign in page', () => {
   beforeEach(() => {
     cy.visit('/signing');
   });
-
   it('User should be able to login with valid credentials', () => {
     SignInPage
       .fillSignInForm(user.email, user.password)
@@ -62,7 +61,7 @@ describe('Sign in page', () => {
 
   it('User should be able to sign up use valid credentials', () => {
     SignInPage
-      .fillSignUpForm(user.name, user.email, user.password, user.confirmPassword)
+      .fillSignUpForm(user.name, user.newEmail, user.password, user.confirmPassword)
       .clickSignUpButton();
 
     assertUserLogged();
@@ -149,7 +148,8 @@ describe('Sign in page', () => {
   }
 
   function assertUserLogged() {
-    cy.get(HomePage.signOutLink)
+    cy.url().should('include', HOME_PAGE_URL_PATH)
+      .get(HomePage.signOutLink)
       .should('be.visible')
       .and('contain.text', SIGN_OUT_LINK_TEXT);
   }
