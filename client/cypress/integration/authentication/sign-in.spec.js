@@ -1,16 +1,13 @@
 import SignInPage from '../../model/SignInPage';
 import HomePage from '../../model/HomePage';
 import user from '../../fixtures/user';
-
-const SIGN_OUT_LINK_TEXT = 'SIGN OUT';
-const SIGN_IN_LINK_TEXT = 'SIGN IN';
-const WARNING_TEXT = 'The email address is already in use by another account.';
-const HOME_PAGE_URL_PATH = 'http://127.0.0.1:3000/';
+import helper from '../../fixtures/helper';
 
 describe('Sign in page', () => {
   beforeEach(() => {
     cy.visit('/signing');
   });
+
   it('User should be able to login with valid credentials', () => {
     SignInPage
       .fillSignInForm(user.email, user.password)
@@ -148,22 +145,19 @@ describe('Sign in page', () => {
   }
 
   function assertUserLogged() {
-    cy.url().should('include', HOME_PAGE_URL_PATH)
-      .get(HomePage.signOutLink)
-      .should('be.visible')
-      .and('contain.text', SIGN_OUT_LINK_TEXT);
+    cy.url().should('include', helper.homePageUrlPath);
   }
 
   function assertUserLoggedOut() {
-    cy.url().should('eq', HOME_PAGE_URL_PATH)
+    cy.url().should('eq', helper.homePageUrlPath)
       .get(HomePage.signInHeaderLink)
       .should('be.visible')
-      .and('contain.text', SIGN_IN_LINK_TEXT);
+      .and('contain.text', helper.signInLinkText);
   }
 
   function assertThatWarningNotificationIsDisplay() {
     cy.get(SignInPage.warningNotification)
       .should('be.visible')
-      .and('contain.text', WARNING_TEXT);
+      .and('contain.text', helper.warningText);
   }
 });
