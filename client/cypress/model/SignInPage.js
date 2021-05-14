@@ -1,5 +1,3 @@
-import signing from '../waiters/waiters';
-
 class SignInPage {
   // Sign in form elements
   signInEmailField = "[data-test='sign-in-email']";
