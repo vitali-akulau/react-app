@@ -149,8 +149,7 @@ describe('Sign in page', () => {
   }
 
   function assertUserLogged() {
-    cy.url().should('eq', HOME_PAGE_URL_PATH)
-      .get(HomePage.signOutLink)
+    cy.get(HomePage.signOutLink)
       .should('be.visible')
       .and('contain.text', SIGN_OUT_LINK_TEXT);
   }
