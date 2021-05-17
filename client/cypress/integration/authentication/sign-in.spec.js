@@ -153,10 +153,8 @@ describe('Sign in page', () => {
   }
 
   function assertUserLoggedOut() {
-    cy.url().should('eq', helper.homePageUrlPath)
-      .get(HomePage.signInHeaderLink)
-      .should('be.visible')
-      .and('contain.text', helper.signInLinkText);
+    cy.get(HomePage.signInHeaderLink)
+      .should('be.visible');
   }
 
   function assertThatWarningNotificationIsDisplay() {
