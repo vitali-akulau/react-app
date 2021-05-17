@@ -8,13 +8,22 @@ describe('Sign in page', () => {
     cy.visit('/signing');
   });
 
-  describe('Sign In part', () => {
+  describe('Sign In', () => {
     it('User should be able to login with valid credentials', () => {
       SignInPage
         .fillSignInForm(user.email, user.password)
         .clickSignInButton();
 
       assertUserLogged();
+    });
+
+    it('User should be able to sign out', () => {
+      SignInPage
+        .fillSignInForm(user.email, user.password)
+        .clickSignInButton();
+      HomePage.clickSignOutLink();
+
+      assertUserLoggedOut();
     });
 
     it('User should not be able to login use wrong email ', () => {
@@ -58,7 +67,7 @@ describe('Sign in page', () => {
     });
   });
 
-  describe('Sign Up part', () => {
+  describe('Sign Up', () => {
     it('User should be able to sign up use valid credentials', () => {
       SignInPage
         .fillSignUpForm(user.name, user.newEmail, user.password, user.confirmPassword)
@@ -114,15 +123,6 @@ describe('Sign in page', () => {
 
       assertUserIsNotAuthorized();
       assertThatWarningNotificationIsDisplay();
-    });
-
-    it('User should be able to sign out', () => {
-      SignInPage
-        .fillSignInForm(user.email, user.password)
-        .clickSignInButton();
-      HomePage.clickSignOutLink();
-
-      assertUserLoggedOut();
     });
   });
 
