@@ -1,10 +1,12 @@
 class SignInPage {
   // Sign in form elements
+  signInTitle = "[data-test='sign-in-title']"
   signInEmailField = "[data-test='sign-in-email']";
   signInPasswordField = "[data-test='sign-in-password']";
   signInButton = "[data-test='sign-in-submit']";
 
   // Sign in form elements
+  signUpTitle = "[data-test='sign-up-title']"
   signUpNameField = "[data-test='sign-up-name']";
   signUpEmailField = "[data-test='sign-up-email']";
   signUpPasswordField = "[data-test='sign-up-password']";
@@ -17,7 +19,6 @@ class SignInPage {
   fillSignInForm(email, password){
     this.insertField(this.signInEmailField, email);
     this.insertField(this.signInPasswordField, password);
-    return this;
   }
 
   fillSignUpForm(name, email, password, confirmPassword){
@@ -25,23 +26,28 @@ class SignInPage {
     this.insertField(this.signUpEmailField, email);
     this.insertField(this.signUpPasswordField, password);
     this.insertField(this.signUpConfirmPasswordField, confirmPassword);
-    return this;
   }
 
   insertField(element, value){
-    cy.get(element)
-      .clear().then(e => {
-        if (value !== '')
-          cy.wrap(e).type(value)
-      });
+    cy.get(element).clear().type(value);
   }
 
   clickSignInButton(){
-    cy.get(this.signInButton).click();
+    cy.get(this.signInButton).should('be.visible').click();
   }
 
   clickSignUpButton(){
-    cy.get(this.signUpButton).click();
+    cy.get(this.signUpButton).should('be.visible').click();
+  }
+
+  signIn(email, password){
+    this.fillSignInForm(email, password);
+    this.clickSignInButton();
+  }
+
+  signUp(name, email, password, confirmPassword){
+    this.fillSignUpForm(name, email, password, confirmPassword);
+    this.clickSignUpButton();
   }
 }
 
