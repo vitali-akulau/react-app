@@ -1,15 +1,15 @@
 const user = {
   name: 'user',
-  emptyName: '',
+  emptyName: ' ',
   email: 'test@test.com',
   newEmail: `test.user@test${Date.now()}.com`,
   wrongEmail: 'email.com',
-  emptyEmail: '',
+  emptyEmail: ' ',
   password: 123456,
   wrongPassword: '-',
-  emptyPassword: '',
+  emptyPassword: ' ',
   confirmPassword: 123456,
-  emptyConfirmPassword: '',
+  emptyConfirmPassword: ' ',
   differentConfirmPassword: 12345,
 };
 
