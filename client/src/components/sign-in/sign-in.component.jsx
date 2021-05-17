@@ -27,7 +27,7 @@ export const SignIn = ({ googleSignInStart, emailSignInStart }) => {
 
   return (
     <SignInContainer>
-      <SignInTitle>I already have an account</SignInTitle>
+      <SignInTitle data-test="sign-in-title">I already have an account</SignInTitle>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
