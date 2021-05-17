@@ -1,7 +1,7 @@
 import SignInPage from '../../model/SignInPage';
 import HomePage from '../../model/HomePage';
 import user from '../../fixtures/user';
-import helper from '../../fixtures/helper';
+import constants from '../../fixtures/constants';
 
 describe('Sign in page', () => {
   beforeEach(() => {
@@ -10,58 +10,44 @@ describe('Sign in page', () => {
 
   describe('Sign In', () => {
     it('User should be able to login with valid credentials', () => {
-      SignInPage
-        .fillSignInForm(user.email, user.password)
-        .clickSignInButton();
+      SignInPage.signIn(user.email, user.password);
 
       assertUserLogged();
     });
 
     it('User should be able to sign out', () => {
-      SignInPage
-        .fillSignInForm(user.email, user.password)
-        .clickSignInButton();
+      SignInPage.signIn(user.email, user.password);
       HomePage.clickSignOutLink();
 
       assertUserLoggedOut();
     });
 
     it('User should not be able to login use wrong email ', () => {
-      SignInPage
-        .fillSignInForm(user.wrongEmail, user.password)
-        .clickSignInButton();
+      SignInPage.signIn(user.wrongEmail, user.password);
 
       assertUserNotLoggedIn();
     });
 
     it('User should not be able to login use empty email', () => {
-      SignInPage
-        .fillSignInForm(user.emptyEmail, user.password)
-        .clickSignInButton();
+      SignInPage.signIn(user.emptyEmail, user.password);
 
       assertUserNotLoggedIn();
     });
 
     it('User should not be able to login use wrong password', () => {
-      SignInPage
-        .fillSignInForm(user.email, user.wrongPassword)
-        .clickSignInButton();
+      SignInPage.signIn(user.email, user.wrongPassword);
 
       assertUserNotLoggedIn();
     });
 
     it('User should not be able to login use empty password', () => {
-      SignInPage
-        .fillSignInForm(user.email, user.emptyPassword)
-        .clickSignInButton();
+      SignInPage.signIn(user.email, user.emptyPassword);
 
       assertUserNotLoggedIn();
     });
 
     it('User should not be able to login as unregistered user', () => {
-      SignInPage
-        .fillSignInForm(user.newEmail, user.password)
-        .clickSignInButton();
+      SignInPage.signIn(user.newEmail, user.password);
 
       assertUserNotLoggedIn();
     });
@@ -69,57 +55,43 @@ describe('Sign in page', () => {
 
   describe('Sign Up', () => {
     it('User should be able to sign up use valid credentials', () => {
-      SignInPage
-        .fillSignUpForm(user.name, user.newEmail, user.password, user.confirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.name, user.newEmail, user.password, user.confirmPassword);
 
       assertUserLogged();
     });
 
     it('User should not be able to sign up with missing name field', () => {
-      SignInPage
-        .fillSignUpForm(user.emptyName, user.email, user.password, user.confirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.emptyName, user.email, user.password, user.confirmPassword);
 
       assertUserIsNotAuthorized();
     });
 
     it('User should not be able to sign up with missing email field', () => {
-      SignInPage
-        .fillSignUpForm(user.name, user.emptyEmail, user.password, user.confirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.name, user.emptyEmail, user.password, user.confirmPassword);
 
       assertUserIsNotAuthorized();
     });
 
     it('User should not be able to sign up with missing password field', () => {
-      SignInPage
-        .fillSignUpForm(user.name, user.email, user.emptyPassword, user.confirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.name, user.email, user.emptyPassword, user.confirmPassword);
 
       assertUserIsNotAuthorized();
     });
 
     it('User should not be able to sign up with missing confirm password field', () => {
-      SignInPage
-        .fillSignUpForm(user.name, user.email, user.password, user.emptyConfirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.name, user.email, user.password, user.emptyConfirmPassword);
 
       assertUserIsNotAuthorized();
     });
 
     it('User should not be able to sign up with mismatching confirm password field', () => {
-      SignInPage
-        .fillSignUpForm(user.name, user.email, user.password, user.differentConfirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.name, user.email, user.password, user.differentConfirmPassword);
 
       assertUserIsNotAuthorized();
     });
 
     it('User should not be able to sign up using existing email', () => {
-      SignInPage
-        .fillSignUpForm(user.name, user.email, user.password, user.confirmPassword)
-        .clickSignUpButton();
+      SignInPage.signUp(user.name, user.email, user.password, user.confirmPassword);
 
       assertUserIsNotAuthorized();
       assertThatWarningNotificationIsDisplay();
@@ -127,39 +99,24 @@ describe('Sign in page', () => {
   });
 
   function assertUserNotLoggedIn() {
-    cy.url().should('include', '/signing')
-      .get(SignInPage.signInEmailField)
-      .should('be.visible')
-      .get(SignInPage.signInPasswordField)
-      .should('be.visible')
-      .get(SignInPage.signInButton)
-      .should('be.visible');
+    cy.url().should('include', '/signing');
+    cy.get(SignInPage.signInTitle).should('be.visible');
   }
 
   function assertUserIsNotAuthorized() {
-    cy.url().should('include', '/signing')
-      .get(SignInPage.signUpNameField)
-      .should('be.visible')
-      .get(SignInPage.signUpEmailField)
-      .should('be.visible')
-      .get(SignInPage.signUpPasswordField)
-      .should('be.visible')
-      .get(SignInPage.signUpConfirmPasswordField)
-      .should('be.visible');
+    cy.url().should('include', '/signing');
+    cy.get(SignInPage.signUpTitle).should('be.visible');
   }
 
   function assertUserLogged() {
-    cy.url().should('include', helper.homePageUrlPath);
+    cy.url().should('include', constants.homePageUrlPath);
   }
 
   function assertUserLoggedOut() {
-    cy.get(HomePage.signInHeaderLink)
-      .should('be.visible');
+    cy.get(HomePage.signInHeaderLink).should('be.visible');
   }
 
   function assertThatWarningNotificationIsDisplay() {
-    cy.get(SignInPage.warningNotification)
-      .should('be.visible')
-      .and('contain.text', helper.warningText);
+    cy.get(SignInPage.warningNotification).should('be.visible');
   }
 });
