@@ -44,7 +44,7 @@ export const SignUp = ({ signUpStart }) => {
 
   return (
     <SignUpContainer>
-      <SignUpTitle>Create account</SignUpTitle>
+      <SignUpTitle data-test="sign-up-title">Create account</SignUpTitle>
       <span>Or you can sign in if you have one</span>
 
       <form onSubmit={handleSubmit}>
