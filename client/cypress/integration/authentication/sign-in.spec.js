@@ -1,7 +1,6 @@
 import SignInPage from '../../model/SignInPage';
 import HomePage from '../../model/HomePage';
 import user from '../../fixtures/user';
-import constants from '../../fixtures/constants';
 
 describe('Sign in page', () => {
   beforeEach(() => {
@@ -109,7 +108,7 @@ describe('Sign in page', () => {
   }
 
   function assertUserLogged() {
-    cy.url().should('include', constants.homePageUrlPath);
+    cy.get(HomePage.signOutLink).should('be.visible');
   }
 
   function assertUserLoggedOut() {
