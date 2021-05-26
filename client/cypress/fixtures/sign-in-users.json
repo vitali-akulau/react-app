@@ -1,0 +1,26 @@
+[
+  {
+    "email": "user.test.com",
+    "password": "123456"
+  },
+
+  {
+    "email": " ",
+    "password": "123456"
+  },
+
+  {
+    "email": "user.test.com",
+    "password": "+"
+  },
+
+  {
+    "email": "user.test.com",
+    "password": " "
+  },
+
+  {
+    "email": "unregistered_user@test.com",
+    "password": "123456"
+  }
+]
