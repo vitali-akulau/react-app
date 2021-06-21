@@ -1,0 +1,23 @@
+{
+  "validUser": [
+    { "name": "user",
+      "email": "test@test.com",
+      "password": "123456" ,
+      "confirmPassword": "123456" }
+  ],
+  "signInInvalidUser": [
+    { "description": "wrong email", "email": "user.test.com", "password": "123456" },
+    { "description": "empty email", "email": " ", "password": "123456" },
+    { "description": "wrong password", "email": "user.test.com", "password": "+" },
+    { "description": "empty password", "email": "user.test.com", "password": " " },
+    { "description": "unregistered user", "email": "unregistered_user@test.com", "password": "123456" }
+  ],
+  "signUpInvalidUser": [
+    { "description": "missing name field", "name": " ", "email": "test.user@test.com", "password": "123456", "confirmPassword": "123456"},
+    { "description": "missing email field", "name": "user", "email": " ", "password": "123456", "confirmPassword": "123456"},
+    { "description": "missing password field", "name": "user", "email": "test.user@test.com", "password": " ", "confirmPassword": "123456"},
+    { "description": "missing confirm password field", "name": "user", "email": "test.user@test.com", "password": "123456", "confirmPassword": " "},
+    { "description": "mismatching confirm password field", "name": "user", "email": "test.user@test.com", "password": "123456", "confirmPassword": "12345"},
+    { "description": "using existing email", "name": "user", "email": "test@test.com", "password": "123456", "confirmPassword": "123456"}
+  ]
+}
