@@ -2,6 +2,8 @@ import SignInPage from '../../model/SignInPage';
 import HomePage from '../../model/HomePage';
 import users from '../../fixtures/users.json';
 
+const DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
+
 describe('Sign in page', () => {
   beforeEach(() => {
     cy.visit('/signing');
@@ -38,10 +40,7 @@ describe('Sign in page', () => {
   describe('Sign Up', () => {
     describe('Positive scenarios | User should be able to:', () => {
       it('sign up use valid credentials', () => {
-        SignInPage.signUp(users.name,
-          `test.user@test${Date.now('YYYY-MM-DDTHH:mm:ss'.replace(':', '-'))}.com`,
-          users.password,
-          users.confirmPassword);
+        SignInPage.signUp(users.name, setEmail(users.email), users.password, users.confirmPassword);
 
         cy.get(HomePage.signOutLink).should('be.visible');
       });
@@ -59,3 +58,7 @@ describe('Sign in page', () => {
     });
   });
 });
+
+const setEmail = (emailAddress) => (
+  `${emailAddress}${Date.now(DATE_FORMAT.replace(':', '-'))}.com`
+);
