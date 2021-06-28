@@ -10,13 +10,13 @@ describe('Sign in page', () => {
   describe('Sign In', () => {
     describe('Positive scenarios | User should be able to:', () => {
       it('login with valid credentials', () => {
-        SignInPage.signIn(users.validUser[0].email, users.validUser[0].password);
+        SignInPage.signIn(users.email, users.password);
 
         cy.get(HomePage.signOutLink).should('be.visible');
       });
 
       it('sign out', () => {
-        SignInPage.signIn(users.validUser[0].email, users.validUser[0].password);
+        SignInPage.signIn(users.email, users.password);
         HomePage.clickSignOutLink();
 
         cy.get(HomePage.signInHeaderLink).should('be.visible');
@@ -38,10 +38,10 @@ describe('Sign in page', () => {
   describe('Sign Up', () => {
     describe('Positive scenarios | User should be able to:', () => {
       it('sign up use valid credentials', () => {
-        SignInPage.signUp(users.validUser[0].name,
+        SignInPage.signUp(users.name,
           `test.user@test${Date.now('YYYY-MM-DDTHH:mm:ss'.replace(':', '-'))}.com`,
-          users.validUser[0].password,
-          users.validUser[0].confirmPassword);
+          users.password,
+          users.confirmPassword);
 
         cy.get(HomePage.signOutLink).should('be.visible');
       });

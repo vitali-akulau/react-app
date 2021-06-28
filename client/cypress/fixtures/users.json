@@ -1,10 +1,8 @@
 {
-  "validUser": [
-    { "name": "user",
-      "email": "test@test.com",
-      "password": "123456" ,
-      "confirmPassword": "123456" }
-  ],
+  "name": "user",
+  "email": "test@test.com",
+  "password": "123456" ,
+  "confirmPassword": "123456",
   "signInInvalidUser": [
     { "description": "wrong email", "email": "user.test.com", "password": "123456" },
     { "description": "empty email", "email": " ", "password": "123456" },
