@@ -47,9 +47,9 @@ describe('Sign in page', () => {
     });
 
     describe('Negative scenarios | User should not be able to sign up with:', () => {
-      users.signUpInvalidUser.forEach((prop) => {
-        it(`${prop.description}`, () => {
-          SignInPage.signUp(prop.name, prop.email, prop.password, prop.confirmPassword);
+      users.signUpInvalidUser.forEach((data) => {
+        it(`${data.description}`, () => {
+          SignInPage.signUp(data.name, data.email, data.password, data.confirmPassword);
 
           cy.url().should('include', '/signing');
           cy.get(SignInPage.signUpTitle).should('be.visible');
