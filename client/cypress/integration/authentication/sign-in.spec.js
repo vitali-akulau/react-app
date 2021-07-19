@@ -1,6 +1,8 @@
 import SignInPage from '../../model/SignInPage';
 import HomePage from '../../model/HomePage';
-import user from '../../fixtures/user';
+import users from '../../fixtures/users.json';
+
+const DATE_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
 
 describe('Sign in page', () => {
   beforeEach(() => {
@@ -8,114 +10,55 @@ describe('Sign in page', () => {
   });
 
   describe('Sign In', () => {
-    it('User should be able to login with valid credentials', () => {
-      SignInPage.signIn(user.email, user.password);
+    describe('Positive scenarios | User should be able to:', () => {
+      it('login with valid credentials', () => {
+        SignInPage.signIn(users.email, users.password);
 
-      assertUserLogged();
+        cy.get(HomePage.signOutLink).should('be.visible');
+      });
+
+      it('sign out', () => {
+        SignInPage.signIn(users.email, users.password);
+        HomePage.clickSignOutLink();
+
+        cy.get(HomePage.signInHeaderLink).should('be.visible');
+      });
     });
 
-    it('User should be able to sign out', () => {
-      SignInPage.signIn(user.email, user.password);
-      HomePage.clickSignOutLink();
+    describe('Negative scenarios | User should not be able to login use:', () => {
+      users.signInInvalidUser.forEach((prop) => {
+        it(`${prop.description}`, () => {
+          SignInPage.signIn(prop.email, prop.password);
 
-      assertUserLoggedOut();
-    });
-
-    it('User should not be able to login use wrong email ', () => {
-      SignInPage.signIn(user.wrongEmail, user.password);
-
-      assertUserNotLoggedIn();
-    });
-
-    it('User should not be able to login use empty email', () => {
-      SignInPage.signIn(user.emptyEmail, user.password);
-
-      assertUserNotLoggedIn();
-    });
-
-    it('User should not be able to login use wrong password', () => {
-      SignInPage.signIn(user.email, user.wrongPassword);
-
-      assertUserNotLoggedIn();
-    });
-
-    it('User should not be able to login use empty password', () => {
-      SignInPage.signIn(user.email, user.emptyPassword);
-
-      assertUserNotLoggedIn();
-    });
-
-    it('User should not be able to login as unregistered user', () => {
-      SignInPage.signIn(user.newEmail, user.password);
-
-      assertUserNotLoggedIn();
+          cy.url().should('include', '/signing');
+          cy.get(SignInPage.signInTitle).should('be.visible');
+        });
+      });
     });
   });
 
   describe('Sign Up', () => {
-    it('User should be able to sign up use valid credentials', () => {
-      SignInPage.signUp(user.name, user.newEmail, user.password, user.confirmPassword);
+    describe('Positive scenarios | User should be able to:', () => {
+      it('sign up use valid credentials', () => {
+        SignInPage.signUp(users.name, setEmail(users.email), users.password, users.confirmPassword);
 
-      assertUserLogged();
+        cy.get(HomePage.signOutLink).should('be.visible');
+      });
     });
 
-    it('User should not be able to sign up with missing name field', () => {
-      SignInPage.signUp(user.emptyName, user.email, user.password, user.confirmPassword);
+    describe('Negative scenarios | User should not be able to sign up with:', () => {
+      users.signUpInvalidUser.forEach((data) => {
+        it(`${data.description}`, () => {
+          SignInPage.signUp(data.name, data.email, data.password, data.confirmPassword);
 
-      assertUserIsNotAuthorized();
-    });
-
-    it('User should not be able to sign up with missing email field', () => {
-      SignInPage.signUp(user.name, user.emptyEmail, user.password, user.confirmPassword);
-
-      assertUserIsNotAuthorized();
-    });
-
-    it('User should not be able to sign up with missing password field', () => {
-      SignInPage.signUp(user.name, user.email, user.emptyPassword, user.confirmPassword);
-
-      assertUserIsNotAuthorized();
-    });
-
-    it('User should not be able to sign up with missing confirm password field', () => {
-      SignInPage.signUp(user.name, user.email, user.password, user.emptyConfirmPassword);
-
-      assertUserIsNotAuthorized();
-    });
-
-    it('User should not be able to sign up with mismatching confirm password field', () => {
-      SignInPage.signUp(user.name, user.email, user.password, user.differentConfirmPassword);
-
-      assertUserIsNotAuthorized();
-    });
-
-    it('User should not be able to sign up using existing email', () => {
-      SignInPage.signUp(user.name, user.email, user.password, user.confirmPassword);
-
-      assertUserIsNotAuthorized();
-      assertThatWarningNotificationIsDisplay();
+          cy.url().should('include', '/signing');
+          cy.get(SignInPage.signUpTitle).should('be.visible');
+        });
+      });
     });
   });
-
-  function assertUserNotLoggedIn() {
-    cy.url().should('include', '/signing');
-    cy.get(SignInPage.signInTitle).should('be.visible');
-  }
-
-  function assertUserIsNotAuthorized() {
-    cy.url().should('include', '/signing');
-    cy.get(SignInPage.signUpTitle).should('be.visible');
-  }
-
-  function assertUserLogged() {
-    cy.get(HomePage.signOutLink).should('be.visible');
-  }
-
-  function assertUserLoggedOut() {
-    cy.get(HomePage.signInHeaderLink).should('be.visible');
-  }
-
-  function assertThatWarningNotificationIsDisplay() {
-    cy.get(SignInPage.warningNotification).should('be.visible');
-  }
 });
+
+const setEmail = (emailAddress) => (
+  `${emailAddress}${Date.now(DATE_FORMAT.replace(':', '-'))}.com`
+);
